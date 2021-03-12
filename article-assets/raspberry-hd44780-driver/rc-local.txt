@@ -1,0 +1,14 @@
+...
+
+#Print the IP address
+DEV_LCD=/dev/lcd
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  if [ -e "$DEV_LCD" ]; then
+    chmod a+rw $DEV_LCD
+    /bin/bash /home/pi/display_ip_addr.sh $_IP
+  fi
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+exit 0

@@ -1,0 +1,6 @@
+fragment@1 {
+    target = <&lcd_screen>;
+    __overlay__ {
+        backlight-gpios = <&gpio 12 0>;
+    };
+};

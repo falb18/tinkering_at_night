@@ -1,0 +1,8 @@
+#/bin/bash
+DEV_LCD=/dev/lcd
+_IP=$1
+if [ -e "$DEV_LCD" ]; then
+  if [ -c "$DEV_LCD" ]; then
+    echo -ne "\x1b[L+\x1b[2JIP:\n$_IP" > $DEV_LCD
+  fi
+fi
