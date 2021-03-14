@@ -46,7 +46,11 @@ h2,h3 {
     font-style: italic;
     color: #868e96;
   }
-  
+
+ol li a {
+    word-break: break-all;
+}
+
   .section-heading {
     font-size: 36px;
     font-weight: 700;
