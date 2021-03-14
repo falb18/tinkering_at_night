@@ -81,7 +81,7 @@
 <p>There are two main kernel modules that control this LCD. The first one is the driver especifically for the HD44780 integrated circuit, which communicates with the LCD. The other is the kernel module <em>charlcd</em> which serves as an interface between the user and the driver. This module receives the characters and commands that later will send to the LCD.</p>
 <h2>Building the circuit</h2>
 <p>The following image describes which pins of the LCD are connected to the gpios on the board. I added a transistor to turn on or off the LCD's led backlight. However, for the moment connect the led backlight to 3.3v given that the driver does not control it, later we will fix this.</p>
-<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="max-width: 600px; height: auto;"></p>
+<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="width: 100%; max-width: 600px; height: auto;"></p>
 <h2>HD44780 devicetree overlay</h2>
 <p>Lucky for us, raspberry pi has an overlay for the devicetree which allows to set the pins for the LCD. The devicetree overlay is important as it defines the peripheral's pins and hardware configuration which later the driver is going to read.</p>
 <p>In the documentation are defined the parameters that have to be set to configure the LCD. It's important to notice that RW pin is not defined, this means we can't read from the LCD. Keep this in mind in when building the circuit.</p>
@@ -115,7 +115,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 <p><strong>IMPORTANT: Check twice that you have written correctly the dtbo overlay parameters. If there are any misspelled words, the kernel module will not get the properties from the devicetree overlay and therefore the LCD will not work.</strong></p>
 <h2>Use the LCD</h2>
 <p>If everything is connected correctly, at boot time you should see the kernel version.</p>
-<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="max-width: 600px; height: auto;"></p>
+<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 600px; height: auto;"></p>
 <p>The lcd appears as a character device on the linux system. Give it write and read permissions before sending anything to it. The permissions could be also changed in a udev rule.</p>
 <pre><code class="language-bash">sudo chmod a+rw /dev/lcd
 </code></pre>
@@ -421,7 +421,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 <pre><code class="language-bash">sudo cat /sys/kernel/debug/gpio
 </code></pre>
 
-<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="max-width: 700px; height: auto;"></p>
+<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="width: 100%; max-width: 700px; height: auto;"></p>
 <p>We can confirm the backlight pin is not used. The solution is to edit the file <em>arch/arm/boot/overlay/hd44780-lcd-overlay.dts</em> and replace the label <strong>dormant</strong> with <strong>overlay</strong>:</p>
 <pre><code class="language-c">fragment@1 {
     target = <&lcd_screen>;
@@ -448,7 +448,7 @@ sudo reboot
 </code></pre>
 
 <p>Now the backlight works.</p>
-<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="max-width: 600px; height: auto;"></p>
+<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 600px; height: auto;"></p>
 <h2>Example: Display IP address at boot time</h2>
 <p>If you have logged into the Raspberry Pi throught the serial console, you may have noticed that during boot time, when the kernel is loading all the systemd services, it shows the IP addres of the board if it successfully connects to an existing network previously configured.</p>
 <p>The service that shows this IP address is in <em>/lib/systemd/system/rc-local.service</em>. If we take a look inside it, the service executes the <em>/etc/rc.local</em> file. In it are the instructions to show the IP address, let's modify it to display the IP address on the LCD.</p>
@@ -485,7 +485,7 @@ fi
 exit 0</code></pre>
 
 <p>Reboot the system and after it shows the linux kernel version you should see Raspberry Pi's IP address</p>
-<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="max-width: 600px; height: auto;"></p>
+<p><img class="post-image" src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 600px; height: auto;"></p>
 <p>That's all for now. Hope you have enjoyed this tutorial and if you have any question send me an e-mail and I'll be glad to answer.</p>
 <h3>References</h3>
 <ol>
