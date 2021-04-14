@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Tinkering At Night</title>
+  <link rel="canonical" href="./bluetooth-hc05-linux.html">
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Stylesheets -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link href="./theme/css/clean-blog.css" rel="stylesheet">
+
+  <!-- Script for date formatting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/localizedFormat.min.js" integrity="sha512-Ik4L88eO6WOyP27Lb+m7a2u4BdYgEvNNB+zzhTMDSD2Z77vExkikHm95PUBLXqP2hZmxJo2JyJFgxhpslxq1Aw==" crossorigin="anonymous"></script>
+  <script>dayjs.extend(window.dayjs_plugin_localizedFormat)</script>
+
+  <!-- Highlight js sripts and stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css" integrity="sha512-RgUfG84wvjIwNHlKPU63D8S8IItsNhZZ5kfjpvhGAfr529lt67Ys4/2RAA/NYhsb2HBfcxUXMX3NEJswqpT1tg==" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js" integrity="sha512-zol3kFQ5tnYhL7PzGt0LnllHHVWRGt2bTCIywDiScVvLIlaDOVJ6sPdJTVi0m3rA660RT+yZxkkRzMbb1L8Zkw==" crossorigin="anonymous"></script>
+  <script>hljs.highlightAll();</script>
+
+</head>
+
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href=".">Tinkering At Night</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./pages/about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<header class="masthead" style="background-image: url('./article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="post-heading">    
+                    <h1>Test HC-05 bluetooth module using linux commands</h1>
+                    <span class="meta">Posted by
+                        <a href="./pages/about.html">Felipe Arturo López Bonilla</a>
+                        on <script>document.write(dayjs('2021-04-14 00:00:00-05:00').format('LL'))</script>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="main" id="content">
+        <div class="container">
+<article class="container">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <p>The purpose of this post is to figure out how to connect a Linux PC to the HC-05 bluetooth module and send text to it through linux commands.</p>
+<p>Here's the setup I have for this test:</p>
+<ul>
+<li>Ubuntu 18.04 installed in my laptop.</li>
+<li>HC-05 bluetooth module.</li>
+</ul>
+<h2>My DIY base board</h2>
+<p>I bought this module without the base board long time ago because I wanted to take advantage of all the GPIOs it has. When I did the purchase I was still studying at the university. I had this crazy idea of designing and building my own custom base board for the module. I used KiCad to draw the pcb for the base board. It has all the holes for the pin headers and each of them connected to a GPIO on the module.</p>
+<p>I made the pcb the old fashion way which is printing the circuit in a piece of paper using a laser printer and then transfer the toner to the copper board using an iron. I failed at least 5 times but at the end I got something decent, at least all the tracks where in place.</p>
+<p>Below is a picture of the moment where I was soldering the module to the base board. This step of the process wasn't that difficult as I thought it would be. To my surprise it worked the first time, at that moment I connected it to an Arduino Uno.</p>
+<p><img class="post-image" src="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" style="width: 100%; max-width: 400px; height: auto;"></p>
+<h2>Building the circuit</h2>
+<p>The first step is to check if the module can receive AT commands from the computer.</p>
+<p>For my particular case, I had to add a logic level converter since each GPIO on the module only works at 3.3v. I bought a bunch of this cheap modules in Aliexpress, but to be honest the quality leaves much to be desired, so I guess I'll get a new ones from Sparkfun.</p>
+<p>The schematic below shows how everything is connected.
+<img class="post-image" src="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" style="width: 100%; max-width: 700px; height: auto;"></p>
+<p>You can see the cheap logic level converter module and my DIY base board for the bluetooth. Although the schematic shows a 1-pole dip switch, I'm using a 4-pole dip switch because is the only spare I have at the moment.
+<img class="post-image" src="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" style="width: 100%; max-width: 600px; height: auto;"></p>
+<h2>Communicate to the module through UART</h2>
+<p>I used <em>picocom</em>, which is a terminal emulator, to open the serial port. To install it just run the following command:</p>
+<pre><code class="bash">sudo apt install picocom
+</code></pre>
+
+<p>The module has two operation modes: <strong><em>Automatic connection</em></strong> and <strong><em>Order-Response</em></strong>. The former only receives a small subset of AT comamnds and the latter is used to send and receive AT commands. To set the latter mode in the module the PIO_11 (GPIO 34) has to be in high level before the module is on.</p>
+<p>Once the pin is set high, run the following command to open the serial port:
+<pre><code class="language-bash">picocom -b 38400 -c --omap crcrlf /dev/ttyUSB0
+</code></pre></p>
+<p>Send the following command to get the bluetooth's MAC address:
+<pre><code class="plaintext">at+addr?
+</code></pre></p>
+<p>You should receive something similar to this:
+<pre><code class="plaintext">+ADDR:98d3:31:b185dd
+</code></pre></p>
+<h2>Pair HC-05 bluetooth module to the computer</h2>
+<p>For this step you need bluez-utils, which has many programs that interact with the bluetooth host controller. I didn't have to install anything since I believe this is already installed by default in the OS.</p>
+<p>It may happens the bluetooth host controller is off or blocked. In my case it was blocked so to unblock it run the following:
+<pre><code class="language-bash">sudo rfkill unblock 1
+</code></pre></p>
+<p>Verify that the bluetooth controller is finally up and running:
+<pre><code class="plaintext">sudo hciconfig hci0
+</code></pre>
+<img class="post-image" src="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" style="width: 100%; max-width: 700px; height: auto;"></p>
+<p><strong>Important:</strong> before you pair the bluetooth module you have to set the pin PIO_11 (GPIO 34) to low level and then write the following command, you don't have to power off and on the module:
+<pre><code class="plaintext">at+init
+</code></pre></p>
+<p>Press CTRL+A+X to exit picocom, later we will use it again but with a different baudrate.</p>
+<p>Start the following program and the do scanning to discover the device:
+<pre><code class="language-bash">sudo bluetoothctl
+</code></pre>
+<img class="post-image" src="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" style="width: 100%; max-width: 700px; height: auto;"></p>
+<p>From the picture above we can observe the controller has found the device. To pair the computer with the bluetooth module run the following. The program will ask for the password, by default it is '1234':
+<img class="post-image" src="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" style="width: 100%; max-width: 700px; height: auto;"></p>
+<p>To exit the program just write the command <em>exit</em>.</p>
+<h2>Connect to HC-05 bluetooth module</h2>
+<p>Run the following to create a serial device for the bluetooth module, it's necessary the bluetooth's module MAC address:</p>
+<pre><code class="language-bash">sudo rfcomm bind hci0 98:D3:31:B1:85:DD
+</code></pre>
+
+<p>If the commands runs successfully the character device <em>/dev/rfcomm0</em> is created. In fact this device is a serial port.
+To send text to the module open the recently created serial port with the program <em>picocom</em>.</p>
+<pre><code class="language-bash">picocom -b 115200 --imap lfcrlf --omap crcrlf /dev/rfcomm0
+</code></pre>
+
+<p>After you open the serial port, the LED connected to PIO_09 (GPIO_32) turns on and the other LED blinks at a slower rate.
+<img class="post-image" src="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" style="width: 100%; max-width: 600px; height: auto;"></p>
+<p>In another terminal open the serial port which is connected directly to the module to receive the characters:</p>
+<pre><code class="language-bash">picocom -b 115200 --imap lfcrlf --omap crcrlf /dev/ttyUSB0
+</code></pre>
+
+<p>The picture below shows the text sent from the computer and from the bluetooth module.
+<img class="post-image" src="article-assets/bluetooth-hc05-linux/picocom-terminals.png" style="width: 100%; max-width: 600px; height: auto;"></p>
+<h2>Notes about bluetooth kernel module</h2>
+<p>The <strong><em>RFCOMM</em></strong> is a protocol which emulates a serial port connection. When we run the command <em>rfcomm bind</em> we are telling to the kernel module <em>net/bluetooth/rfcomm/tty</em> to create a character device which is going to be used as a serial port.</p>
+<h3>References</h3>
+<ol>
+<li>
+<p><a href="https://alberand.com/hc-05-linux.html">https://alberand.com/hc-05-linux.html</a></p>
+</li>
+<li>
+<p><a href="http://www.wattnotions.com/using-the-hc-06-hc-05-bluetooth-adapter-for-serial-communication-with-linux/">http://www.wattnotions.com/using-the-hc-06-hc-05-bluetooth-adapter-for-serial-communication-with-linux/</a></p>
+</li>
+</ol>
+        </div>
+    </div>
+</article>
+        </div>
+    </div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">Copyright &copy; Felipe Arturo López Bonilla 
+                    <script>document.write(dayjs().year())</script>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mt-4 mx-auto">
+                <p class="text-center list-inline text-muted copyright">
+                    This site is powered by 
+                <a href="https://blog.getpelican.com/">Pelican</a>.
+                    The theme is based on
+                <a href="https://startbootstrap.com/theme/clean-blog">Clean Blog</a>.
+                </p>
+            </div>
+        </div>
+</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript"  src="./theme/js/clean-blog.js"></script>
+</body>
+
+</html>
