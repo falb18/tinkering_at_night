@@ -7,8 +7,8 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Tinkering At Night - Tags</title>
-  <link rel="canonical" href="./tags.html">
+  <title>Notes about the setup and of the I2C on the STM32F103C8T6 - Felipe Arturo López Bonilla</title>
+  <link rel="canonical" href="./stm32f1-i2c.html">
 
   <!-- Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -45,18 +45,56 @@
           <li class="nav-item">
             <a class="nav-link" href="./pages/about.html">About</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
         </ul>
       </div>
     </div>
   </nav>
+<header class="masthead">
+    <div class="overlay-solid"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="post-heading">    
+                    <h1>Notes about the setup and of the I2C on the STM32F103C8T6</h1>
+                    <span class="meta">Posted by
+                        <a href="./pages/about.html">Felipe Arturo López Bonilla</a>
+                        on <script>document.write(dayjs('2021-06-10 00:00:00-05:00').format('LL'))</script>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
     <div class="main" id="content">
         <div class="container">
-    <h1>Tags for Tinkering At Night</h1>
-    <ul>
-    </ul>
+<article class="container">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <p>In this post I try to setup and use the I2C peripheral on the STM32F103C8T5 also know as "bluepill". To be clear I'm not familiar with this kind of microcontrollers but I think these notes will be helpfull for someone else who also wants to do it's own implementation of I2C reading and writing. Besides, as with most 32-bit microcontrollers, there are more registers to setup in order to use the peripheral which sometimes can be confusing, specially when you are a novice like me.</p>
+<p>I'm using the libopencm3 library to access the registers. Although this library already has functions to setup the registers correctly, I want to do most of the implementation setting or clearing the corresponding registers' bits. I choosed to do it this way since I believe it gives a better understanding what's going on under the hood so later you can have a better idea why the peripheral is not working.</p>
+<p>For this project the microcontroller will communicate to a DS3231 chip, real-time controller, which will act as a slave device. The microcontroller has two I2C peripherals, in this case I'm using <strong><em>I2C1</em></strong>. The clock frequency of the micrcontroller is setup to 24 Mhz.</p>
+<h2>Setup the I2C on the STM32F1</h2>
+<p>First, we enable the clocks for the I2C pins, which are in PORTA; for the alternate function on those pins, and for the peripheral itself.</p>
+<p>Second, setup the gpios as open-drain output with the alternate function activated. It's important that the pins are set as open-drain since a pull-up resistor is attached to those pins.</p>
+<p>Finally, the following parameters are set to configure the <em>I2C1</em>:</p>
+<ul>
+<li>The microcontroller will be in <em>MASTER</em> mode.</li>
+<li>The I2C frequency is set to standard (100 Khz).</li>
+<li></li>
+</ul>
+<h2>Write one byte to the slave device</h2>
+<p>Sometimes is difficult to understand the whole communication process donde by the <em>MASTER</em>. So I attach this diagram to have a better understanding what the <em>MASTER</em> is doing:</p>
+<p>The code to write one byte to the slave is the following:</p>
+<h2>Write multiple bytes to the slave device</h2>
+<h2>Read one byte from the slave device</h2>
+<h2>Read multiple bytes from the slave device</h2>
+<h2>Conclusion</h2>
+<h3>References</h3>
+        </div>
+    </div>
+</article>
         </div>
     </div>
 

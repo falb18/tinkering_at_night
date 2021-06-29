@@ -348,6 +348,31 @@ header.masthead .page-heading h1 {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* "About" page style */
+#intro {
+	padding-top: 20px;
+	padding-bottom: 80px;
+}
+
+.desc-list li {
+	margin-bottom: 12px;
+}
+
+#links-list {
+	padding-left: 0px;
+	list-style: none;
+}
+
+#links-list li {
+	margin-bottom: 15px;
+}
+
+/* Set automatic scrollbar for each code block */
+pre code {
+	max-height: 350px;
+	overflow-y: auto;
+}
   
   @media only screen and (min-width: 768px) {
     .post-preview > a > .post-title {
