@@ -1,0 +1,93 @@
+#include <WiFiEspAT.h>
+#include <PubSubClient.h>
+#include <LiquidCrystal.h>
+
+// WiFi credentials and variables
+const char ssid[] = "SSID_NETWORK";
+const char pswd[] = "PSWD_SSID";
+int status = WL_IDLE_STATUS;
+
+// MQTT variables
+const char ip_broker[] = "192.168.1.252";
+
+// LCD pinout
+const int rs = 12, en = 11;
+const int d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+WiFiClient espClient;
+
+PubSubClient client(espClient);
+
+void setup() {
+  lcd.begin(16, 2);
+
+  // Init serial for ESP module
+  Serial.begin(115200);
+
+  // Init ESP module
+  WiFi.init(Serial);
+
+  if (WiFi.status() == WL_NO_MODULE) {
+    lcd.setCursor(0,0);
+    lcd.print("No WiFi module");
+    // Don't continue
+    while(true);
+  }
+
+  WiFi.disconnect();
+  WiFi.endAP();
+  
+  while (status != WL_CONNECTED) {
+    status = WiFi.begin(ssid, pswd);
+  }
+
+  lcd.clear();
+  lcd.print("WiFi connected");
+
+  // Attempt to connect to MQTT broker
+  client.setServer(ip_broker, 1883);
+  client.setCallback(sub_callback);
+  while (!client.connected()) {
+
+    if (client.connect("ESP8266-Wroom2")) {
+      client.subscribe("sensor/distance");
+    } else {
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("No broker");
+      lcd.setCursor(0,1);
+      lcd.print("Retrying...");
+      delay(500);
+    }
+  }
+
+  lcd.clear();
+  lcd.print("Broker found");
+}
+
+void loop() {
+  client.loop();
+}
+
+void sub_callback(char *topic, byte *payload, unsigned int msg_length) {
+  lcd.clear();
+  lcd.setCursor(0,0);
+
+  for (uint8_t i = 0; i < msg_length; i++) { 
+    lcd.print((char)payload[i]);
+  }
+  
+  #if defined ARDUINO_MEGA2560
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("]: ");
+
+  for (uint8_t i = 0; i < msg_length; i++) {
+    Serial.print((char)payload[i]);
+  }
+
+  Serial.println();
+  #endif
+}

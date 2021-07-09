@@ -1,0 +1,106 @@
+#include "WiFiEsp.h"
+#include "PubSubClient.h"
+
+const int trig_pin = 2;
+const int echo_pin = 3;
+
+// WiFi credentials and variables
+const char ssid[] = "SSID_NETWORK";
+const char pswd[] = "PSWD_SSID";
+int status = WL_IDLE_STATUS;
+
+// MQTT variables
+const char ip_broker[] = "192.168.1.252";
+unsigned long last_send;
+
+// Ultrasonic sensor variables
+unsigned long duration;
+unsigned int distance;
+
+WiFiEspClient espClient;
+
+PubSubClient client(espClient);
+
+void setup() {
+  // Init serial for debugging
+  Serial.begin(115200);
+
+  // Init serial for ESP module
+  Serial1.begin(115200);
+
+  // Init ESP module
+  WiFi.init(&Serial1);
+
+  // Check if module is connected
+  if (WiFi.status() == WL_NO_SHIELD) {
+    Serial.println("Wifi module is not connected");
+    // Do not continue
+    while (true);
+  }
+
+  // Attemp to connect to WiFi network
+  while (status != WL_CONNECTED) {
+    Serial.print("Attempting to connect to WPA SSID: ");
+    Serial.println(ssid);
+
+    // Connect to WPA/WPA2 network
+    status = WiFi.begin(ssid, pswd);
+  }
+
+  // Attempt to connect to MQTT broker
+  client.setServer(ip_broker, 1883);
+  while (!client.connected()) {
+    Serial.print("Attempting to connect to broker: ");
+    Serial.println(ip_broker);
+
+    if (client.connect("ESP8266Client")) {
+      Serial.println("[DONE]");
+    } else {
+      Serial.print("[FAILED] [rc = ");
+      Serial.print(client.state());
+      Serial.println(" : retrying in 500ms]");
+      delay(500);
+    }
+  }
+
+  pinMode(trig_pin, OUTPUT);
+  pinMode(echo_pin, INPUT);
+}
+
+void loop() {
+  unsigned int distance;
+
+  // Every 5 secs send a message with the distance
+  // measured by the sensor
+  if (millis() - last_send > 5000) {
+    Serial.println("Send Topic");
+
+    distance = get_distance();
+    String payload = String("Distance: " + String(distance));
+
+    char attributes[100];
+    payload.toCharArray(attributes, 100);
+    client.publish("sensor/distance", attributes);
+    Serial.println(attributes);
+
+    last_send = millis();
+  }
+
+  client.loop();
+}
+
+unsigned int get_distance(void)
+{
+  digitalWrite(trig_pin, LOW);
+  delayMicroseconds(2);
+  // Send pulse
+  digitalWrite(trig_pin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig_pin, LOW);
+
+  // Get echo and measure time travel
+  duration = pulseIn(echo_pin, HIGH);
+  distance = (duration * 0.034 / 2);
+
+  return distance;
+}
