@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night - posts</title><link href="/" rel="alternate"></link><link href="/feeds/posts.atom.xml" rel="self"></link><id>/</id><updated>2021-07-09T00:00:00-05:00</updated><entry><title>MQTT simple application</title><link href="/mqtt-simple-application.html" rel="alternate"></link><published>2021-07-09T00:00:00-05:00</published><updated>2021-07-09T00:00:00-05:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-07-09:/mqtt-simple-application.html</id><summary type="html">&lt;p&gt;This example demonstrates how to setup and use MQTT protocol to publish and read messages using two Arduinos. The purpose of this project is to do a simple applicaton where one client gets information of a sensor and sends it through WiFi. Another client reads those messages and displays them on an 16x02 LCD.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This example demonstrates how to setup and use MQTT protocol to publish and readd messages using two Arduinos.
+The purpose of this project is to do a simple application where one Arduino gets information of a sensor and then sends 
+the message through WiFi. Then another Arduino reads those messages and displays the information on an 16x02 LCD.&lt;/p&gt;
+&lt;p&gt;This basic project serves for me as an introduction to know how to setup the broker, which will be running on a 
+Raspberry Pi; to setup the clients which each one has an &lt;em&gt;ESP8266&lt;/em&gt; attached to them, and finally how to send messages 
+between the clients.&lt;/p&gt;
+&lt;p&gt;There's a useful tutorial about the MQTT protocol from 
+&lt;a href="https://www.hivemq.com/blog/how-to-get-started-with-mqtt/"&gt;HiveMQ&lt;/a&gt;. Read it first if you don't know anything about 
+this protocol, like I did myself.&lt;/p&gt;
+&lt;p&gt;The tools and hardware for this project are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rasbperry Pi Model 2 with WiFi USB dongle(this is the broker and can be replaced with a recent model)&lt;/li&gt;
+&lt;li&gt;Arduino Mega (can be replaced with another Arduino model)&lt;/li&gt;
+&lt;li&gt;Arduino Nano (can be replaced with another Arduino model)&lt;/li&gt;
+&lt;li&gt;Espresso Lite (can be replaced with another ESP module)&lt;/li&gt;
+&lt;li&gt;ESP-01 module (can be replaced with another ESP module)&lt;/li&gt;
+&lt;li&gt;Ultrasonic sensor&lt;/li&gt;
+&lt;li&gt;LCD 16x02&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;An overview of the project&lt;/h2&gt;
+&lt;p&gt;The Raspberry Pi acts as the broker which dispatches messages between the sender and the receiver.
+Is very easy to setup the broker on a Raspberry Pi. For the setup follow the instructions from this
+&lt;a href="https://www.hackster.io/dhairya-parikh/running-a-mqtt-broker-on-raspberry-pi-63c348"&gt;link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For the clients I'm using an Arduino Mega and an Arduino Nano. Both have attached an &lt;em&gt;ESP8266&lt;/em&gt; so they can connect to 
+broker's network and publish or read MQTT messages. One client calculates the distance to an object, using an
+ultrasonic sensor, and then it publishes the message in the topic "sensor/distance".&lt;/p&gt;
+&lt;p&gt;The other client, which is suscribed to the topic above, reads the messages and display the distance on the LCD.&lt;/p&gt;
+&lt;h2&gt;Builiding the circuit&lt;/h2&gt;
+&lt;p&gt;The schematic below shows how the peripherals for each client are connected. To supply voltage to the ultrasonic
+sensor and &lt;em&gt;ESP-01&lt;/em&gt; module a breadboard power supply module is used. The LCD and the &lt;em&gt;Espresso Lite&lt;/em&gt; are connected to
+the 5v of the Arduino Nano. The Raspberry Pi is not shown on the schematic since it's independent of the two clients.&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here is a picture of how everything is connected on the breadboard.&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Updating the firmware in both ESP modules&lt;/h2&gt;
+&lt;p&gt;I bought the &lt;em&gt;ESP-01&lt;/em&gt; module and the &lt;em&gt;Espresso Lite&lt;/em&gt; long time ago so the firmware intalled in them wasn't
+a recent one.&lt;/p&gt;
+&lt;p&gt;In the &lt;em&gt;Espresso Lite&lt;/em&gt; I installed Espressif's firmware v1.7.4 and on the &lt;em&gt;ESP-01&lt;/em&gt; I installed the v1.6.2.
+To install the firmware I used the tool &lt;em&gt;esptool.py&lt;/em&gt; v3.1 which can be downloaded from this github
+&lt;a href="https://github.com/espressif/esptool/releases/tag/v3.1"&gt;repo&lt;/a&gt;. Before flashing, download the two firmware versions
+from the Espressif's &lt;a href="https://www.espressif.com/en/support/download/at"&gt;website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To flash the firmware in the &lt;em&gt;Espresso Lite&lt;/em&gt; run the following:
+&lt;pre&gt;&lt;code class="language-bash"&gt;cd ESP8266_NonOS_AT_Bin_V1.7.4/ESP8266_NonOS_AT_Bin_V1.7.4/bin/at/1024+1024
+./esptool.py --port /dev/ttyUSB0 write_flash --flash_freq 40m --flash_mode dio --flash_size 4MB 0x00000 ../../boot_v1.7.bin 0x01000 user1.2048.new.5.bin 0x1fc000 ../../esp_init_data_default_v08.bin 0xfe000 ../../blank.bin 0x1fe000 ../../blank.bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;For the &lt;em&gt;ESP-01&lt;/em&gt; execute the following:
+&lt;pre&gt;&lt;code class="language-bash"&gt;cd ESP8266_AT_Bin_V1.6.2_0/ESP8266_AT_Bin_V1.6.2/bin/at/512+512/
+./esptool.py --port /dev/ttyUSB1 write_flash --flash_freq 40m --flash_mode dio --flash_size 512KB 0x00000 ../../boot_v1.7.bin 0x01000 user1.1024.new.2.bin 0x7c000 ../../esp_init_data_default_v08.bin 0x7e000 ../../blank.bin
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;h3&gt;Issue with firmware v1.6.2&lt;/h3&gt;
+&lt;p&gt;Unfortunately this version comes with errors which translate into the module disconnecting from the network after
+a minute or so. Although the solution will be to update the firmware to a recent version, the problem is that
+the external flash memory has only 512 KB because is and old version of this module.&lt;/p&gt;
+&lt;p&gt;Newer firmware versions require at least 1 MB of flash memory. Maybe later I'll buy a new version of this module or
+change it for another one like the ESP32-NodeMCU. For the moment it works for my basic setup but, needless to say, I
+will not use it for other projects.&lt;/p&gt;
+&lt;h2&gt;Code for both clients&lt;/h2&gt;
+&lt;p&gt;Both clients need the following libraries to send or read MQTT messages through WiFi.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;WiFiEsp - this library allows to the Arduino to communicate with the ESP module through AT commands.&lt;/li&gt;
+&lt;li&gt;PubSubClient - this library allows the clients to connect to a broker and publish or subscribe to topics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I used the Arduino IDE to program both Arduinos. I installed these libraries with the "Library Manager".&lt;/p&gt;
+&lt;h3&gt;Code for the publisher&lt;/h3&gt;
+&lt;p&gt;In general the code works as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First, setup the &lt;em&gt;ESP-01&lt;/em&gt; module so it connects to the WiFi network.&lt;/li&gt;
+&lt;li&gt;Then connect to the MQTT broker to publish message in the topic "sensor/distance".&lt;/li&gt;
+&lt;li&gt;Inside a loop calculate the distance to an object every 5 secs by triggering the ultrasonic sensor.&lt;/li&gt;
+&lt;li&gt;Finally, publish the distance as a message into the topic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class="language-c"&gt;#include "WiFiEsp.h"
+#include "PubSubClient.h"
+
+const int trig_pin = 2;
+const int echo_pin = 3;
+
+// WiFi credentials and variables
+const char ssid[] = "SSID_NETWORK";
+const char pswd[] = "PSWD_SSID";
+int status = WL_IDLE_STATUS;
+
+// MQTT variables
+const char ip_broker[] = "192.168.1.252";
+unsigned long last_send;
+
+// Ultrasonic sensor variables
+unsigned long duration;
+unsigned int distance;
+
+WiFiEspClient espClient;
+
+PubSubClient client(espClient);
+
+void setup() {
+  // Init serial for debugging
+  Serial.begin(115200);
+
+  // Init serial for ESP module
+  Serial1.begin(115200);
+
+  // Init ESP module
+  WiFi.init(&amp;Serial1);
+
+  // Check if module is connected
+  if (WiFi.status() == WL_NO_SHIELD) {
+    Serial.println("Wifi module is not connected");
+    // Do not continue
+    while (true);
+  }
+
+  // Attemp to connect to WiFi network
+  while (status != WL_CONNECTED) {
+    Serial.print("Attempting to connect to WPA SSID: ");
+    Serial.println(ssid);
+
+    // Connect to WPA/WPA2 network
+    status = WiFi.begin(ssid, pswd);
+  }
+
+  // Attempt to connect to MQTT broker
+  client.setServer(ip_broker, 1883);
+  while (!client.connected()) {
+    Serial.print("Attempting to connect to broker: ");
+    Serial.println(ip_broker);
+
+    if (client.connect("ESP8266Client")) {
+      Serial.println("[DONE]");
+    } else {
+      Serial.print("[FAILED] [rc = ");
+      Serial.print(client.state());
+      Serial.println(" : retrying in 500ms]");
+      delay(500);
+    }
+  }
+
+  pinMode(trig_pin, OUTPUT);
+  pinMode(echo_pin, INPUT);
+}
+
+void loop() {
+  unsigned int distance;
+
+  // Every 5 secs send a message with the distance
+  // measured by the sensor
+  if (millis() - last_send &gt; 5000) {
+    Serial.println("Send Topic");
+
+    distance = get_distance();
+    String payload = String("Distance: " + String(distance));
+
+    char attributes[100];
+    payload.toCharArray(attributes, 100);
+    client.publish("sensor/distance", attributes);
+    Serial.println(attributes);
+
+    last_send = millis();
+  }
+
+  client.loop();
+}
+
+unsigned int get_distance(void)
+{
+  digitalWrite(trig_pin, LOW);
+  delayMicroseconds(2);
+  // Send pulse
+  digitalWrite(trig_pin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig_pin, LOW);
+
+  // Get echo and measure time travel
+  duration = pulseIn(echo_pin, HIGH);
+  distance = (duration * 0.034 / 2);
+
+  return distance;
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Code for the subscriber&lt;/h3&gt;
+&lt;p&gt;For this client the code works as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setup the &lt;em&gt;Espresso Lite&lt;/em&gt; to connect it to the WiFi network.&lt;/li&gt;
+&lt;li&gt;Connect it to the MQTT broker to read the messages in the topic "sensor/distance".&lt;/li&gt;
+&lt;li&gt;Inside a loop wait for new messages from the topic and display them on the LCD.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class="language-c"&gt;#include &lt;WiFiEspAT.h&gt;
+#include &lt;PubSubClient.h&gt;
+#include &lt;LiquidCrystal.h&gt;
+
+// WiFi credentials and variables
+const char ssid[] = "SSID_NETWORK";
+const char pswd[] = "PSWD_SSID";
+int status = WL_IDLE_STATUS;
+
+// MQTT variables
+const char ip_broker[] = "192.168.1.252";
+
+// LCD pinout
+const int rs = 12, en = 11;
+const int d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+WiFiClient espClient;
+
+PubSubClient client(espClient);
+
+void setup() {
+  lcd.begin(16, 2);
+
+  // Init serial for ESP module
+  Serial.begin(115200);
+
+  // Init ESP module
+  WiFi.init(Serial);
+
+  if (WiFi.status() == WL_NO_MODULE) {
+    lcd.setCursor(0,0);
+    lcd.print("No WiFi module");
+    // Don't continue
+    while(true);
+  }
+
+  WiFi.disconnect();
+  WiFi.endAP();
+  
+  while (status != WL_CONNECTED) {
+    status = WiFi.begin(ssid, pswd);
+  }
+
+  lcd.clear();
+  lcd.print("WiFi connected");
+
+  // Attempt to connect to MQTT broker
+  client.setServer(ip_broker, 1883);
+  client.setCallback(sub_callback);
+  while (!client.connected()) {
+
+    if (client.connect("ESP8266-Wroom2")) {
+      client.subscribe("sensor/distance");
+    } else {
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("No broker");
+      lcd.setCursor(0,1);
+      lcd.print("Retrying...");
+      delay(500);
+    }
+  }
+
+  lcd.clear();
+  lcd.print("Broker found");
+}
+
+void loop() {
+  client.loop();
+}
+
+void sub_callback(char *topic, byte *payload, unsigned int msg_length) {
+  lcd.clear();
+  lcd.setCursor(0,0);
+
+  for (uint8_t i = 0; i &lt; msg_length; i++) { 
+    lcd.print((char)payload[i]);
+  }
+  
+  #if defined ARDUINO_MEGA2560
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("]: ");
+
+  for (uint8_t i = 0; i &lt; msg_length; i++) {
+    Serial.print((char)payload[i]);
+  }
+
+  Serial.println();
+  #endif
+}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Publishing and reading messages&lt;/h2&gt;
+&lt;p&gt;Here is a picture showing the LCD displaying the distance read from the topic. As I said before, due to the fault on
+the firmware in the &lt;em&gt;ESP-01&lt;/em&gt; the project works only for a few minutes.&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/mqtt-simple-application/esp-mqtt-project.jpg" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/mqtt-simple-application/esp-mqtt-project.jpg" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you buy a ESP-01S module it comes with a 1 MB of flash memory which is the minimum required for the v1.7.2 to work
+on it, so the code will run without any issue.&lt;/p&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://karibe.co.ke/2018/10/how-to-flash-the-latest-firmware-into-the-esp8266-board-in-linux-using-esptools/"&gt;How to Flash the Latest Firmware into the ESP8266 Board in Linux Using Esptools&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://robertoostenveld.nl/esp8266-at-firmware/"&gt;Restoring the AT firmware on the ESP8266&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://randomnerdtutorials.com/esp32-mqtt-publish-subscribe-arduino-ide/"&gt;ESP32 MQTT – Publish and Subscribe with Arduino IDE&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>Test HC-05 bluetooth module using linux commands</title><link href="/bluetooth-hc05-linux.html" rel="alternate"></link><published>2021-04-14T00:00:00-05:00</published><updated>2021-04-14T00:00:00-05:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-04-14:/bluetooth-hc05-linux.html</id><summary type="html">&lt;p&gt;The purpose of this post is to figure out how to connect a Linux PC to the HC-05 bluetooth module and send text to it through linux commands.&lt;/p&gt;</summary><content type="html">&lt;p&gt;The purpose of this post is to figure out how to connect a Linux PC to the HC-05 bluetooth module and send text to it through linux commands.&lt;/p&gt;
+&lt;p&gt;Here's the setup I have for this test:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ubuntu 18.04 installed in my laptop.&lt;/li&gt;
+&lt;li&gt;HC-05 bluetooth module.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;My DIY base board&lt;/h2&gt;
+&lt;p&gt;I bought this module without the base board long time ago because I wanted to take advantage of all the GPIOs it has. When I did the purchase I was still studying at the university. I had this crazy idea of designing and building my own custom base board for the module. I used KiCad to draw the pcb for the base board. It has all the holes for the pin headers and each of them connected to a GPIO on the module.&lt;/p&gt;
+&lt;p&gt;I made the pcb the old fashion way which is printing the circuit in a piece of paper using a laser printer and then transfer the toner to the copper board using an iron. I failed at least 5 times but at the end I got something decent, at least all the tracks where in place.&lt;/p&gt;
+&lt;p&gt;Below is a picture of the moment where I was soldering the module to the base board. This step of the process wasn't that difficult as I thought it would be. To my surprise it worked the first time, at that moment I connected it to an Arduino Uno.&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Building the circuit&lt;/h2&gt;
+&lt;p&gt;The first step is to check if the module can receive AT commands from the computer.&lt;/p&gt;
+&lt;p&gt;For my particular case, I had to add a logic level converter since each GPIO on the module only works at 3.3v. I bought a bunch of this cheap modules in Aliexpress, but to be honest the quality leaves much to be desired, so I guess I'll get a new ones from Sparkfun.&lt;/p&gt;
+&lt;p&gt;The schematic below shows how everything is connected.
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;You can see the cheap logic level converter module and my DIY base board for the bluetooth. Although the schematic shows a 1-pole dip switch, I'm using a 4-pole dip switch because is the only spare I have at the moment.
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;h2&gt;Communicate to the module through UART&lt;/h2&gt;
+&lt;p&gt;I used &lt;em&gt;picocom&lt;/em&gt;, which is a terminal emulator, to open the serial port. To install it just run the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="bash"&gt;sudo apt install picocom
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The module has two operation modes: &lt;strong&gt;&lt;em&gt;Automatic connection&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;Order-Response&lt;/em&gt;&lt;/strong&gt;. The former only receives a small subset of AT comamnds and the latter is used to send and receive AT commands. To set the latter mode in the module the PIO_11 (GPIO 34) has to be in high level before the module is on.&lt;/p&gt;
+&lt;p&gt;Once the pin is set high, run the following command to open the serial port:
+&lt;pre&gt;&lt;code class="language-bash"&gt;picocom -b 38400 -c --omap crcrlf /dev/ttyUSB0
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;Send the following command to get the bluetooth's MAC address:
+&lt;pre&gt;&lt;code class="plaintext"&gt;at+addr?
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;You should receive something similar to this:
+&lt;pre&gt;&lt;code class="plaintext"&gt;+ADDR:98d3:31:b185dd
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;h2&gt;Pair HC-05 bluetooth module to the computer&lt;/h2&gt;
+&lt;p&gt;For this step you need bluez-utils, which has many programs that interact with the bluetooth host controller. I didn't have to install anything since I believe this is already installed by default in the OS.&lt;/p&gt;
+&lt;p&gt;It may happens the bluetooth host controller is off or blocked. In my case it was blocked so to unblock it run the following:
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo rfkill unblock 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;Verify that the bluetooth controller is finally up and running:
+&lt;pre&gt;&lt;code class="plaintext"&gt;sudo hciconfig hci0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; before you pair the bluetooth module you have to set the pin PIO_11 (GPIO 34) to low level and then write the following command, you don't have to power off and on the module:
+&lt;pre&gt;&lt;code class="plaintext"&gt;at+init
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;Press CTRL+A+X to exit picocom, later we will use it again but with a different baudrate.&lt;/p&gt;
+&lt;p&gt;Start the following program and the do scanning to discover the device:
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo bluetoothctl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;From the picture above we can observe the controller has found the device. To pair the computer with the bluetooth module run the following. The program will ask for the password, by default it is '1234':
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;To exit the program just write the command &lt;em&gt;exit&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Connect to HC-05 bluetooth module&lt;/h2&gt;
+&lt;p&gt;Run the following to create a serial device for the bluetooth module, it's necessary the bluetooth's module MAC address:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo rfcomm bind hci0 98:D3:31:B1:85:DD
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If the commands runs successfully the character device &lt;em&gt;/dev/rfcomm0&lt;/em&gt; is created. In fact this device is a serial port.
+To send text to the module open the recently created serial port with the program &lt;em&gt;picocom&lt;/em&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;picocom -b 115200 --imap lfcrlf --omap crcrlf /dev/rfcomm0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After you open the serial port, the LED connected to PIO_09 (GPIO_32) turns on and the other LED blinks at a slower rate.
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;In another terminal open the serial port which is connected directly to the module to receive the characters:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;picocom -b 115200 --imap lfcrlf --omap crcrlf /dev/ttyUSB0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The picture below shows the text sent from the computer and from the bluetooth module.
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/bluetooth-hc05-linux/picocom-terminals.png" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/bluetooth-hc05-linux/picocom-terminals.png" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;h2&gt;Notes about bluetooth kernel module&lt;/h2&gt;
+&lt;p&gt;The &lt;strong&gt;&lt;em&gt;RFCOMM&lt;/em&gt;&lt;/strong&gt; is a protocol which emulates a serial port connection. When we run the command &lt;em&gt;rfcomm bind&lt;/em&gt; we are telling to the kernel module &lt;em&gt;net/bluetooth/rfcomm/tty&lt;/em&gt; to create a character device which is going to be used as a serial port.&lt;/p&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://alberand.com/hc-05-linux.html"&gt;https://alberand.com/hc-05-linux.html&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://www.wattnotions.com/using-the-hc-06-hc-05-bluetooth-adapter-for-serial-communication-with-linux/"&gt;http://www.wattnotions.com/using-the-hc-06-hc-05-bluetooth-adapter-for-serial-communication-with-linux/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>HD44780 LCD driver for Raspberry Pi 3B</title><link href="/raspberrypi-hd44780-driver.html" rel="alternate"></link><published>2021-03-12T00:00:00-06:00</published><updated>2021-03-12T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-03-12:/raspberrypi-hd44780-driver.html</id><summary type="html">&lt;p&gt;I want to control a generic LCD 16x02 with a Raspberry Pi but doing it differently. Instead of using any user space program, I want a linux driver to handle the communication with the LCD. Maybe in the future I will used the LCD as a console to display info about the system.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I want to control a generic LCD 16x02 with a Raspberry Pi but doing it differently. Instead of using any user space program, I want a linux driver to handle the communication with the LCD. Maybe in the future I will used the LCD as a console to display information about the system.&lt;/p&gt;
+&lt;p&gt;For the following tutorial I used a Raspberry Pi 3 Model B with linux kernel version 5.4.51-v7+.&lt;/p&gt;
+&lt;h2&gt;Already a driver available&lt;/h2&gt;
+&lt;p&gt;Although my initial idea was to program a kernel driver for the LCD, I found out that there are already a couple of drivers available for this device since, in old computers, the parallel port was used to communicate with LCDs. There is the mainline kernel driver and some other drivers that are for those LCDs that have a &lt;a href="https://blog.microjoe.org/2019/hd44780-lcd-i2c-screen-using-linux-mainline-charlcd-driver.html"&gt;&lt;strong&gt;PCF8574&lt;/strong&gt;&lt;/a&gt; IC. This integrated circuit saves pins because you communicate with it through I2C protocol.&lt;/p&gt;
+&lt;p&gt;Additionally, the Raspberry Pi kernel image has a device tree overlay specifically for the HD44780, which defines the pins connected to the LCD. This is extremely useful since you can override these pins with those which the LCD is going to use.&lt;/p&gt;
+&lt;p&gt;Even though I still wanted to get my hands on some code, I thought more about it and I decided to install the already available driver. The decision is because I still kind of a newbie in programming kernel drivers.&lt;/p&gt;
+&lt;p&gt;There are two main kernel modules that control this LCD. The first one is the driver especifically for the HD44780 integrated circuit, which communicates with the LCD. The other is the kernel module &lt;em&gt;charlcd&lt;/em&gt; which serves as an interface between the user and the driver. This module receives the characters and commands that later will send to the LCD.&lt;/p&gt;
+&lt;h2&gt;Building the circuit&lt;/h2&gt;
+&lt;p&gt;The following image describes which pins of the LCD are connected to the gpios on the board. I added a transistor to turn on or off the LCD's led backlight. However, for the moment connect the led backlight to 3.3v given that the driver does not control it, later we will fix this.&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;HD44780 devicetree overlay&lt;/h2&gt;
+&lt;p&gt;Lucky for us, raspberry pi has an overlay for the devicetree which allows to set the pins for the LCD. The devicetree overlay is important as it defines the peripheral's pins and hardware configuration which later the driver is going to read.&lt;/p&gt;
+&lt;p&gt;In the documentation are defined the parameters that have to be set to configure the LCD. It's important to notice that RW pin is not defined, this means we can't read from the LCD. Keep this in mind in when building the circuit.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="plaintext"&gt;Name:   hd44780-lcd
+Info:   Configures an HD44780 compatible LCD display. Uses 4 gpio pins for
+        data, 2 gpio pins for enable and register select and 1 optional pin
+        for enabling/disabling the backlight display.
+Load:   dtoverlay=hd44780-lcd,&lt;param&gt;=&lt;val&gt;
+Params: pin_d4                  GPIO pin for data pin D4 (default 6)
+
+        pin_d5                  GPIO pin for data pin D5 (default 13)
+
+        pin_d6                  GPIO pin for data pin D6 (default 19)
+
+        pin_d7                  GPIO pin for data pin D7 (default 26)
+
+        pin_en                  GPIO pin for "Enable" (default 21)
+
+        pin_rs                  GPIO pin for "Register Select" (default 20)
+
+        pin_bl                  Optional pin for enabling/disabling the
+                                display backlight. (default disabled)
+
+        display_height          Height of the display in characters
+
+        display_width           Width of the display in characters&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Edit the &lt;em&gt;/boot/config.txt&lt;/em&gt; to add the devicetree overlay and to define the pinout for the LCD.
+&lt;pre&gt;&lt;code class="plaintext"&gt;dtoverlay=hd44780-lcd,pin_d4=25,pin_d5=24,pin_d6=23,pin_d7=18,pin_rs=7,pin_en=8,display_width=16,display_height=2
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT: Check twice that you have written correctly the dtbo overlay parameters. If there are any misspelled words, the kernel module will not get the properties from the devicetree overlay and therefore the LCD will not work.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Use the LCD&lt;/h2&gt;
+&lt;p&gt;If everything is connected correctly, at boot time you should see the kernel version.&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The lcd appears as a character device on the linux system. Give it write and read permissions before sending anything to it. The permissions could be also changed in a udev rule.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo chmod a+rw /dev/lcd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To send characters to the LCD execute the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;echo -ne "Raspberry PI" &gt; /dev/lcd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Although in the source code of &lt;em&gt;charlcd.c&lt;/em&gt; is the list of commands the interface accepts, here I post the complete list of commands for future references.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;General commands and special commands:&lt;/strong&gt;
+
+&lt;table class="table"&gt;
+    
+    
+    &lt;thead class="thead-light"&gt;
+    &lt;tr&gt;
+        
+        
+        &lt;th scope="col"&gt;Command&lt;/th&gt;
+        
+        &lt;th scope="col"&gt;Description&lt;/th&gt;
+        
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    
+    &lt;tbody&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\b'&lt;/td&gt;
+            
+            &lt;td&gt;back one character and clear it&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\014'&lt;/td&gt;
+            
+            &lt;td&gt;clear the display&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\n'&lt;/td&gt;
+            
+            &lt;td&gt;new line&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\r'&lt;/td&gt;
+            
+            &lt;td&gt;go to the beginning of the same line&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\t'&lt;/td&gt;
+            
+            &lt;td&gt;prints a space instead of a tab&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[2J'&lt;/td&gt;
+            
+            &lt;td&gt;clear the display&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[h'&lt;/td&gt;
+            
+            &lt;td&gt;set cursor at home&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+    &lt;/tbody&gt;
+&lt;/table&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;table class="table"&gt;
+    
+    
+    &lt;thead class="thead-light"&gt;
+    &lt;tr&gt;
+        
+        
+        &lt;th scope="col"&gt;Special commands&lt;/th&gt;
+        
+        &lt;th scope="col"&gt;Description&lt;/th&gt;
+        
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    
+    &lt;tbody&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LD'&lt;/td&gt;
+            
+            &lt;td&gt;display on&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[Ld'&lt;/td&gt;
+            
+            &lt;td&gt;display off&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LC'&lt;/td&gt;
+            
+            &lt;td&gt;cursor on&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[Lc'&lt;/td&gt;
+            
+            &lt;td&gt;cursor off&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LB'&lt;/td&gt;
+            
+            &lt;td&gt;blink on&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[Lb'&lt;/td&gt;
+            
+            &lt;td&gt;blink off&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[L+'&lt;/td&gt;
+            
+            &lt;td&gt;backlight on&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[L-'&lt;/td&gt;
+            
+            &lt;td&gt;backlight off&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[L*'&lt;/td&gt;
+            
+            &lt;td&gt;flash backlight&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[Lf'&lt;/td&gt;
+            
+            &lt;td&gt;small font&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LF'&lt;/td&gt;
+            
+            &lt;td&gt;large font&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[Ln'&lt;/td&gt;
+            
+            &lt;td&gt;one line&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LN'&lt;/td&gt;
+            
+            &lt;td&gt;two lines&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[Ll'&lt;/td&gt;
+            
+            &lt;td&gt;shift cursor left&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[Lr'&lt;/td&gt;
+            
+            &lt;td&gt;shift cursor right&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LL'&lt;/td&gt;
+            
+            &lt;td&gt;shift display left&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LR'&lt;/td&gt;
+            
+            &lt;td&gt;shift display right&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[Lk'&lt;/td&gt;
+            
+            &lt;td&gt;kill end of line&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LI'&lt;/td&gt;
+            
+            &lt;td&gt;reinitialize display&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LGcxxx..xx'&lt;/td&gt;
+            
+            &lt;td&gt;Generate custom character. 'c' is the charcter number [0..7], 'xxx...xx' is 16 hex digits representing 8 bytes.&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;'\x1b[LxXXX[yYYY]'&lt;/td&gt;
+            
+            &lt;td&gt;goto xy&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+    &lt;/tbody&gt;
+&lt;/table&gt;&lt;/p&gt;
+&lt;h2&gt;Enable backlight command&lt;/h2&gt;
+&lt;p&gt;As I mentioned before, the backlight pin is not enabled by default. We can change this in the devicetree overlay. Write the following to check which pins are used in the raspberry pi:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo cat /sys/kernel/debug/gpio
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/raspberry-hd44780-driver/kernel-gpios.png" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We can confirm the backlight pin is not used. The solution is to edit the file &lt;em&gt;arch/arm/boot/overlay/hd44780-lcd-overlay.dts&lt;/em&gt; and replace the label &lt;strong&gt;dormant&lt;/strong&gt; with &lt;strong&gt;overlay&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-c"&gt;fragment@1 {
+    target = &lt;&amp;lcd_screen&gt;;
+    __overlay__ {
+        backlight-gpios = &lt;&amp;gpio 12 0&gt;;
+    };
+};&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To compile the overlay install the devicetree compiler and then execute the command below. This step I run it in my laptop not in the Raspberry Pi:
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo apt install device-tree-compiler
+dtc -@ -I dts -O dtb -o hd44780-lcd.dtbo arch/arm/boot/dts/overlays/hd44780-lcd-overlay.dts
+&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; when the compilation finishes it shows a lot of warnings, just pay attention if an error arises due to a misspelled word.&lt;/p&gt;
+&lt;p&gt;Transfer the &lt;em&gt;.dtbo&lt;/em&gt; file to the Raspberry Pi and copy it into the boot partition. In my case I setup a local connection between the Raspberry Pi and my laptop, both are connected through an ethernet cable. To transfer the file I use &lt;em&gt;scp&lt;/em&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;scp hd44780-lcd.dtbo pi@192.168.1.72:/home/pi
+
+# On the Raspberry Pi:
+sudo mv ~/hd44780-lcd.dtbo /boot/overlays/
+sudo reboot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Remember to connect the transistor to the gpio and to the LCD. To turn on the backlight send the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;echo -ne "\x1b[L+" &gt; /dev/lcd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now the backlight works.&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Example: Display IP address at boot time&lt;/h2&gt;
+&lt;p&gt;If you have logged into the Raspberry Pi throught the serial console, you may have noticed that during boot time, when the kernel is loading all the systemd services, it shows the IP addres of the board if it successfully connects to an existing network previously configured.&lt;/p&gt;
+&lt;p&gt;The service that shows this IP address is in &lt;em&gt;/lib/systemd/system/rc-local.service&lt;/em&gt;. If we take a look inside it, the service executes the &lt;em&gt;/etc/rc.local&lt;/em&gt; file. In it are the instructions to show the IP address, let's modify it to display the IP address on the LCD.&lt;/p&gt;
+&lt;p&gt;First, create the file &lt;em&gt;display_ip_addr.sh&lt;/em&gt; under the home directory.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;cd ~/
+touch display_ip_addr.sh
+chmod a+x display_ip_addr.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Append the following code in the file.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;#/bin/bash
+DEV_LCD=/dev/lcd
+_IP=$1
+if [ -e "$DEV_LCD" ]; then
+  if [ -c "$DEV_LCD" ]; then
+    echo -ne "\x1b[L+\x1b[2JIP:\n$_IP" &gt; $DEV_LCD
+  fi
+fi&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then edit the file &lt;em&gt;/etc/rc.local&lt;/em&gt;. Create a backup of this file just in case.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;...
+
+#Print the IP address
+DEV_LCD=/dev/lcd
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  if [ -e "$DEV_LCD" ]; then
+    chmod a+rw $DEV_LCD
+    /bin/bash /home/pi/display_ip_addr.sh $_IP
+  fi
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+exit 0&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Reboot the system and after it shows the linux kernel version you should see Raspberry Pi's IP address&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+    &lt;a href="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" data-toggle="lightbox"&gt;
+        &lt;img src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto;"&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;That's all for now. Hope you have enjoyed this tutorial and if you have any question send me an e-mail and I'll be glad to answer.&lt;/p&gt;
+&lt;h3&gt;References&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;HD44780 overlay documentation: &lt;a href="https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/README"&gt;https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/README&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;charlcd&lt;/em&gt; driver: &lt;a href="https://github.com/torvalds/linux/blob/master/drivers/auxdisplay/charlcd.c"&gt;https://github.com/torvalds/linux/blob/master/drivers/auxdisplay/charlcd.c&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;hd47780&lt;/em&gt; driver: &lt;a href="https://github.com/torvalds/linux/blob/master/drivers/auxdisplay/hd44780.c"&gt;https://github.com/torvalds/linux/blob/master/drivers/auxdisplay/hd44780.c&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>My first post</title><link href="/introduction-to-this-blog.html" rel="alternate"></link><published>2021-03-10T00:00:00-06:00</published><updated>2021-03-10T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-03-10:/introduction-to-this-blog.html</id><summary type="html">&lt;p&gt;My name is Felipe, I'm from Mexico, and right now I'm 28 years old. I'm an embedded software developer who worked for a technology consulting company for almost 2 years and a half. The purpose of this blog is to post notes of my personal projects but also to post tutorials on the topics I'm really interested in.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Welcome to &lt;strong&gt;&lt;em&gt;Tinkering At Night&lt;/em&gt;&lt;/strong&gt; . My name is Felipe, I'm from Mexico and I'm an embedded software developer. This blogs serves as a repository for the notes in the projects I work on, but also as a guide in many of the topics I'm really interested in. But before I start writing my first tutorial, I would like to explain the reasons of why I'm taking the time to write this blog and what motivates me.
+&lt;br&gt;&lt;/br&gt;&lt;/p&gt;
+&lt;h2&gt;A little bit of my past&lt;/h2&gt;
+&lt;p&gt;Since I was a teenager I was interested in engineering, specifically in microcontrollers. I was curious on how to program them and my first approach was learning assembly language for the microcontroller PIC16F84A, Arduino wasn't sell in my country at that time. As soon as I manage to run my first program on the PIC, my curiosity for learning more about these device started to growth. I recall that I lockdown my self for an entire summer to learn from different forums on how to build different projects around the PIC and read the many articles &lt;em&gt;&lt;a href="https://hackaday.com/"&gt;hackaday.com&lt;/a&gt;&lt;/em&gt; posted each week. Anyway, the sum of those experiences led me to study Mechatronics Engineering back in 2011.
+&lt;br&gt;&lt;/br&gt;&lt;/p&gt;
+&lt;h2&gt;Why I'm writing this blog&lt;/h2&gt;
+&lt;p&gt;I have always admired the people which has the time to write about their projects they are working on and are willing to share their knowledge. My interest for embedded systems and engineering projects arises from reading many blogs and websites related to diy projects.&lt;/p&gt;
+&lt;p&gt;Although I've been inspired by these people, unfortunately I didn't have, in my opinion, the knowledge but most important the complete desire and commitment to write this blog. Even though I have designed and programmed it since 2016, I hadn't made up my mind to publish it until now.&lt;/p&gt;
+&lt;p&gt;Now that I have the time, but most important the enthusiasm for this blog, I'll try my best to write well explained tutorials or projects, describing each step and the tools I have used. My wish is that you learn something from each post that I write, therefore you can develop your own projects, and who knows maybe start writing your own blog.
+&lt;br&gt;&lt;/br&gt;&lt;/p&gt;
+&lt;h2&gt;The scope of this blog&lt;/h2&gt;
+&lt;p&gt;I consider my self as a maker which means I'm interested in all kinds of projects. However, although I'll work with different technologies and manufacturing processes, I'll not go through the already well known path which many blogs follow. What I'm trying to say is that don't expect a tutorial of blinking leds using Arduino. Don't get me wrong, Arduino is an excellent tool for people who are starting in engineering or in making something. I had wished I had this platform before I studied engineering.&lt;/p&gt;
+&lt;p&gt;I came up with this different approach when I turned a year in my job. I realized that as topics related to embedded systems become more complex and challenging there is less information, I guess because there's few people with the knowledge or with the time to dedicate a few hours to write about it in a blog.&lt;/p&gt;
+&lt;p&gt;My goal with this blog is to guide you through other topics which are less common or where the information about those is scarce. For me, the purpose is to show you the next building bricks after the blinking led, which usually is more complex and more challenging.
+&lt;br&gt;&lt;/br&gt;&lt;/p&gt;
+&lt;h2&gt;Last thoughts&lt;/h2&gt;
+&lt;p&gt;This post summarizes pretty much my intentions with this blog. I expect you enjoy each post that I publish and learn something in the way. Sorry for my english, I'll try to improve my writing skill since it's not my strongest one, even in spanish I struggle.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Warning about this blog&lt;/strong&gt;: I don't have many knowledge in web programming, so as I continue publishing posts also I'll be working on improving the design and functioning of this site, therefore expect a lot of changes or failures, at least until I set up the whole site. Thanks for your comprehension.
+&lt;br&gt;&lt;/br&gt;&lt;/p&gt;</content><category term="posts"></category></entry></feed>
