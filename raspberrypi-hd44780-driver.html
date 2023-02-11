@@ -210,7 +210,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
         <tr scope="row">
             
             
-            <td>'\x1b[h'</td>
+            <td>'\x1b[H'</td>
             
             <td>set cursor at home</td>
             
@@ -418,7 +418,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
         <tr scope="row">
             
             
-            <td>'\x1b[LxXXX[yYYY]'</td>
+            <td>'\x1b[LxXXX[yYYY;]'</td>
             
             <td>goto xy</td>
             
@@ -504,7 +504,8 @@ fi
 
 exit 0</code></pre>
 
-<p>Reboot the system and after it shows the linux kernel version you should see Raspberry Pi's IP address</p>
+<p>Reboot the system. After the booting process has finished, you can see on the LCD display the linux kernel version
+and the Raspberry Pi's IP address.</p>
 <div class="row justify-content-center">
     <a href="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" data-toggle="lightbox">
         <img src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto;">
@@ -512,7 +513,7 @@ exit 0</code></pre>
 </div>
 
 <p>That's all for now. Hope you have enjoyed this tutorial and if you have any question send me an e-mail and I'll be glad to answer.</p>
-<h3>References</h3>
+<h2>References</h2>
 <ol>
 <li>
 <p>HD44780 overlay documentation: <a href="https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/README">https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/README</a></p>
@@ -523,6 +524,12 @@ exit 0</code></pre>
 <li>
 <p><em>hd47780</em> driver: <a href="https://github.com/torvalds/linux/blob/master/drivers/auxdisplay/hd44780.c">https://github.com/torvalds/linux/blob/master/drivers/auxdisplay/hd44780.c</a></p>
 </li>
+</ol>
+<h2>Updates and fixes:</h2>
+<p><strong>11/02/2023:</strong></p>
+<ol>
+<li>Fix command <em>set cursor at home</em> in table <em>General commands and special commands</em>.</li>
+<li>Fix command <em>goto xy</em> in table <em>General commands and special commands</em>.</li>
 </ol>
         </div>
     </div>

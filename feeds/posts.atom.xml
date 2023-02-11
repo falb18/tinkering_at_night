@@ -562,7 +562,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
         &lt;tr scope="row"&gt;
             
             
-            &lt;td&gt;'\x1b[h'&lt;/td&gt;
+            &lt;td&gt;'\x1b[H'&lt;/td&gt;
             
             &lt;td&gt;set cursor at home&lt;/td&gt;
             
@@ -772,7 +772,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
             
             &lt;td&gt;'\x1b[LxXXX[yYYY]'&lt;/td&gt;
             
-            &lt;td&gt;goto xy&lt;/td&gt;
+            &lt;td&gt;goto xy;&lt;/td&gt;
             
         &lt;/tr&gt;
         
@@ -864,7 +864,7 @@ exit 0&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;p&gt;That's all for now. Hope you have enjoyed this tutorial and if you have any question send me an e-mail and I'll be glad to answer.&lt;/p&gt;
-&lt;h3&gt;References&lt;/h3&gt;
+&lt;h2&gt;References&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;HD44780 overlay documentation: &lt;a href="https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/README"&gt;https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/overlays/README&lt;/a&gt;&lt;/p&gt;
@@ -875,6 +875,12 @@ exit 0&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;em&gt;hd47780&lt;/em&gt; driver: &lt;a href="https://github.com/torvalds/linux/blob/master/drivers/auxdisplay/hd44780.c"&gt;https://github.com/torvalds/linux/blob/master/drivers/auxdisplay/hd44780.c&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Updates and fixes:&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;11/02/2023:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Fix command &lt;em&gt;set cursor at home&lt;/em&gt; in table &lt;em&gt;General commands and special commands&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Fix command &lt;em&gt;goto xy&lt;/em&gt; in table &lt;em&gt;General commands and special commands&lt;/em&gt;.&lt;/li&gt;
 &lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>My first post</title><link href="/introduction-to-this-blog.html" rel="alternate"></link><published>2021-03-10T00:00:00-06:00</published><updated>2021-03-10T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-03-10:/introduction-to-this-blog.html</id><summary type="html">&lt;p&gt;My name is Felipe, I'm from Mexico, and right now I'm 28 years old. I'm an embedded software developer who worked for a technology consulting company for almost 2 years and a half. The purpose of this blog is to post notes of my personal projects but also to post tutorials on the topics I'm really interested in.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Welcome to &lt;strong&gt;&lt;em&gt;Tinkering At Night&lt;/em&gt;&lt;/strong&gt; . My name is Felipe, I'm from Mexico and I'm an embedded software developer. This blogs serves as a repository for the notes in the projects I work on, but also as a guide in many of the topics I'm really interested in. But before I start writing my first tutorial, I would like to explain the reasons of why I'm taking the time to write this blog and what motivates me.
 &lt;br&gt;&lt;/br&gt;&lt;/p&gt;
 &lt;h2&gt;A little bit of my past&lt;/h2&gt;
