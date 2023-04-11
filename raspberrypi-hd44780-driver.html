@@ -82,9 +82,11 @@
 <h2>Building the circuit</h2>
 <p>The following image describes which pins of the LCD are connected to the gpios on the board. I added a transistor to turn on or off the LCD's led backlight. However, for the moment connect the led backlight to 3.3v given that the driver does not control it, later we will fix this.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" data-toggle="lightbox">
-        <img src="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
+    <figure class="figure">
+        <a href="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" data-toggle="lightbox">
+            <img src="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
 </div>
 
 <h2>HD44780 devicetree overlay</h2>
@@ -114,16 +116,19 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 
         display_width           Width of the display in characters</code></pre>
 
-<p>Edit the <em>/boot/config.txt</em> to add the devicetree overlay and to define the pinout for the LCD.
+<p>Edit the <em>/boot/config.txt</em> to add the devicetree overlay and to define the pinout for the LCD.</p>
 <pre><code class="plaintext">dtoverlay=hd44780-lcd,pin_d4=25,pin_d5=24,pin_d6=23,pin_d7=18,pin_rs=7,pin_en=8,display_width=16,display_height=2
-</code></pre></p>
+</code></pre>
+
 <p><strong>IMPORTANT: Check twice that you have written correctly the dtbo overlay parameters. If there are any misspelled words, the kernel module will not get the properties from the devicetree overlay and therefore the LCD will not work.</strong></p>
 <h2>Use the LCD</h2>
 <p>If everything is connected correctly, at boot time you should see the kernel version.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" data-toggle="lightbox">
-        <img src="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
+    <figure class="figure">
+        <a href="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" data-toggle="lightbox">
+            <img src="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
 </div>
 
 <p>The lcd appears as a character device on the linux system. Give it write and read permissions before sending anything to it. The permissions could be also changed in a udev rule.</p>
@@ -432,9 +437,11 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 </code></pre>
 
 <div class="row justify-content-center">
-    <a href="article-assets/raspberry-hd44780-driver/kernel-gpios.png" data-toggle="lightbox">
-        <img src="article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
+    <figure class="figure">
+        <a href="article-assets/raspberry-hd44780-driver/kernel-gpios.png" data-toggle="lightbox">
+            <img src="article-assets/raspberry-hd44780-driver/kernel-gpios.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
 </div>
 
 <p>We can confirm the backlight pin is not used. The solution is to edit the file <em>arch/arm/boot/overlay/hd44780-lcd-overlay.dts</em> and replace the label <strong>dormant</strong> with <strong>overlay</strong>:</p>
@@ -445,10 +452,11 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
     };
 };</code></pre>
 
-<p>To compile the overlay install the devicetree compiler and then execute the command below. This step I run it in my laptop not in the Raspberry Pi:
+<p>To compile the overlay install the devicetree compiler and then execute the command below. This step I run it in my laptop not in the Raspberry Pi:</p>
 <pre><code class="language-bash">sudo apt install device-tree-compiler
 dtc -@ -I dts -O dtb -o hd44780-lcd.dtbo arch/arm/boot/dts/overlays/hd44780-lcd-overlay.dts
-</code></pre></p>
+</code></pre>
+
 <p><strong>Note:</strong> when the compilation finishes it shows a lot of warnings, just pay attention if an error arises due to a misspelled word.</p>
 <p>Transfer the <em>.dtbo</em> file to the Raspberry Pi and copy it into the boot partition. In my case I setup a local connection between the Raspberry Pi and my laptop, both are connected through an ethernet cable. To transfer the file I use <em>scp</em>:</p>
 <pre><code class="language-bash">scp hd44780-lcd.dtbo pi@192.168.1.72:/home/pi
@@ -464,9 +472,11 @@ sudo reboot
 
 <p>Now the backlight works.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" data-toggle="lightbox">
-        <img src="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
+    <figure class="figure">
+        <a href="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" data-toggle="lightbox">
+            <img src="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
 </div>
 
 <h2>Example: Display IP address at boot time</h2>
@@ -507,9 +517,11 @@ exit 0</code></pre>
 <p>Reboot the system. After the booting process has finished, you can see on the LCD display the linux kernel version
 and the Raspberry Pi's IP address.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" data-toggle="lightbox">
-        <img src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
+    <figure class="figure">
+        <a href="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" data-toggle="lightbox">
+            <img src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
 </div>
 
 <p>That's all for now. Hope you have enjoyed this tutorial and if you have any question send me an e-mail and I'll be glad to answer.</p>

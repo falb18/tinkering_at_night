@@ -83,72 +83,94 @@
 <p>I made the pcb the old fashion way which is printing the circuit in a piece of paper using a laser printer and then transfer the toner to the copper board using an iron. I failed at least 5 times but at the end I got something decent, at least all the tracks where in place.</p>
 <p>Below is a picture of the moment where I was soldering the module to the base board. This step of the process wasn't that difficult as I thought it would be. To my surprise it worked the first time, at that moment I connected it to an Arduino Uno.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" data-toggle="lightbox">
-        <img src="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
+    <figure class="figure">
+        <a href="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" data-toggle="lightbox">
+            <img src="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
 </div>
 
 <h2>Building the circuit</h2>
 <p>The first step is to check if the module can receive AT commands from the computer.</p>
 <p>For my particular case, I had to add a logic level converter since each GPIO on the module only works at 3.3v. I bought a bunch of this cheap modules in Aliexpress, but to be honest the quality leaves much to be desired, so I guess I'll get a new ones from Sparkfun.</p>
-<p>The schematic below shows how everything is connected.
+<p>The schematic below shows how everything is connected.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" data-toggle="lightbox">
-        <img src="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
-</div></p>
-<p>You can see the cheap logic level converter module and my DIY base board for the bluetooth. Although the schematic shows a 1-pole dip switch, I'm using a 4-pole dip switch because is the only spare I have at the moment.
+    <figure class="figure">
+        <a href="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" data-toggle="lightbox">
+            <img src="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
+</div>
+
+<p>You can see the cheap logic level converter module and my DIY base board for the bluetooth. Although the schematic shows a 1-pole dip switch, I'm using a 4-pole dip switch because is the only spare I have at the moment.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" data-toggle="lightbox">
-        <img src="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
-</div></p>
+    <figure class="figure">
+        <a href="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" data-toggle="lightbox">
+            <img src="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
+</div>
+
 <h2>Communicate to the module through UART</h2>
 <p>I used <em>picocom</em>, which is a terminal emulator, to open the serial port. To install it just run the following command:</p>
 <pre><code class="bash">sudo apt install picocom
 </code></pre>
 
 <p>The module has two operation modes: <strong><em>Automatic connection</em></strong> and <strong><em>Order-Response</em></strong>. The former only receives a small subset of AT comamnds and the latter is used to send and receive AT commands. To set the latter mode in the module the PIO_11 (GPIO 34) has to be in high level before the module is on.</p>
-<p>Once the pin is set high, run the following command to open the serial port:
+<p>Once the pin is set high, run the following command to open the serial port:</p>
 <pre><code class="language-bash">picocom -b 38400 -c --omap crcrlf /dev/ttyUSB0
-</code></pre></p>
-<p>Send the following command to get the bluetooth's MAC address:
+</code></pre>
+
+<p>Send the following command to get the bluetooth's MAC address:</p>
 <pre><code class="plaintext">at+addr?
-</code></pre></p>
-<p>You should receive something similar to this:
+</code></pre>
+
+<p>You should receive something similar to this:</p>
 <pre><code class="plaintext">+ADDR:98d3:31:b185dd
-</code></pre></p>
+</code></pre>
+
 <h2>Pair HC-05 bluetooth module to the computer</h2>
 <p>For this step you need bluez-utils, which has many programs that interact with the bluetooth host controller. I didn't have to install anything since I believe this is already installed by default in the OS.</p>
-<p>It may happens the bluetooth host controller is off or blocked. In my case it was blocked so to unblock it run the following:
+<p>It may happens the bluetooth host controller is off or blocked. In my case it was blocked so to unblock it run the following:</p>
 <pre><code class="language-bash">sudo rfkill unblock 1
-</code></pre></p>
-<p>Verify that the bluetooth controller is finally up and running:
+</code></pre>
+
+<p>Verify that the bluetooth controller is finally up and running:</p>
 <pre><code class="plaintext">sudo hciconfig hci0
 </code></pre>
 <div class="row justify-content-center">
-    <a href="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" data-toggle="lightbox">
-        <img src="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
-</div></p>
-<p><strong>Important:</strong> before you pair the bluetooth module you have to set the pin PIO_11 (GPIO 34) to low level and then write the following command, you don't have to power off and on the module:
+    <figure class="figure">
+        <a href="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" data-toggle="lightbox">
+            <img src="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
+</div>
+
+<p><strong>Important:</strong> before you pair the bluetooth module you have to set the pin PIO_11 (GPIO 34) to low level and then write the following command, you don't have to power off and on the module:</p>
 <pre><code class="plaintext">at+init
-</code></pre></p>
+</code></pre>
+
 <p>Press CTRL+A+X to exit picocom, later we will use it again but with a different baudrate.</p>
-<p>Start the following program and the do scanning to discover the device:
+<p>Start the following program and the do scanning to discover the device:</p>
 <pre><code class="language-bash">sudo bluetoothctl
 </code></pre>
 <div class="row justify-content-center">
-    <a href="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" data-toggle="lightbox">
-        <img src="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
-</div></p>
-<p>From the picture above we can observe the controller has found the device. To pair the computer with the bluetooth module run the following. The program will ask for the password, by default it is '1234':
+    <figure class="figure">
+        <a href="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" data-toggle="lightbox">
+            <img src="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
+</div>
+
+<p>From the picture above we can observe the controller has found the device. To pair the computer with the bluetooth module run the following. The program will ask for the password, by default it is '1234':</p>
 <div class="row justify-content-center">
-    <a href="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" data-toggle="lightbox">
-        <img src="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
-</div></p>
+    <figure class="figure">
+        <a href="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" data-toggle="lightbox">
+            <img src="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
+</div>
+
 <p>To exit the program just write the command <em>exit</em>.</p>
 <h2>Connect to HC-05 bluetooth module</h2>
 <p>Run the following to create a serial device for the bluetooth module, it's necessary the bluetooth's module MAC address:</p>
@@ -160,22 +182,28 @@ To send text to the module open the recently created serial port with the progra
 <pre><code class="language-bash">picocom -b 115200 --imap lfcrlf --omap crcrlf /dev/rfcomm0
 </code></pre>
 
-<p>After you open the serial port, the LED connected to PIO_09 (GPIO_32) turns on and the other LED blinks at a slower rate.
+<p>After you open the serial port, the LED connected to PIO_09 (GPIO_32) turns on and the other LED blinks at a slower rate.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" data-toggle="lightbox">
-        <img src="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
-</div></p>
+    <figure class="figure">
+        <a href="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" data-toggle="lightbox">
+            <img src="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
+</div>
+
 <p>In another terminal open the serial port which is connected directly to the module to receive the characters:</p>
 <pre><code class="language-bash">picocom -b 115200 --imap lfcrlf --omap crcrlf /dev/ttyUSB0
 </code></pre>
 
-<p>The picture below shows the text sent from the computer and from the bluetooth module.
+<p>The picture below shows the text sent from the computer and from the bluetooth module.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/bluetooth-hc05-linux/picocom-terminals.png" data-toggle="lightbox">
-        <img src="article-assets/bluetooth-hc05-linux/picocom-terminals.png" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
-</div></p>
+    <figure class="figure">
+        <a href="article-assets/bluetooth-hc05-linux/picocom-terminals.png" data-toggle="lightbox">
+            <img src="article-assets/bluetooth-hc05-linux/picocom-terminals.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
+</div>
+
 <h2>Notes about bluetooth kernel module</h2>
 <p>The <strong><em>RFCOMM</em></strong> is a protocol which emulates a serial port connection. When we run the command <em>rfcomm bind</em> we are telling to the kernel module <em>net/bluetooth/rfcomm/tty</em> to create a character device which is going to be used as a serial port.</p>
 <h3>References</h3>

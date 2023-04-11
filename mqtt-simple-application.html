@@ -104,16 +104,20 @@ ultrasonic sensor, and then it publishes the message in the topic "sensor/distan
 sensor and <em>ESP-01</em> module a breadboard power supply module is used. The LCD and the <em>Espresso Lite</em> are connected to
 the 5v of the Arduino Nano. The Raspberry Pi is not shown on the schematic since it's independent of the two clients.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" data-toggle="lightbox">
-        <img src="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
+    <figure class="figure">
+        <a href="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" data-toggle="lightbox">
+            <img src="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
 </div>
 
 <p>Here is a picture of how everything is connected on the breadboard.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" data-toggle="lightbox">
-        <img src="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
+    <figure class="figure">
+        <a href="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" data-toggle="lightbox">
+            <img src="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
 </div>
 
 <h2>Updating the firmware in both ESP modules</h2>
@@ -123,14 +127,16 @@ a recent one.</p>
 To install the firmware I used the tool <em>esptool.py</em> v3.1 which can be downloaded from this github
 <a href="https://github.com/espressif/esptool/releases/tag/v3.1">repo</a>. Before flashing, download the two firmware versions
 from the Espressif's <a href="https://www.espressif.com/en/support/download/at">website</a>.</p>
-<p>To flash the firmware in the <em>Espresso Lite</em> run the following:
+<p>To flash the firmware in the <em>Espresso Lite</em> run the following:</p>
 <pre><code class="language-bash">cd ESP8266_NonOS_AT_Bin_V1.7.4/ESP8266_NonOS_AT_Bin_V1.7.4/bin/at/1024+1024
 ./esptool.py --port /dev/ttyUSB0 write_flash --flash_freq 40m --flash_mode dio --flash_size 4MB 0x00000 ../../boot_v1.7.bin 0x01000 user1.2048.new.5.bin 0x1fc000 ../../esp_init_data_default_v08.bin 0xfe000 ../../blank.bin 0x1fe000 ../../blank.bin
-</code></pre></p>
-<p>For the <em>ESP-01</em> execute the following:
+</code></pre>
+
+<p>For the <em>ESP-01</em> execute the following:</p>
 <pre><code class="language-bash">cd ESP8266_AT_Bin_V1.6.2_0/ESP8266_AT_Bin_V1.6.2/bin/at/512+512/
 ./esptool.py --port /dev/ttyUSB1 write_flash --flash_freq 40m --flash_mode dio --flash_size 512KB 0x00000 ../../boot_v1.7.bin 0x01000 user1.1024.new.2.bin 0x7c000 ../../esp_init_data_default_v08.bin 0x7e000 ../../blank.bin
-</code></pre></p>
+</code></pre>
+
 <h3>Issue with firmware v1.6.2</h3>
 <p>Unfortunately this version comes with errors which translate into the module disconnecting from the network after
 a minute or so. Although the solution will be to update the firmware to a recent version, the problem is that
@@ -365,9 +371,11 @@ void sub_callback(char *topic, byte *payload, unsigned int msg_length) {
 <p>Here is a picture showing the LCD displaying the distance read from the topic. As I said before, due to the fault on
 the firmware in the <em>ESP-01</em> the project works only for a few minutes.</p>
 <div class="row justify-content-center">
-    <a href="article-assets/mqtt-simple-application/esp-mqtt-project.jpg" data-toggle="lightbox">
-        <img src="article-assets/mqtt-simple-application/esp-mqtt-project.jpg" style="width: 100%; max-width: 500px; height: auto;">
-    </a>
+    <figure class="figure">
+        <a href="article-assets/mqtt-simple-application/esp-mqtt-project.jpg" data-toggle="lightbox">
+            <img src="article-assets/mqtt-simple-application/esp-mqtt-project.jpg" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
+        </a>
+    </figure>
 </div>
 
 <p>If you buy a ESP-01S module it comes with a 1 MB of flash memory which is the minimum required for the v1.7.2 to work

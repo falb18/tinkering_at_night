@@ -5,14 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2023-02-11T16:15:24-00:00</lastmod>
+<lastmod>2023-04-10T18:58:17-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/pages/about.html</loc>
-<lastmod>2023-02-11T16:15:24-00:00</lastmod>
+<lastmod>2023-04-10T18:58:17-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/moving-to-mty.html</loc>
+<lastmod>2023-04-10T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -47,14 +54,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/posts.html</loc>
-<lastmod>2021-07-09T00:00:00-06:37</lastmod>
+<lastmod>2023-04-10T00:00:00-06:37</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/author/felipe-arturo-lopez-bonilla.html</loc>
-<lastmod>2021-07-09T00:00:00-06:37</lastmod>
+<lastmod>2023-04-10T00:00:00-06:37</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
