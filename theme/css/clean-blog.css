@@ -466,8 +466,20 @@ pre code {
     background-color: #0085A1;
     border-color: #0085A1;
   }
+
+  .btn-secondary {
+    color:#212529;
+    background-color: #fff;
+    border-color: #fff;
+  }
   
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    color: #fff;
+    background-color: #00657b !important;
+    border-color: #00657b !important;
+  }
+
+  .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
     color: #fff;
     background-color: #00657b !important;
     border-color: #00657b !important;
