@@ -1,0 +1,8 @@
+{
+    "cmake.configureOnOpen": false,
+    "idf.espIdfPath": "/home/ubuntu/esp/ESP8266_RTOS_SDK",
+    "idf.adapterTargetName": "esp8266",
+    "idf.flashType": "UART",
+    "idf.port": "/dev/CH341",
+    "idf.flashBaudRate": "115200"
+}

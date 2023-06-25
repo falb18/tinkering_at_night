@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Xtensa",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${env:IDF_PATH}/components/**",
+                "${env:IDF_PATH}/components/freertos/port/esp8266/include"
+            ],
+            "defines": [],
+            "compilerPath": "${env.HOME}/esp/.espressif/tools/xtensa-lx106-elf/bin/xtensa-lx106-elf-gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "configurationProvider": "vector-of-bool.cmake-tools"
+        }
+    ],
+    "version": 4
+}
