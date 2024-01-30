@@ -141,7 +141,7 @@ the external flash memory has only 512 KB because is and old version of this mod
 <p>Newer firmware versions require at least 1 MB of flash memory. Maybe later I'll buy a new version of this module or
 change it for another one like the ESP32-NodeMCU. For the moment it works for my basic setup but, needless to say, I
 will not use it for other projects.</p>
-<h2 id="code for both clients_1">Code for both clients</h2>
+<h2 id="code for both clients">Code for both clients</h2>
 <p>Both clients need the following libraries to send or read MQTT messages through WiFi.</p>
 <ul>
 <li>WiFiEsp - this library allows to the Arduino to communicate with the ESP module through AT commands.</li>
@@ -362,7 +362,7 @@ void sub_callback(char *topic, byte *payload, unsigned int msg_length) {
   Serial.println();
   #endif
 }</code></pre>
-<h2 id="publishing and reading messages_1">Publishing and reading messages</h2>
+<h2 id="publishing and reading messages">Publishing and reading messages</h2>
 <p>Here is a picture showing the LCD displaying the distance read from the topic. As I said before, due to the fault on
 the firmware in the <em>ESP-01</em> the project works only for a few minutes.</p>
 <div class="row justify-content-center">
@@ -389,7 +389,19 @@ on it, so the code will run without any issue.</p>
         </div>
         <!-- Add table of contents -->
         <div class="col-lg-4 mx-auto">
-        <div id="toc"><ul><li><a class="toc-href" href="#an overview of the project" title="An overview of the project">An overview of the project</a></li><li><a class="toc-href" href="#builiding the circuit" title="Builiding the circuit">Builiding the circuit</a></li><li><a class="toc-href" href="#updating the firmware in both esp modules" title="Updating the firmware in both ESP modules">Updating the firmware in both ESP modules</a><ul><li><a class="toc-href" href="#issue with firmware v1.6.2" title="Issue with firmware v1.6.2">Issue with firmware v1.6.2</a></li></ul></li><li><a class="toc-href" href="#code for both clients_1" title="Code for both clients">Code for both clients</a><ul><li><a class="toc-href" href="#code for the publisher" title="Code for the publisher">Code for the publisher</a></li><li><a class="toc-href" href="#code for the subscriber" title="Code for the subscriber">Code for the subscriber</a></li></ul></li><li><a class="toc-href" href="#publishing and reading messages_1" title="Publishing and reading messages">Publishing and reading messages</a></li><li><a class="toc-href" href="#references" title="References">References</a></li></ul></div>
+        <div id="toc">
+<ul>
+<li><a class="toc-href" href="#an overview of the project" title="An overview of the project">An overview of the project</a></li>
+<li><a class="toc-href" href="#builiding the circuit" title="Builiding the circuit">Builiding the circuit</a></li>
+<li><a class="toc-href" href="#updating the firmware in both esp modules" title="Updating the firmware in both ESP modules">Updating the firmware in both ESP modules</a>
+<ul>
+<li><a class="toc-href" href="#issue with firmware v1.6.2" title="Issue with firmware v1.6.2">Issue with firmware v1.6.2</a></li></ul></li>
+<li><a class="toc-href" href="#code for both clients" title="Code for both clients">Code for both clients</a>
+<ul>
+<li><a class="toc-href" href="#code for the publisher" title="Code for the publisher">Code for the publisher</a></li>
+<li><a class="toc-href" href="#code for the subscriber" title="Code for the subscriber">Code for the subscriber</a></li></ul></li>
+<li><a class="toc-href" href="#publishing and reading messages" title="Publishing and reading messages">Publishing and reading messages</a></li>
+<li><a class="toc-href" href="#references" title="References">References</a></li></ul></div>
         </div>
     </div>
 </article>
