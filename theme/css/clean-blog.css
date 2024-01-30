@@ -368,6 +368,22 @@ header.masthead .page-heading h1 {
 	margin-bottom: 15px;
 }
 
+/* Style for table of contents
+ * --------------------------------------------------------
+ */
+
+ #toc {
+  margin: 30px 0;
+  position: sticky;
+  top: 0;
+ }
+
+ #toc li{
+  font-size: 15px;
+  list-style-type: none;
+  margin: 10px 0;
+ }
+
 /* Set automatic scrollbar for each code block */
 pre code {
 	max-height: 350px;

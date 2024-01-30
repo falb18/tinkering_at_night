@@ -71,53 +71,49 @@
         <div class="container">
 <article class="container">
     <div class="row">
-        <div class="col-lg-10 mx-auto">
+        <!-- Article's content -->
+        <div class="col-lg-8 mx-auto">
             <p>In this post, I will explain how to configure ESP8266 SDK to use the ESP-IDF framework, along with the extension that
 is available for VSCode. The SDK documentation indicates that the extension is intended to be used with the framework,
 and the setup files are included in the SDK's repository. However, I could not find any tutorials that explain how to
 configure this.</p>
-<h2>Install the ESP-IDF extension</h2>
+<h2 id="install the esp-idf extension">Install the ESP-IDF extension</h2>
 <p>Before proceeding with the next steps, it is important to have already installed the framework in VSCode. You can find
 the installation instructions in the tool's <a href="https://github.com/espressif/vscode-esp-idf-extension/blob/master/docs/tutorial/install.md">repository</a>.</p>
 <p>In my case, I create and installed the framework in the following directory: <strong><em>~/esp</em></strong>. I also chose to install the
 tools in this directory: <strong><em>~/esp/.espressif</em></strong>. Therefore, the toolchain and the SDK will be installed in the same
 directory.</p>
-<h2>Download the ESP8266 RTOS SDK</h2>
+<h2 id="download the esp8266 rtos sdk">Download the ESP8266 RTOS SDK</h2>
 <p>Clone the repository for the SDK:</p>
 <pre><code class="language-bash">cd ~/esp
 git clone -b master --recursive https://github.com/espressif/ESP8266_RTOS_SDK.git
 </code></pre>
-
 <p>Do not forget to write the option <em>--recursive</em> since git will also download the submodules the repository has.</p>
-<h2>Install the toolchain</h2>
+<h2 id="install the toolchain">Install the toolchain</h2>
 <p>The ESP-IDF doesn't include the toolchain for the ESP8266, so we have to download it from the ESP's server:
 <a href="https://dl.espressif.com/dl/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz">xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64</a>.
 Extract the toolchain inside the esp-idf tool's directory:</p>
 <pre><code class="language-bash">cd ~/esp.espressif/tools
 tar -xzf ~/Downloads/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64.tar.gz
 </code></pre>
-
-<h2>Configure VSCode extension</h2>
+<h2 id="configure vscode extension">Configure VSCode extension</h2>
 <p>We need to configure the extension. This involves setting the appropiate variables and specifying the location of the
 toolchain. Copy the <em>cmake</em> file for the toolchain inside the tool's directory:</p>
 <pre><code class="language-bash">cp ~/esp/ESP8266_RTOS_SDK/tools/cmake/toolchain-esp8266.cmake ~/esp/esp-idf/tools/cmake/
 </code></pre>
-
 <p>We have to append the toolchain's path in the ESP-IDF extension settings. In VSCode, open the extension's settings and
 search for: <strong><em>Idf: Custom Extra Paths</em></strong>. Append to it the ESP8266's toolchain path:</p>
 <pre><code class="language-bash">/home/ubuntu/esp/.espressif/tools/xtensa-lx106-elf/bin
 </code></pre>
-
 <div class="row justify-content-center">
-    <figure class="figure">
-        <a href="article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png" data-toggle="lightbox">
-            <img src="article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
-        </a>
-        <figcaption class="figure-caption text-center">ESP-IDF setting to add extra paths.</figcaption>
-    </figure>
+<figure class="figure">
+<a data-toggle="lightbox" href="article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png">
+<img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center">ESP-IDF setting to add extra paths.</figcaption>
+</figure>
 </div>
-
-<h3>Configuration for ESP8266's project</h3>
+<h3 id="configuration for esp8266's project">Configuration for ESP8266's project</h3>
 <p>Each time you create a new project that is going to use the ESP-IDF framework and the ESP8266 SDK, you will have to
 create or edit the file <strong><em>settings.json</em></strong>, which is inside the directory <em>.vscode/</em>. This file must include the
 following configuration: the SDK's path, the custom microcontroller's cmake file that is going to be parsed, and the
@@ -130,7 +126,6 @@ flash setup that is going to be used:</p>
     "idf.port": "/dev/CH341",
     "idf.flashBaudRate": "115200"
 }</code></pre>
-
 <p>It is important to set the setting <em>"cmake.configureOnOpen": false</em> to prevent vscode do an automatic configuration.
 With this change we can let the extension do the proper configuration for cmake.</p>
 <p>In addtion, you will have to edit or create the file <strong><em>c_cpp_properties.json</em></strong> in order to set the compiling options,
@@ -155,8 +150,7 @@ like the include path or the compiler's path:</p>
     ],
     "version": 4
 }</code></pre>
-
-<h2>Install latest version of esptool.py</h2>
+<h2 id="install latest version of esptool.py_1">Install latest version of esptool.py</h2>
 <p>The ESP-IDF framework comes with an old version of <strong><em>esptool.py</em></strong>. Hence, I decided to install the laterst version of
 the tool, at the time of writing this article the latest version is v4.6.2. Download it from the
 <a href="https://github.com/espressif/esptool/releases">releases</a> page.</p>
@@ -166,32 +160,33 @@ mv esptool esptool_orig
 cd ~/esp/ESP8266_RTOS_SDK/components/esptool_py/
 mv esptool esptool_orig
 </code></pre>
-
 <p>Finally, copy the new version's directory inside both directories:</p>
 <pre><code class="language-bash">cp -r esptool-4.6.2 ~/esp/esp-idf/components/esptool_py/esptool
 cp -r esptool-4.6.2 ~/esp/ESP8266_RTOS_SDK/components/esptool_py/esptool
 </code></pre>
-
-<h2>Evidence that everything works as expected</h2>
+<h2 id="evidence that everything works as expected">Evidence that everything works as expected</h2>
 <p>Here are some screenshots of ESP8266 RTOS SDK working with the ESP-IDF extension:</p>
 <div class="row justify-content-center">
-    <figure class="figure">
-        <a href="article-assets/esp8266-sdk-vscode/esp-idf-build.png" data-toggle="lightbox">
-            <img src="article-assets/esp8266-sdk-vscode/esp-idf-build.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
-        </a>
-        <figcaption class="figure-caption text-center">Now it's possible to build the project with the ESP-IDF extension.</figcaption>
-    </figure>
+<figure class="figure">
+<a data-toggle="lightbox" href="article-assets/esp8266-sdk-vscode/esp-idf-build.png">
+<img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-build.png" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center">Now it's possible to build the project with the ESP-IDF extension.</figcaption>
+</figure>
 </div>
 <div class="row justify-content-center">
-    <figure class="figure">
-        <a href="article-assets/esp8266-sdk-vscode/esp-idf-flash.png" data-toggle="lightbox">
-            <img src="article-assets/esp8266-sdk-vscode/esp-idf-flash.png" class="figure-img img-fluid rounded" style="width: 100%; max-width: 500px; height: auto;">
-        </a>
-        <figcaption class="figure-caption text-center">Also you can flash the MCU.</figcaption>
-    </figure>
+<figure class="figure">
+<a data-toggle="lightbox" href="article-assets/esp8266-sdk-vscode/esp-idf-flash.png">
+<img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-flash.png" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center">Also you can flash the MCU.</figcaption>
+</figure>
 </div>
-
 <p>Hope you find this tutorial useful.</p>
+        </div>
+        <!-- Add table of contents -->
+        <div class="col-lg-4 mx-auto">
+        <div id="toc"><ul><li><a class="toc-href" href="#install the esp-idf extension" title="Install the ESP-IDF extension">Install the ESP-IDF extension</a></li><li><a class="toc-href" href="#download the esp8266 rtos sdk" title="Download the ESP8266 RTOS SDK">Download the ESP8266 RTOS SDK</a></li><li><a class="toc-href" href="#install the toolchain" title="Install the toolchain">Install the toolchain</a></li><li><a class="toc-href" href="#configure vscode extension" title="Configure VSCode extension">Configure VSCode extension</a><ul><li><a class="toc-href" href="#configuration for esp8266" project'="" s="" title="Configuration for ESP8266">Configuration for ESP8266's project</a></li></ul></li><li><a class="toc-href" href="#install latest version of esptool.py_1" title="Install latest version of esptool.py">Install latest version of esptool.py</a></li><li><a class="toc-href" href="#evidence that everything works as expected" title="Evidence that everything works as expected">Evidence that everything works as expected</a></li></ul></div>
         </div>
     </div>
 </article>
