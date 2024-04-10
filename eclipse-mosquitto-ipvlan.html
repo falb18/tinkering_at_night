@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Setup docker container eclipse-mosquitto to use ipvlan and access it from other devices - Felipe Arturo López Bonilla</title>
+  <link rel="canonical" href="./eclipse-mosquitto-ipvlan.html">
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Stylesheets -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link href="./theme/css/clean-blog.css" rel="stylesheet">
+
+  <!-- Script for date formatting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/localizedFormat.min.js" integrity="sha512-Ik4L88eO6WOyP27Lb+m7a2u4BdYgEvNNB+zzhTMDSD2Z77vExkikHm95PUBLXqP2hZmxJo2JyJFgxhpslxq1Aw==" crossorigin="anonymous"></script>
+  <script>dayjs.extend(window.dayjs_plugin_localizedFormat)</script>
+
+  <!-- Highlight js sripts and stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css" integrity="sha512-RgUfG84wvjIwNHlKPU63D8S8IItsNhZZ5kfjpvhGAfr529lt67Ys4/2RAA/NYhsb2HBfcxUXMX3NEJswqpT1tg==" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js" integrity="sha512-zol3kFQ5tnYhL7PzGt0LnllHHVWRGt2bTCIywDiScVvLIlaDOVJ6sPdJTVi0m3rA660RT+yZxkkRzMbb1L8Zkw==" crossorigin="anonymous"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- Ekko lightbox -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+
+</head>
+
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href=".">Tinkering At Night</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./pages/about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<header class="masthead" style="background-image: url('./article-assets/eclipse-mosquitto-ipvlan/network-diagram.png')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="post-heading">    
+                    <h1>Setup docker container eclipse-mosquitto to use ipvlan and access it from other devices</h1>
+                    <span class="meta">Posted by
+                        <a href="./pages/about.html">Felipe Arturo López Bonilla</a>
+                        on <script>document.write(dayjs('2024-04-10 00:00:00-06:00').format('LL'))</script>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="main" id="content">
+        <div class="container">
+<article class="container">
+    <div class="row">
+        <!-- Article's content -->
+        <div class="col-lg-8 mx-auto">
+            <p>While working on an MQTT data transmission project, I set up an eclipse-mosquitto docker container as a broker on my
+laptop. However, with this configuration I could not connect to the broker from other devices since the container's
+network is separated from my local network. Luckily, after some web searching, I found a blog post that sets a
+configuration that integrates the container into the same local network. This will allow to connect to that broker from
+other devices like an ESP32.</p>
+<p>Taking inspiration from the blog post at <a href="https://blog.oddbit.com/post/2018-03-12-using-docker-macvlan-networks/">Using Docker macvlan networks :: blog.oddbit.com</a>,
+I'll describe the steps to create an eclipse-mosquitto container that connects to your local network. I highly recommend
+reading the original post first.</p>
+<h2 id="create an ipvlan docker network">Create an ipvlan docker network</h2>
+<p>According to the documentation of the driver and docker [1][2], one advantage is that it connects directly to the host
+interface. This allows us to set an IP address on the same network shared by the host machine and the router. The
+configuration we want to achive is show in the following diagram.</p>
+<div class="row justify-content-center">
+<figure class="figure">
+<a data-toggle="lightbox" href="article-assets/eclipse-mosquitto-ipvlan/network-diagram.png">
+<img class="figure-img img-fluid rounded" src="article-assets/eclipse-mosquitto-ipvlan/network-diagram.png" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center">Network diagram</figcaption>
+</figure>
+</div>
+<p>In my case I assgined to the container the address <strong><em>192.168.2.111</em></strong> so its reachable from any device, even from the
+host machine. Your router's IP address may be different so modify the IP address to match your local network.</p>
+<p>First, we have to create create a docker network. To do that run the following command:</p>
+<pre><code class="language-bash">docker network create -d ipvlan -o parent=eno1 \
+  --subnet 192.168.2.0/24 \
+  --gateway 192.168.2.1 \
+  --ip-range 192.168.2.110/28 \
+  --aux-address 'host=192.168.2.110' \
+  ipvlan1
+</code></pre>
+<p>What we are doing is to reserve 15 ip addresses, from <strong><em>192.168.2.110</em></strong> to <strong><em>192.168.2.114</em></strong> and reserve the address
+<strong><em>192.168.2.110</em></strong> for use by the host interface.</p>
+<p><strong>IMPORTANT:</strong> You must check your router can assign the IP addresses you defined in the docker network configuration
+becuase if that's not possible then you will not be able to connect to the container.</p>
+<h2 id="setup a bridge between the host machine and the container">Setup a bridge between the host machine and the container</h2>
+<p>The ipvlan driver isolates the container's network; therefore we cannot ping to any container that uses the network we
+just created from the host machine. To address this limitation we need to create a bridge between the host machine (in
+my case, my laptop) and the eclipse-mosquitto container.</p>
+<p>Run the following commands to create and configure the bridge:</p>
+<pre><code class="language-bash">sudo ip link add ipvlan1 link eno1 type ipvlan # Default mode bridge l3
+sudo ip addr add 192.168.2.110/32 dev ipvlan1 # Assign the IP address we reserved from the docker network
+sudo ip link set ipvlan1 up
+sudo ip route add 192.168.2.0/24 dev ipvlan1
+</code></pre>
+<h3 id="confirm that the bridge was created">Confirm that the bridge was created</h3>
+<p>Execute the following commands to confirm that the bridge was created and that we have added the route to our docker
+network:</p>
+<pre><code class="language-bash">ip addr show ipvlan1
+5: ipvlan1@eno1: <broadcast,multicast,up,lower_up> mtu 1500 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/ether ac:e2:d3:7b:d6:35 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.110/32 scope global ipvlan1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::ace2:d300:17b:d635/64 scope link 
+       valid_lft forever preferred_lft forever
+</broadcast,multicast,up,lower_up></code></pre>
+<pre><code class="language-bash">ip route
+default via 192.168.2.1 dev eno1 proto dhcp src 192.168.2.191 metric 100 
+169.254.0.0/16 dev eno1 scope link metric 1000 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+192.168.2.0/24 dev ipvlan1 scope link 
+192.168.2.0/24 dev eno1 proto kernel scope link src 192.168.2.191 metric 100
+</code></pre>
+<h2 id="start the eclipse-mosquitto container with the new network">Start the eclipse-mosquitto container with the new network</h2>
+<p>Finally, create a new <strong><em>docker-compose.yml</em></strong> file with the following configuration:</p>
+<pre><code class="language-bash">version: "3"
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    networks:
+      external-net:
+        ipv4_address: 192.168.2.111
+    volumes:
+      - /home/ubuntu/mqtt/mosquitto/config:/mosquitto/config
+      - /home/ubuntu/mqtt/mosquitto/data:/mosquitto/data
+      - /home/ubuntu/mqtt/mosquitto/log:/mosquitto/log
+    restart: unless-stopped
+
+networks:
+  external-net:
+    name: ipvlan1
+    external: true
+</code></pre>
+<p>Save the file and on the same directory execute the following command to create the container:</p>
+<pre><code class="language-bash">docker-compose up -d
+</code></pre>
+<h2 id="test the eclipse-mosquitto container">Test the eclipse-mosquitto container</h2>
+<p>First, try to ping the container to verify you can reach the broker:</p>
+<pre><code class="language-bash">ping -c4 192.168.2.111
+</code></pre>
+<p>To test the broker I downloaded the following MQTT client: <a href="https://github.com/nscooling/MQTT-c-pub-sub">MQTT-c-pub-sub</a>.
+To compile the project you need cmake installed on your computer.</p>
+<p>Open a terminal and run the following command to see the log of the eclipse-mosquitto broker:</p>
+<pre><code class="language-bash">docker exec -it mosquitto tail -f /mosquitto/log/mosquitto.log
+</code></pre>
+<p>On a different terminal run the MQTT client to publish the messages. The default topic is hello/world:</p>
+<pre><code class="language-bash">./mqttpub -i 192.168.2.111
+</code></pre>
+<p>On the mosquitto's log you should see something similar to this:</p>
+<pre><code class="language-bash">2024-03-30T19:18:33: New connection from 192.168.2.110:37114 on port 1883.
+2024-03-30T19:18:33: New client connected from 192.168.2.110:37114 as default_pub (p1, c1, k30).
+2024-03-30T19:18:43: Client default_pub disconnected.
+</code></pre>
+<h2 id="references">References</h2>
+<ul>
+<li>[1] <a href="https://docs.kernel.org/networking/ipvlan.html">https://docs.kernel.org/networking/ipvlan.html</a></li>
+<li>[2] <a href="https://docs.docker.com/network/drivers/ipvlan/">https://docs.docker.com/network/drivers/ipvlan/</a></li>
+</ul>
+        </div>
+        <!-- Add table of contents -->
+        <div class="col-lg-4 mx-auto">
+        <div id="toc">
+<ul>
+<li><a class="toc-href" href="#create an ipvlan docker network" title="Create an ipvlan docker network">Create an ipvlan docker network</a></li>
+<li><a class="toc-href" href="#setup a bridge between the host machine and the container" title="Setup a bridge between the host machine and the container">Setup a bridge between the host machine and the container</a>
+<ul>
+<li><a class="toc-href" href="#confirm that the bridge was created" title="Confirm that the bridge was created">Confirm that the bridge was created</a></li></ul></li>
+<li><a class="toc-href" href="#start the eclipse-mosquitto container with the new network" title="Start the eclipse-mosquitto container with the new network">Start the eclipse-mosquitto container with the new network</a></li>
+<li><a class="toc-href" href="#test the eclipse-mosquitto container" title="Test the eclipse-mosquitto container">Test the eclipse-mosquitto container</a></li>
+<li><a class="toc-href" href="#references" title="References">References</a></li></ul></div>
+        </div>
+    </div>
+</article>
+        </div>
+    </div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">Copyright &copy; Felipe Arturo López Bonilla 
+                    <script>document.write(dayjs().year())</script>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mt-4 mx-auto">
+                <p class="text-center list-inline text-muted copyright">
+                    This site is powered by 
+                <a href="https://blog.getpelican.com/">Pelican</a>.
+                    The theme is based on
+                <a href="https://startbootstrap.com/theme/clean-blog">Clean Blog</a>.
+                </p>
+            </div>
+        </div>
+</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+	<script type="text/javascript"  src="./theme/js/clean-blog.js"></script>
+	<script type="text/javascript">
+		$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+			event.preventDefault();
+			$(this).ekkoLightbox();
+		});
+	</script>
+</body>
+
+</html>
