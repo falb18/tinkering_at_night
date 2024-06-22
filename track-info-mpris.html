@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Using MPRIS D-Bus to access track metadata - Felipe Arturo López Bonilla</title>
+  <link rel="canonical" href="./track-info-mpris.html">
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Stylesheets -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link href="./theme/css/clean-blog.css" rel="stylesheet">
+
+  <!-- Script for date formatting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/localizedFormat.min.js" integrity="sha512-Ik4L88eO6WOyP27Lb+m7a2u4BdYgEvNNB+zzhTMDSD2Z77vExkikHm95PUBLXqP2hZmxJo2JyJFgxhpslxq1Aw==" crossorigin="anonymous"></script>
+  <script>dayjs.extend(window.dayjs_plugin_localizedFormat)</script>
+
+  <!-- Highlight js sripts and stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css" integrity="sha512-RgUfG84wvjIwNHlKPU63D8S8IItsNhZZ5kfjpvhGAfr529lt67Ys4/2RAA/NYhsb2HBfcxUXMX3NEJswqpT1tg==" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js" integrity="sha512-zol3kFQ5tnYhL7PzGt0LnllHHVWRGt2bTCIywDiScVvLIlaDOVJ6sPdJTVi0m3rA660RT+yZxkkRzMbb1L8Zkw==" crossorigin="anonymous"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- Ekko lightbox -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+
+</head>
+
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href=".">Tinkering At Night</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./pages/about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<header class="masthead" style="background-image: url('./article-assets/track-info-mpris/led-matrix-spotify-track.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="post-heading">    
+                    <h1>Using MPRIS D-Bus to access track metadata</h1>
+                    <span class="meta">Posted by
+                        <a href="./pages/about.html">Felipe Arturo López Bonilla</a>
+                        on <script>document.write(dayjs('2024-06-22 00:00:00-06:00').format('LL'))</script>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="main" id="content">
+        <div class="container">
+<article class="container">
+    <div class="row">
+        <!-- Article's content -->
+        <div class="col-lg-8 mx-auto">
+            <h2 id="introduction">Introduction</h2>
+<p>A while back, I came across a cool project called <a href="https://github.com/NyaomiDEV/Sunamu">Sunamu</a>. As their website says,
+<strong><em>"It's a fancy music controller"</em></strong>. This means you can use it to control other media players like Spotify and VLC.
+Just keep in mind that Sunamu currently only works on Linux systems.</p>
+<p>I became curious about how Sunamu controlled players like Spotify. After digging into the code, I discovered it used
+MPRIS D-Bus. Curious to learn more, I continued researching MPRIS D-Bus. Thanks to the information provided by D-Bus, I
+was able to develop some useful examples and projects.</p>
+<h2 id="mpris d-bus">MPRIS D-bus</h2>
+<p>According to the documentation, the MPRIS bus [1] is a standard <strong><em>D-bus</em></strong> [2] that provides an API for controlling media
+players like Spotify and VLC. It also allows you to retrieve information about each item in the player's tracklist.</p>
+<p>Each media player registers a unique name on the D-Bus that starts with <strong><em>org.mpris.MediaPlayer2</em></strong>. For instance, the
+Spotify desktop application uses the name <strong><em>org.mpris.MediaPlayer2.spotify</em></strong>.</p>
+<p>Media players use signals to notify clients, like the Sunamu desktop application, about changes in their state (playing,
+paused, stopped, etc.). This allows other applications to constantly monitor and receive these signals.</p>
+<p>One major advantage of MPRIS D-Bus is that it publishes metadata about the currently playing track. This metadata includes
+information like artist, title, album, etc. We can parse this information, which will be useful for the projects I'll
+describe later.</p>
+<h2 id="project examples">Project examples</h2>
+<p>The following projects demonstrate how to receive metadata about the current track playing on Spotify. However, it's
+important to note that these projects are currently only functional on Linux systems.</p>
+<h3 id="python scripts">Python scripts</h3>
+<p>I've developed some Python examples to demonstrate MPRIS functionality. You can find them on GitHub in the
+<a href="https://github.com/falb18/mpris-example">mpris-example</a> repository. These programs monitor the metadata of the current
+track playing on Spotify by utilizing the <a href="https://github.com/hugosenari/mpris2">mpris2</a> Python library to interact with
+the MPRIS D-Bus.</p>
+<h3 id="spotify track info on led matrix display">Spotify track info on LED matrix display</h3>
+<p>After building some Python programs to retrieve track information, I got the idea to display this data on a physical
+interface. Currently, I'm using an LED matrix, but the next step is to try this out on different screens, like those
+character LCDs and TFT displays. Ultimately, my goal is to create a system that not only displays track information but
+also controls Spotify playback through an external device.</p>
+<p>This project aims to create a system that displays track information on an external device. A Python script retrieves
+the current track's metadata and publishes it to an MQTT broker (in my case, a docker container). A separate device, a
+<strong>WeMos D1 Mini Pro</strong>, subscribes to this information and displays it on an LED matrix display. The following diagram
+illustrates the interaction between these two devices:</p>
+<div class="row justify-content-center">
+<figure class="figure">
+<a data-toggle="lightbox" href="article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png">
+<img class="figure-img img-fluid rounded" src="article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center">MQTT network diagram</figcaption>
+</figure>
+</div>
+<p>To get started, download and run the Python program <a href="https://github.com/falb18/spotify-mqtt-publisher">spotify-mqtt-publisher</a>.
+This program will publish the track's metadata to the MQTT broker. Next, download the firmware <a href="https://github.com/falb18/led-matrix-spotify-track-info">led-matrix-track-info</a>
+and flash it onto your WeMos D1 mini. This firmware will allow the device to subscribe to the relevant topics and display
+the track information on the LED matrix display.</p>
+<div class="row justify-content-center">
+<video autoplay="" height="auto" loop="" muted="" width="512">
+<source src="article-assets/track-info-mpris/led-matrix-spotify-track-video.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+</div>
+<p>So, with all this info, you're ready to play around with the MPRIS D-Bus and make your own cool projects!</p>
+<h2 id="references">References</h2>
+<ul>
+<li>[1] <a href="https://specifications.freedesktop.org/mpris-spec/latest/">MPRIS D-Bus Interface Specification</a></li>
+<li>[2] <a href="https://www.freedesktop.org/wiki/Software/dbus/">D-bus</a></li>
+</ul>
+        </div>
+        <!-- Add table of contents -->
+        <div class="col-lg-4 mx-auto">
+        <div id="toc">
+<ul>
+<li><a class="toc-href" href="#introduction" title="Introduction">Introduction</a></li>
+<li><a class="toc-href" href="#mpris d-bus" title="MPRIS D-bus">MPRIS D-bus</a></li>
+<li><a class="toc-href" href="#project examples" title="Project examples">Project examples</a>
+<ul>
+<li><a class="toc-href" href="#python scripts" title="Python scripts">Python scripts</a></li>
+<li><a class="toc-href" href="#spotify track info on led matrix display" title="Spotify track info on LED matrix display">Spotify track info on LED matrix display</a></li></ul></li>
+<li><a class="toc-href" href="#references" title="References">References</a></li></ul></div>
+        </div>
+    </div>
+</article>
+        </div>
+    </div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">Copyright &copy; Felipe Arturo López Bonilla 
+                    <script>document.write(dayjs().year())</script>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mt-4 mx-auto">
+                <p class="text-center list-inline text-muted copyright">
+                    This site is powered by 
+                <a href="https://blog.getpelican.com/">Pelican</a>.
+                    The theme is based on
+                <a href="https://startbootstrap.com/theme/clean-blog">Clean Blog</a>.
+                </p>
+            </div>
+        </div>
+</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+	<script type="text/javascript"  src="./theme/js/clean-blog.js"></script>
+	<script type="text/javascript">
+		$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+			event.preventDefault();
+			$(this).ekkoLightbox();
+		});
+	</script>
+</body>
+
+</html>
