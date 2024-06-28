@@ -83,7 +83,7 @@
 <h2 id="building the circuit">Building the circuit</h2>
 <p>The following image describes which pins of the LCD are connected to the gpios on the board. I added a transistor to turn on or off the LCD's led backlight. However, for the moment connect the led backlight to 3.3v given that the driver does not control it, later we will fix this.</p>
 <div class="row justify-content-center">
-<figure class="figure">
+<figure class="figure" style="display: table;">
 <a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png">
 <img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="width: 100%; max-width: 500px; height: auto;"/>
 </a>
@@ -122,7 +122,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 <h2 id="use the lcd">Use the LCD</h2>
 <p>If everything is connected correctly, at boot time you should see the kernel version.</p>
 <div class="row justify-content-center">
-<figure class="figure">
+<figure class="figure" style="display: table;">
 <a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg">
 <img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
 </a>
@@ -431,7 +431,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 <pre><code class="language-bash">sudo cat /sys/kernel/debug/gpio
 </code></pre>
 <div class="row justify-content-center">
-<figure class="figure">
+<figure class="figure" style="display: table;">
 <a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/kernel-gpios.png">
 <img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="width: 100%; max-width: 500px; height: auto;"/>
 </a>
@@ -461,7 +461,7 @@ sudo reboot
 </code></pre>
 <p>Now the backlight works.</p>
 <div class="row justify-content-center">
-<figure class="figure">
+<figure class="figure" style="display: table;">
 <a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg">
 <img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
 </a>
@@ -502,7 +502,7 @@ exit 0</code></pre>
 <p>Reboot the system. After the booting process has finished, you can see on the LCD display the linux kernel version
 and the Raspberry Pi's IP address.</p>
 <div class="row justify-content-center">
-<figure class="figure">
+<figure class="figure" style="display: table;">
 <a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg">
 <img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
 </a>

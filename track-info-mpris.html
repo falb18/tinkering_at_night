@@ -108,11 +108,13 @@ the current track's metadata and publishes it to an MQTT broker (in my case, a d
 <strong>WeMos D1 Mini Pro</strong>, subscribes to this information and displays it on an LED matrix display. The following diagram
 illustrates the interaction between these two devices:</p>
 <div class="row justify-content-center">
-<figure class="figure">
+<figure class="figure" style="display: table;">
 <a data-toggle="lightbox" href="article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png">
 <img class="figure-img img-fluid rounded" src="article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png" style="width: 100%; max-width: 500px; height: auto;"/>
 </a>
-<figcaption class="figure-caption text-center">MQTT network diagram</figcaption>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            MQTT network diagram
+        </figcaption>
 </figure>
 </div>
 <p>To get started, download and run the Python program <a href="https://github.com/falb18/spotify-mqtt-publisher">spotify-mqtt-publisher</a>.

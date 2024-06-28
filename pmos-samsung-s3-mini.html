@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Step-by-Step Guide: Installing postmarketOS on the Samsung Galaxy SIII Mini - Felipe Arturo López Bonilla</title>
+  <link rel="canonical" href="./pmos-samsung-s3-mini.html">
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Stylesheets -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link href="./theme/css/clean-blog.css" rel="stylesheet">
+
+  <!-- Script for date formatting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/localizedFormat.min.js" integrity="sha512-Ik4L88eO6WOyP27Lb+m7a2u4BdYgEvNNB+zzhTMDSD2Z77vExkikHm95PUBLXqP2hZmxJo2JyJFgxhpslxq1Aw==" crossorigin="anonymous"></script>
+  <script>dayjs.extend(window.dayjs_plugin_localizedFormat)</script>
+
+  <!-- Highlight js sripts and stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css" integrity="sha512-RgUfG84wvjIwNHlKPU63D8S8IItsNhZZ5kfjpvhGAfr529lt67Ys4/2RAA/NYhsb2HBfcxUXMX3NEJswqpT1tg==" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js" integrity="sha512-zol3kFQ5tnYhL7PzGt0LnllHHVWRGt2bTCIywDiScVvLIlaDOVJ6sPdJTVi0m3rA660RT+yZxkkRzMbb1L8Zkw==" crossorigin="anonymous"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- Ekko lightbox -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+
+</head>
+
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href=".">Tinkering At Night</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./pages/about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<header class="masthead" style="background-image: url('./article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="post-heading">    
+                    <h1>Step-by-Step Guide: Installing postmarketOS on the Samsung Galaxy SIII Mini</h1>
+                    <span class="meta">Posted by
+                        <a href="./pages/about.html">Felipe Arturo López Bonilla</a>
+                        on <script>document.write(dayjs('2024-06-28 00:00:00-06:00').format('LL'))</script>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="main" id="content">
+        <div class="container">
+<article class="container">
+    <div class="row">
+        <!-- Article's content -->
+        <div class="col-lg-8 mx-auto">
+            <h2 id="introduction">Introduction</h2>
+<p>I came across postmarketOS a while back. I had an old Samsung S3 Mini lying around, and I was curious if I could
+repurpose it for Linux projects. However, my knowledge and skills weren't sufficient to grasp the entire installation
+process. Unfortunately, there weren't many clear and concise tutorials available online. While the postmarketOS website
+has documentation, I found it lacked specific examples, making it challenging to follow.</p>
+<p>My journey to postmarketOS success wasn't immediate. It wasn't until late 2023 that I successfully installed a custom
+u-boot on my phone. Then, in early 2024, I was finally able to flash the kernel and root filesystem.</p>
+<p>This tutorial aims to consolidate the information I've gathered and present it as a practical guide. My goal is to
+provide a clear, step-by-step example for installing postmarketOS on a smartphone.</p>
+<p>This tutorial also aims to inspire others to give their old smartphones a second life. By installing a new operating
+system, you can prevent electronic waste and repurpose these devices for various projects. After all, these smartphones
+are essentially small computers, packed with features similar to a Raspberry Pi, but often with additional built-in
+peripherals like cameras and touchscreens.</p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            Samsung on the left is my old smartphone running postmarketOS. On the right is a smartphone I bought specifically for this tutorial
+        </figcaption>
+</figure>
+</div>
+<h3 id="system setup">System setup</h3>
+<p>This is the setup I used for this tutorial:
+- Ubuntu 23.04
+- Python 3.11.4
+- pmbootstrap 2.3.0</p>
+<h2 id="flashing a custom u-boot on the samsung s3 mini">Flashing a custom u-boot on the Samsung S3 mini</h2>
+<p>First, we need to flash a custom u-boot. This step is important because it allows us to then flash and boot the
+postmarketOS kernel. Here are the steps to flash it on the device:</p>
+<h3 id="install heimdall tool">Install <em>heimdall</em> tool</h3>
+<p>To flash the custom u-boot, we'll need a tool called <strong><em>heimdall</em></strong>. You can install it on your computer by running the
+following command:</p>
+<pre><code class="language-bash">sudo apt-get install heimdall-flash
+</code></pre>
+<h4 id="testing heimdall tool">Testing heimdall tool</h4>
+<p>Before installing the custom u-boot, we need to verify that your computer can detect the device. Here's how to enter
+download mode on your Samsung S3 Mini:
+- Power off the smartphone completely.
+- Boot into download mode. To do this, press and hold the following keys simultaneously: <strong>VOLUME DOWN</strong> + <strong>HOME</strong> + <strong>POWER</strong></p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            First screen of the download mode
+        </figcaption>
+</figure>
+</div>
+<p>Press the key <strong>VOLUME UP</strong> to continue.</p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            Second screen of the download mode
+        </figcaption>
+</figure>
+</div>
+<p>Connect the phone to the computer and make sure that it can detects the device by executing the following command:</p>
+<pre><code class="language-bash">lsusb
+...
+Bus 001 Device 022: ID 04e8:685d Samsung Electronics Co., Ltd GT-I9100 Phone [Galaxy S II] (Download mode)
+...
+</code></pre>
+<p>Then, get the PIT information (Partition Information Table). The <strong><em>--no-reboot</em></strong> option tells the device not to reboot
+after executing the command.</p>
+<pre><code class="language-bash">heimdall print-pit --no-reboot
+</code></pre>
+<h3 id="download the custom u-boot for the chipset">Download the custom u-boot for the chipset</h3>
+<p>After we verified the tool can communicate with the device, download one of the prebuilt u-boot binaries from the
+following github repo: <a href="https://github.com/stericsson-mainline/u-boot/releases">Releases &middot; stericsson-mainline/u-boot &middot; GitHub</a>.
+For this tutorial I downloaded the release version <strong><em>U-Boot 2023.04 for ST-Ericsson NovaThor U8500</em></strong>.</p>
+<h3 id="flashing the bootloader on the device">Flashing the bootloader on the device</h3>
+<p><strong>WARNING: EXECUTING THE FOLLOWING STEP MAY BRICKED YOUR DEVICE.</strong> </p>
+<p>The device wiki provides a table listing U-boot binary formats for different phone versions <strong>[1]</strong>. For our specific phone
+model, the required file is <strong><em>u-boot.img</em></strong>. In my case I rename it as <strong><em>u-boot-2023-04.img</em></strong>. To flash this file
+onto your device, run the following command:</p>
+<pre><code class="language-bash">heimdall flash --Kernel u-boot-2023-04.img
+</code></pre>
+<p>Here is the output of the command:</p>
+<pre><code class="language-bash">Heimdall v1.4.2
+
+Copyright (c) 2010-2017 Benjamin Dobell, Glass Echidna
+http://www.glassechidna.com.au/
+
+This software is provided free of charge. Copying and redistribution is
+encouraged.
+
+If you appreciate this software and you would like to support future
+development please consider donating:
+http://www.glassechidna.com.au/donate/
+
+Initialising connection...
+Detecting device...
+Claiming interface...
+Setting up interface...
+
+Initialising protocol...
+Protocol initialisation successful.
+
+Beginning session...
+
+Some devices may take up to 2 minutes to respond.
+Please be patient!
+
+Session begun.
+
+Downloading device's PIT file...
+PIT file download successful.
+
+Uploading Kernel
+100%
+Kernel upload successful
+
+Ending session...
+Rebooting device...
+Releasing device interface...
+</code></pre>
+<p>Once the flashing process is complete, your device will reboot. However, since it doesn't have a kernel installed yet,
+it will enter <strong>fastboot mode</strong>.</p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            Fastboot mode after flashing u-boot
+        </figcaption>
+</figure>
+</div>
+<h2 id="installing pmbootstrap and run configuration for samsung galaxy s3 mini">Installing <em>pmbootstrap</em> and run configuration for Samsung Galaxy S3 Mini</h2>
+<p>To install <strong><em>pmbootstrap</em></strong> follow the installation steps described in the wiki <strong>[2]</strong>:</p>
+<pre><code class="language-bash">git clone --depth=1 https://gitlab.com/postmarketOS/pmbootstrap.git
+mkdir -p ~/.local/bin
+ln -s "$PWD/pmbootstrap/pmbootstrap.py" ~/.local/bin/pmbootstrap
+</code></pre>
+<p>In my case I had to edit the <strong><em>.bashrc</em></strong> file to append the directory we created in the previous step. This allows the
+operating system to find the program.</p>
+<pre><code class="language-bash"># pmbootstrap
+export PATH=$PATH:/home/ubuntu/.local/bin
+</code></pre>
+<p>Open a terminal and verifiy pmbootstrap is available on the system:</p>
+<pre><code class="language-bash">pmbootstrap --version
+</code></pre>
+<h3 id="running the configuration tool for samsung galaxy s3 mini">Running the configuration tool for Samsung Galaxy S3 Mini</h3>
+<p>Before initializing the pmbootstrap configuration, it's important to create a dedicated directory to store the
+device-specific configuration files. This is where you'll obtain the kernel and root filesystem for your smartphone.</p>
+<pre><code class="language-bash">mkdir samsung-golden
+pmbootstrap init
+</code></pre>
+<p>The pmbootstrap program will prompt you with several configuration options. For this tutorial, we'll focus on installing
+postmarketOS with just the console interface, although other options include a desktop environment. Here are the specific
+settings I chose:</p>
+<pre><code class="language-bash">Work path [/home/user/.local/var/pmbootstrap]: /home/user/samsung-golden
+Channel [edge]: edge
+Vendor [qemu]: samsung
+Device codename: golden
+Kernel [downstream]: mainline
+Username [user]: tinkering_at_night
+Provider [default]: default
+User interface [console]: console
+Change them? (y/n) [n]: n
+Extra packages [none]: none
+Use this timezone instead of GMT? (y/n) [y]: y
+Locale [en_US]: en_US
+Device hostname (short form, e.g. 'foo') [samsung-golden]: samsung-golden
+Build outdated packages during 'pmbootstrap install'? (y/n) [n]: y
+</code></pre>
+<h2 id="flashing postmarketos kernel onto the smartphone">Flashing postmarketOS kernel onto the smartphone</h2>
+<p>Flash the kernel onto the device with the following command:</p>
+<pre><code class="language-bash">pmbootstrap flasher flash_kernel
+</code></pre>
+<p>This is the output of the command:</p>
+<pre><code class="language-bash">[13:18:37] Update package index for x86_64 (4 file(s))
+[13:18:45] Download http://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/apk-tools-static-2.14.4-r0.apk
+[13:18:47] (native) install alpine-base
+[13:18:57] (native) install qemu-arm
+[13:18:59] Register qemu binfmt (arm)
+[13:18:59] (rootfs_samsung-golden) install alpine-base
+[13:19:12] (rootfs_samsung-golden) install device-samsung-golden device-samsung-golden-kernel-mainline
+[13:20:40] (rootfs_samsung-golden) install postmarketos-mkinitfs
+[13:20:43] (rootfs_samsung-golden) mkinitfs postmarketos-stericsson
+[13:20:53] (native) flash kernel postmarketos-stericsson
+[13:20:53] (native) install android-tools
+Sending 'boot' (7534 KB)                           OKAY [  0.949s]
+Writing 'boot'                                     OKAY [  1.206s]
+Finished. Total time: 2.446s
+[13:21:19] You will get an IP automatically assigned to your USB interface shortly.
+[13:21:19] Then you can connect to your device using ssh after pmOS has booted:
+[13:21:19] ssh tinkering_at_night@172.16.42.1
+[13:21:19] NOTE: If you enabled full disk encryption, you should make sure that Unl0kr has been properly configured for your device
+[13:21:19] NOTE: chroot is still active (use 'pmbootstrap shutdown' as necessary)
+[13:21:19] DONE!
+</code></pre>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            Output of the flashing process
+        </figcaption>
+</figure>
+</div>
+<p>Once the flashing process is complete, press the <strong><em>Power button</em></strong> to reboot the smartphone. After the reboot the logo
+is displayed on the screen.</p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            postmarketOS logo
+        </figcaption>
+</figure>
+</div>
+<p>Since currently there is not a rootfs, the kernel shows the following error message:</p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            The OS doesn't found the root file system
+        </figcaption>
+</figure>
+</div>
+<h3 id="how to re-flash kernel">How to re-flash kernel</h3>
+<p>In case you want to re-flash the kernel you have to reboot the smartphone and press the buttons <strong>Power</strong> +
+<strong>Volume Down</strong> + <strong>Home</strong> to enter in <strong>fastboot mode</strong>. Then execute the step to flash the kernel again.</p>
+<h2 id="install rootfs on sd card">Install rootfs on SD card</h2>
+<p>We need a SD card formated as <strong>ext4</strong> to copy into it the rootfs. You can run the following command to format the SD
+card with that required format partition:</p>
+<pre><code class="language-bash">sudo mkfs -t ext4 /dev/sd<x>
+sudo mkfs -t ext4 /dev/sdd # For example
+</x></code></pre>
+<p>This is the output of the command. It will ask you for a password:</p>
+<pre><code class="language-bash">[10:45:04] *** (1/4) PREPARE NATIVE CHROOT ***
+[10:45:06] (native) install cryptsetup util-linux parted
+[10:45:16] *** (2/4) CREATE DEVICE ROOTFS ("samsung-golden") ***
+[10:45:16] Register qemu binfmt (arm)
+[10:45:18] Update package index for armv7 (4 file(s))
+[10:45:25] Update package index for x86_64 (4 file(s))
+[10:45:29] (rootfs_samsung-golden) install postmarketos-base device-samsung-golden postmarketos-ui-console device-samsung-golden-kernel-mainline device-samsung-golden-nonfree-firmware postmarketos-base-nofde font-twemoji
+[10:46:50] (rootfs_samsung-golden) install device-samsung-golden device-samsung-golden-kernel-mainline
+[10:46:55] (rootfs_samsung-golden) install postmarketos-mkinitfs
+[10:46:58] (rootfs_samsung-golden) mkinitfs postmarketos-stericsson
+[10:47:05]  *** SET LOGIN PASSWORD FOR: 'tinkering_at_night' ***
+New password: 
+              Retype new password: 
+                                   passwd: password updated successfully
+                                                                        [10:47:33] NOTE: No valid keymap specified for device
+[10:47:36] *** (3/4) PREPARE INSTALL BLOCKDEVICE ***
+[10:47:37] (native) mount /dev/install (host: /dev/sdd)
+[10:47:37] EVERYTHING ON /dev/sdd WILL BE ERASED! CONTINUE? (y/n) [n]: y
+[10:48:00] (native) partition /dev/install (boot: 256M, reserved: 0M, root: the rest)
+[10:48:00] (native) install e2fsprogs
+[10:48:03] (native) format /dev/installp2 (root, ext4)
+[10:48:29] (native) mount /dev/installp2 to /mnt/install
+[10:48:29] (native) install e2fsprogs
+[10:48:30] (native) format /dev/installp1 (boot, ext2), mount to /mnt/install/boot
+[10:48:39] (native) create /etc/fstab
+[10:48:40] (rootfs_samsung-golden) mkinitfs
+[10:48:49] *** (4/4) FILL INSTALL BLOCKDEVICE ***
+[10:48:49] (native) copy rootfs_samsung-golden to /mnt/install/
+[10:48:51] Unmounting disk /dev/sdd (this may take a while to sync, please wait)
+[10:50:38] 
+[10:50:38] *** FLASHING INFORMATION ***
+[10:50:38] Run the following to flash your installation to the target device:
+[10:50:38] * pmbootstrap flasher flash_kernel
+[10:50:38]   Flashes the kernel + initramfs to your device:
+[10:50:38]   /home/ubuntu/postmarketos/samsung-golden/chroot_rootfs_samsung-golden/boot
+[10:50:38]   (NOTE: fastboot also supports booting the kernel/initramfs directly without flashing. Use 'pmbootstrap flasher boot' to do that.)
+[10:50:38] * If the above steps do not work, you can also create symlinks to the generated files with 'pmbootstrap export' and flash outside of pmbootstrap.
+[10:50:38] 
+[10:50:38] *** SSH DAEMON INFORMATION ***
+[10:50:38] SSH daemon is enabled (disable with --no-sshd).
+[10:50:38] Login as 'tinkering_at_night' with the password given during installation.
+[10:50:38] 
+[10:50:38] *** FIREWALL INFORMATION ***
+[10:50:38] Firewall is enabled, but will not work (no support in kernel config for nftables).
+[10:50:38] If/when the kernel supports it in the future, it will work automatically.
+[10:50:38] For more information: https://postmarketos.org/firewall
+[10:50:38] 
+[10:50:38] NOTE: chroot is still active (use 'pmbootstrap shutdown' as necessary)
+[10:50:38] DONE!
+</code></pre>
+<p>Insert the SD card in the SD card slot of the smartphone. After the kernel boots, the system mounts the root file system.
+You should see the following prompt:</p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            postmarket OS prompt
+        </figcaption>
+</figure>
+</div>
+<h2 id="get serial console from the phone">Get serial console from the phone</h2>
+<p>While we'll eventually need the console for further configuration, accessing it requires a serial cable connected to
+your phone. The phone utilizes the <strong>AB8500</strong> Micro-USB Interface Controller, which allows serial communication when a
+resitor is placed between ID pin and GND <strong>[3]</strong>. Here's how to build a simple circuit to enable UART and grant access
+through the smartphone's micro USB port:</p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            Circuit to enable UART transmission on the USB connector
+        </figcaption>
+</figure>
+</div>
+<p><strong>Important Note:</strong> The Micro-USB interface operates at 3.3 volts. This means you might need a voltage level converter
+to connect a standard UART interface, which typically operates at 5 volts, to your phone's micro-USB port.</p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg">
+<img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg" style="width: 100%; max-width: 500px; height: auto;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+            Here is the cable I built to access UART. I used a voltage level converter since the USB-serial module operates at 5 volts
+        </figcaption>
+</figure>
+</div>
+<h2 id="next steps">Next steps</h2>
+<p>My plan for these devices is to install eclipse-mosquitto to run a MQTT broker. I also intend to run LVGL on them. I
+hope this tutorial inspires you to try installing postmarketOS on your own smartphones. In the next post, I'll guide you
+through setting up WiFi on the device and connecting to it via SSH.</p>
+<div class="row justify-content-center">
+<video autoplay="" height="auto" loop="" muted="" width="360">
+<source src="article-assets/pmos-samsung-s3-mini/s3-mini-pmos-booting-video.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+</div>
+<h2 id="references:">References:</h2>
+<ul>
+<li>[1] <a href="https://wiki.postmarketos.org/wiki/ST-Ericsson_NovaThor_U8500#U-Boot_on_Samsung_NovaThor_U8500_Devices">ST-Ericsson NovaThor U8500 - U-boot - postmarketOS</a></li>
+<li>[2] <a href="https://wiki.postmarketos.org/wiki/Pmbootstrap#From_git">Installation - From git</a></li>
+<li>[3] <a href="https://wiki.postmarketos.org/wiki/Micro-USB_Interface_Controller">Micro-USB Interface Controller - postmarketOS</a></li>
+<li><a href="https://wiki.postmarketos.org/wiki/ST-Ericsson_NovaThor_U8500">ST-Ericsson_NovaThor_U8500 - postmarketOS</a></li>
+<li><a href="https://wiki.postmarketos.org/wiki/Pmbootstrap#SD_card">Pmbootstrap - SD card - postmarketOS</a></li>
+</ul>
+        </div>
+        <!-- Add table of contents -->
+        <div class="col-lg-4 mx-auto">
+        <div id="toc">
+<ul>
+<li><a class="toc-href" href="#introduction" title="Introduction">Introduction</a>
+<ul>
+<li><a class="toc-href" href="#system setup" title="System setup">System setup</a></li></ul></li>
+<li><a class="toc-href" href="#flashing a custom u-boot on the samsung s3 mini" title="Flashing a custom u-boot on the Samsung S3 mini">Flashing a custom u-boot on the Samsung S3 mini</a>
+<ul>
+<li><a class="toc-href" href="#install heimdall tool" title="Install heimdall tool">Install heimdall tool</a>
+<ul>
+<li><a class="toc-href" href="#testing heimdall tool" title="Testing heimdall tool">Testing heimdall tool</a></li></ul></li>
+<li><a class="toc-href" href="#download the custom u-boot for the chipset" title="Download the custom u-boot for the chipset">Download the custom u-boot for the chipset</a></li>
+<li><a class="toc-href" href="#flashing the bootloader on the device" title="Flashing the bootloader on the device">Flashing the bootloader on the device</a></li></ul></li>
+<li><a class="toc-href" href="#installing pmbootstrap and run configuration for samsung galaxy s3 mini" title="Installing pmbootstrap and run configuration for Samsung Galaxy S3 Mini">Installing pmbootstrap and run configuration for Samsung Galaxy S3 Mini</a>
+<ul>
+<li><a class="toc-href" href="#running the configuration tool for samsung galaxy s3 mini" title="Running the configuration tool for Samsung Galaxy S3 Mini">Running the configuration tool for Samsung Galaxy S3 Mini</a></li></ul></li>
+<li><a class="toc-href" href="#flashing postmarketos kernel onto the smartphone" title="Flashing postmarketOS kernel onto the smartphone">Flashing postmarketOS kernel onto the smartphone</a>
+<ul>
+<li><a class="toc-href" href="#how to re-flash kernel" title="How to re-flash kernel">How to re-flash kernel</a></li></ul></li>
+<li><a class="toc-href" href="#install rootfs on sd card" title="Install rootfs on SD card">Install rootfs on SD card</a></li>
+<li><a class="toc-href" href="#get serial console from the phone" title="Get serial console from the phone">Get serial console from the phone</a></li>
+<li><a class="toc-href" href="#next steps" title="Next steps">Next steps</a></li>
+<li><a class="toc-href" href="#references:" title="References:">References:</a></li></ul></div>
+        </div>
+    </div>
+</article>
+        </div>
+    </div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">Copyright &copy; Felipe Arturo López Bonilla 
+                    <script>document.write(dayjs().year())</script>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mt-4 mx-auto">
+                <p class="text-center list-inline text-muted copyright">
+                    This site is powered by 
+                <a href="https://blog.getpelican.com/">Pelican</a>.
+                    The theme is based on
+                <a href="https://startbootstrap.com/theme/clean-blog">Clean Blog</a>.
+                </p>
+            </div>
+        </div>
+</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+	<script type="text/javascript"  src="./theme/js/clean-blog.js"></script>
+	<script type="text/javascript">
+		$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+			event.preventDefault();
+			$(this).ekkoLightbox();
+		});
+	</script>
+</body>
+
+</html>
