@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+xmlns:xhtml="http://www.w3.org/1999/xhtml"
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2024-06-28T09:16:26-00:00</lastmod>
+<lastmod>2025-05-03T07:10:22-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/pages/about.html</loc>
-<lastmod>2024-06-28T09:16:26-00:00</lastmod>
+<loc>/author/felipe-arturo-lopez-bonilla.html</loc>
+<lastmod>2025-05-03T07:10:22-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/pmos-samsung-s3-mini.html</loc>
-<lastmod>2024-06-28T00:00:00-06:00</lastmod>
+<loc>/author/felipe-arturo-lopez-bonilla/page/2/</loc>
+<lastmod>2025-05-03T07:10:22-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/track-info-mpris.html</loc>
-<lastmod>2024-06-22T00:00:00-06:00</lastmod>
+<loc>/bluetooth-hc05-linux.html</loc>
+<lastmod>2021-04-14T00:00:00-05:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/category/posts.html</loc>
+<lastmod>2025-05-03T07:10:22-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/category/posts/page/2/</loc>
+<lastmod>2025-05-03T07:10:22-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -46,6 +61,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>/introduction-to-this-blog.html</loc>
+<lastmod>2021-03-10T00:00:00-06:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>/moving-to-mty.html</loc>
 <lastmod>2023-04-10T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
@@ -60,8 +82,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/bluetooth-hc05-linux.html</loc>
-<lastmod>2021-04-14T00:00:00-05:00</lastmod>
+<loc>/page/2/</loc>
+<lastmod>2025-05-03T07:10:22-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/pages/about.html</loc>
+<lastmod>2025-05-03T07:10:22-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/pmos-samsung-s3-mini.html</loc>
+<lastmod>2024-06-28T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -74,22 +110,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>/introduction-to-this-blog.html</loc>
-<lastmod>2021-03-10T00:00:00-06:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/category/posts.html</loc>
-<lastmod>2024-06-28T00:00:00-06:37</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>/author/felipe-arturo-lopez-bonilla.html</loc>
-<lastmod>2024-06-28T00:00:00-06:37</lastmod>
+<loc>/track-info-mpris.html</loc>
+<lastmod>2024-06-22T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
