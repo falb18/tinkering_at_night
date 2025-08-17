@@ -5,112 +5,112 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml"
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>/</loc>
-<lastmod>2025-08-17T07:32:32-00:00</lastmod>
+<loc>https://falb18.github.io/tinkering_at_night/</loc>
+<lastmod>2025-08-17T08:27:30-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/author/felipe-arturo-lopez-bonilla.html</loc>
-<lastmod>2025-08-17T07:32:32-00:00</lastmod>
+<loc>https://falb18.github.io/tinkering_at_night/author/felipe-arturo-lopez-bonilla.html</loc>
+<lastmod>2025-08-17T08:27:30-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/author/felipe-arturo-lopez-bonilla/page/2/</loc>
-<lastmod>2025-08-17T07:32:32-00:00</lastmod>
+<loc>https://falb18.github.io/tinkering_at_night/author/felipe-arturo-lopez-bonilla/page/2/</loc>
+<lastmod>2025-08-17T08:27:30-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/bluetooth-hc05-linux.html</loc>
+<loc>https://falb18.github.io/tinkering_at_night/bluetooth-hc05-linux.html</loc>
 <lastmod>2021-04-14T00:00:00-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/posts.html</loc>
-<lastmod>2025-08-17T07:32:32-00:00</lastmod>
+<loc>https://falb18.github.io/tinkering_at_night/category/posts.html</loc>
+<lastmod>2025-08-17T08:27:30-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/posts/page/2/</loc>
-<lastmod>2025-08-17T07:32:32-00:00</lastmod>
+<loc>https://falb18.github.io/tinkering_at_night/category/posts/page/2/</loc>
+<lastmod>2025-08-17T08:27:30-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/eclipse-mosquitto-ipvlan.html</loc>
+<loc>https://falb18.github.io/tinkering_at_night/eclipse-mosquitto-ipvlan.html</loc>
 <lastmod>2024-04-10T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/esp8266-rtos-sdk-vscode.html</loc>
+<loc>https://falb18.github.io/tinkering_at_night/esp8266-rtos-sdk-vscode.html</loc>
 <lastmod>2023-06-24T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/introduction-to-this-blog.html</loc>
+<loc>https://falb18.github.io/tinkering_at_night/introduction-to-this-blog.html</loc>
 <lastmod>2021-03-10T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/moving-to-mty.html</loc>
+<loc>https://falb18.github.io/tinkering_at_night/moving-to-mty.html</loc>
 <lastmod>2023-04-10T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/mqtt-simple-application.html</loc>
+<loc>https://falb18.github.io/tinkering_at_night/mqtt-simple-application.html</loc>
 <lastmod>2021-07-09T00:00:00-05:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/page/2/</loc>
-<lastmod>2025-08-17T07:32:32-00:00</lastmod>
+<loc>https://falb18.github.io/tinkering_at_night/page/2/</loc>
+<lastmod>2025-08-17T08:27:30-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/pages/about.html</loc>
-<lastmod>2025-08-17T07:32:32-00:00</lastmod>
+<loc>https://falb18.github.io/tinkering_at_night/pages/about.html</loc>
+<lastmod>2025-08-17T08:27:30-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/pmos-samsung-s3-mini.html</loc>
+<loc>https://falb18.github.io/tinkering_at_night/pmos-samsung-s3-mini.html</loc>
 <lastmod>2024-06-28T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/raspberrypi-hd44780-driver.html</loc>
+<loc>https://falb18.github.io/tinkering_at_night/raspberrypi-hd44780-driver.html</loc>
 <lastmod>2021-03-12T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/track-info-mpris.html</loc>
+<loc>https://falb18.github.io/tinkering_at_night/track-info-mpris.html</loc>
 <lastmod>2024-06-22T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
