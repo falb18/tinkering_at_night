@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night - posts</title><link href="/" rel="alternate"></link><link href="/feeds/posts.atom.xml" rel="self"></link><id>/</id><updated>2025-08-20T00:00:00-06:00</updated><entry><title>Five years of Tinkering At Night</title><link href="/five-years-blog.html" rel="alternate"></link><published>2025-08-20T00:00:00-06:00</published><updated>2025-08-20T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2025-08-20:/five-years-blog.html</id><summary type="html">&lt;p&gt;An introspection about my blog, the events of these five years, and the future plan.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post is an introspection about my blog and the events of the past few years that have impacted me. Also I reflect on my future plans for both my personal projects and the blog itself.&lt;/p&gt;
-&lt;p&gt;(Screenshot of the blog on a computer)&lt;/p&gt;
-&lt;p&gt;(Screen of the blog on a smartphone)&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;figure class="figure" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/screenshot-blog-pc.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/screenshot-blog-pc.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+            Screenshot from my mom's PC.
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;figure class="figure" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/screenshot-blog-smartphone.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/screenshot-blog-smartphone.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+            Screenshot from my smartphone.
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
 &lt;h2 id="about how do i feel of this blog"&gt;About how do I feel of this blog&lt;/h2&gt;
 &lt;p&gt;It's been &lt;strong&gt;&lt;em&gt;five&lt;/em&gt;&lt;/strong&gt; years since I started this blog, and I have mixed feelings about it. Overall, it's been a good experience writing about my personal projects, and I was even glad to hear that someone found one of my posts useful. However, I have a few complaints with myself. I'm constantly &lt;strong&gt;&lt;em&gt;tinkering at night&lt;/em&gt;&lt;/strong&gt;, but I don't write about it enough. Despite this, I'm happy with the journey and convinced this project has the potential to become something bigger. But first, let me tell you a quick anecdote.&lt;/p&gt;
-&lt;p&gt;Two or three years back, I got an email from a guy in Germany. He was thanking me for the post called "Name of the post," and it turns out my LCD character driver setup was helpful to him. He was using it to build a Raspberry Pi cluster and display the IP address on each one. Honestly, I was so happy to know my blog was useful to someone else. It proved I'd achieved my main goal: to create content that actually helps people.&lt;/p&gt;
+&lt;p&gt;Two or three years back, I got an email from a guy in Germany. He was thanking me for the post &lt;a href="/raspberrypi-hd44780-driver.html"&gt;HD44780 LCD driver for Raspberry Pi 3B&lt;/a&gt;, and it turns out my LCD character driver setup was helpful to him. He was using it to build a Raspberry Pi cluster and display the IP address on each one. Honestly, I was so happy to know my blog was useful to someone else. It proved I'd achieved my main goal: to create content that actually helps people.&lt;/p&gt;
 &lt;p&gt;Even with the acknowledgment of my work, which meant a lot to me, I haven't been publishing as frequently as I'd hoped. I tend to forget that the true purpose of this blog is to share my ongoing projects&amp;mdash;whether they are simple examples, quick demos, or comprehensive tutorials. I'm often driven to only share complex, extraordinary projects, but because those take so much time, I end up publishing very little until one is fully complete.&lt;/p&gt;
 &lt;p&gt;Recently, I revisited some of the blogs I follow, many of which have been on the internet for several years. After reading posts published a decade ago or more, I realized that the valuable part is the journey you take over the years. Many of these &lt;strong&gt;&lt;em&gt;bloggers&lt;/em&gt;&lt;/strong&gt; have been posting consistently, regardless of whether their content is about huge projects, tutorials, or even personal thoughts on various matters.&lt;/p&gt;
 &lt;p&gt;Something else that amazed me while reading those old blogs was seeing how much technology has evolved. And I'm not just talking about our phones or computers, but the tech we use for personal projects&amp;mdash;the stuff we mess with in our spare time. For instance, when I first got into programming microcontrollers, the well-known PIC16F84A was the go-to. But then Arduino showed up in the DIY world around 2007-2008, and it's been the foundation for most DIY projects ever since. Even the software tools, from IDEs to flashing tools, have changed completely.&lt;/p&gt;
@@ -12,24 +30,14 @@
 &lt;p&gt;I found it fascinating to read about what people were tinkering with before Arduino, and to see how those same individuals adapted to new technologies. Before 3D printing, for instance, many makers had to use scrap wood and whatever materials they had on hand.&lt;/p&gt;
 &lt;p&gt;With these thoughts in mind, I intend to post more often, &lt;strong&gt;&lt;em&gt;regardless of a project's complexity, usefulness, or purpose&lt;/em&gt;&lt;/strong&gt;. My main goal is to share the knowledge I acquire along the journey, but also to have a kind of diary of my personal projects.&lt;/p&gt;
 &lt;h2 id="few anecdotes during these five years"&gt;Few anecdotes during these five years&lt;/h2&gt;
-&lt;p&gt;Shortly after starting this blog, I moved to Monterrey, a city in the north of Mexico. I wrote about the move in a post titled "Name of the Post." I lived there for two and a half years, during which I learned many things both personally and professionally. Unfortunately, the company I worked for had to close its embedded systems division, and as a result, I was laid off in February 2024.&lt;/p&gt;
+&lt;p&gt;Shortly after starting this blog, I moved to Monterrey, a city in the north of Mexico. I wrote about the move in a post titled &lt;a href="/moving-to-mty.html"&gt;Moving to Monterrey&lt;/a&gt; I lived there for two and a half years, during which I learned many things both personally and professionally. Unfortunately, the company I worked for had to close its embedded systems division, and as a result, I was laid off in February 2024.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/cerro-silla-estacion-metro.JPG"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/cerro-silla-estacion-metro.JPG" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/cerro-silla-estacion-metro.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/cerro-silla-estacion-metro.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Cerro de la silla mountain. I took this photo from a subway station.
-        &lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;/div&gt;
-&lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/cerro-silla-estacion-metro.JPG"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/cerro-silla-estacion-metro.JPG" style="width: 100%; max-width: 500px; height: auto;"/&gt;
-&lt;/a&gt;
-&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-            MQTT network diagram
         &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -38,18 +46,18 @@
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/five-years-blog/itam-cnc-machine.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/itam-cnc-machine.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/itam-cnc-machine.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-            This is a CNC 3040 that I tinker with to make PCBs on it.
+            This is a CNC 3040 that I tinker with to manufacture PCBs with it.
         &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
-&lt;p&gt;In October 2024, I attended the 2nd Maker Faire CDMX while I was working at the university. It was fascinating to see all the other projects. For the event, I created a custom Otto Makey (link to the project and my repo), and I brought it with me everywhere I went. The robot was a hit! So many people were interested in it, taking photos and constantly asking me where I had bought it.&lt;/p&gt;
+&lt;p&gt;In October 2024, I attended the 2nd Maker Faire CDMX while I was working at the university. It was fascinating to see all the other projects. For the event, I built the &lt;a href="https://github.com/falb18/OttoMakey"&gt;OttoMakey&lt;/a&gt;, which I modified the code, and I brought it with me everywhere I went. The robot was a hit! So many people were interested in it, taking photos and constantly asking me where I had bought it.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/five-years-blog/maker-faire-cdmx-01.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/maker-faire-cdmx-01.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/maker-faire-cdmx-01.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Otto Makey promoting the Maker Faire CDMX.
@@ -59,10 +67,10 @@
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/five-years-blog/maker-faire-cdmx-02.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/maker-faire-cdmx-02.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/maker-faire-cdmx-02.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-            I was trying to get a good picture about my pal.
+            I was trying to get a good picture of my pal.
         &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -86,7 +94,7 @@ peripherals like cameras and touchscreens.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Samsung on the left is my old smartphone running postmarketOS. On the right is a smartphone I bought specifically for this tutorial
@@ -114,7 +122,7 @@ download mode on your Samsung S3 Mini:
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             First screen of the download mode
@@ -125,7 +133,7 @@ download mode on your Samsung S3 Mini:
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Second screen of the download mode
@@ -197,7 +205,7 @@ it will enter &lt;strong&gt;fastboot mode&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Fastboot mode after flashing u-boot
@@ -271,7 +279,7 @@ Finished. Total time: 2.446s
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Output of the flashing process
@@ -283,7 +291,7 @@ is displayed on the screen.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             postmarketOS logo
@@ -294,7 +302,7 @@ is displayed on the screen.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             The OS doesn't found the root file system
@@ -366,7 +374,7 @@ You should see the following prompt:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             postmarket OS prompt
@@ -381,7 +389,7 @@ through the smartphone's micro USB port:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Circuit to enable UART transmission on the USB connector
@@ -392,7 +400,7 @@ through the smartphone's micro USB port:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             postmarketOS prompt
@@ -404,7 +412,7 @@ to connect a standard UART interface, which typically operates at 5 volts, to yo
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Here is the cable I built to access UART. I used a voltage level converter since the USB-serial module operates at 5 volts
@@ -470,7 +478,7 @@ illustrates the interaction between these two devices:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             MQTT network diagram
@@ -507,7 +515,7 @@ configuration we want to achive is show in the following diagram.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/eclipse-mosquitto-ipvlan/network-diagram.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/eclipse-mosquitto-ipvlan/network-diagram.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/eclipse-mosquitto-ipvlan/network-diagram.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Network diagram
@@ -636,7 +644,7 @@ search for: &lt;strong&gt;&lt;em&gt;Idf: Custom Extra Paths&lt;/em&gt;&lt;/stron
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             ESP-IDF setting to add extra paths.
@@ -699,7 +707,7 @@ cp -r esptool-4.6.2 ~/esp/ESP8266_RTOS_SDK/components/esptool_py/esptool
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/esp8266-sdk-vscode/esp-idf-build.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-build.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-build.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Now it's possible to build the project with the ESP-IDF extension.
@@ -709,7 +717,7 @@ cp -r esptool-4.6.2 ~/esp/ESP8266_RTOS_SDK/components/esptool_py/esptool
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/esp8266-sdk-vscode/esp-idf-flash.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-flash.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-flash.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Also you can flash the MCU.
@@ -721,7 +729,7 @@ of Mexico. This is going to be a brief post about my new experience in this city
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/moving-to-mty/cerro-silla.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/moving-to-mty/cerro-silla.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/moving-to-mty/cerro-silla.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Cerro de la silla mountain
@@ -737,7 +745,7 @@ a lot to learn about programming, since it had been a long time that I haven't i
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/moving-to-mty/fundidora.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/moving-to-mty/fundidora.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/moving-to-mty/fundidora.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Fundidora Park
@@ -788,7 +796,7 @@ the 5v of the Arduino Nano. The Raspberry Pi is not shown on the schematic since
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -796,7 +804,7 @@ the 5v of the Arduino Nano. The Raspberry Pi is not shown on the schematic since
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1049,7 +1057,7 @@ the firmware in the &lt;em&gt;ESP-01&lt;/em&gt; the project works only for a few
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/mqtt-simple-application/esp-mqtt-project.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/mqtt-simple-application/esp-mqtt-project.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/mqtt-simple-application/esp-mqtt-project.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1079,7 +1087,7 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/diy-base-board.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1090,7 +1098,7 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1098,7 +1106,7 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1127,7 +1135,7 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1141,7 +1149,7 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1149,7 +1157,7 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1166,7 +1174,7 @@ To send text to the module open the recently created serial port with the progra
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1177,7 +1185,7 @@ To send text to the module open the recently created serial port with the progra
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/picocom-terminals.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/picocom-terminals.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/picocom-terminals.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1203,7 +1211,7 @@ To send text to the module open the recently created serial port with the progra
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1242,7 +1250,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1551,7 +1559,7 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/kernel-gpios.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1581,7 +1589,7 @@ sudo reboot
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1622,7 +1630,7 @@ and the Raspberry Pi's IP address.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto;"/&gt;
+&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
