@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2025-08-20T00:00:00-06:00</updated><entry><title>Five years of Tinkering At Night</title><link href="/five-years-blog.html" rel="alternate"></link><published>2025-08-20T00:00:00-06:00</published><updated>2025-08-20T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2025-08-20:/five-years-blog.html</id><summary type="html">&lt;p&gt;An introspection about my blog, the events of these five years, and the future plan.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post is an introspection about my blog and the events of the past few years that have impacted me. Also I reflect on my future plans for both my personal projects and the blog itself.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2025-08-20T00:00:00-06:00</updated><entry><title>Five years of Tinkering At Night</title><link href="/archives/2025/five-years-blog.html" rel="alternate"></link><published>2025-08-20T00:00:00-06:00</published><updated>2025-08-20T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2025-08-20:/archives/2025/five-years-blog.html</id><summary type="html">&lt;p&gt;An introspection about my blog, the events of these five years, and the future plan.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post is an introspection about my blog and the events of the past few years that have impacted me. Also I reflect on my future plans for both my personal projects and the blog itself.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/screenshot-blog-pc.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/screenshot-blog-pc.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/five-years-blog/screenshot-blog-pc.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/five-years-blog/screenshot-blog-pc.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Screenshot from my mom's PC.
@@ -12,8 +12,8 @@
 &lt;/div&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/screenshot-blog-smartphone.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/screenshot-blog-smartphone.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/five-years-blog/screenshot-blog-smartphone.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/five-years-blog/screenshot-blog-smartphone.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Screenshot from my smartphone.
@@ -22,7 +22,7 @@
 &lt;/div&gt;
 &lt;h2 id="about how do i feel of this blog"&gt;About how do I feel of this blog&lt;/h2&gt;
 &lt;p&gt;It's been &lt;strong&gt;&lt;em&gt;five&lt;/em&gt;&lt;/strong&gt; years since I started this blog, and I have mixed feelings about it. Overall, it's been a good experience writing about my personal projects, and I was even glad to hear that someone found one of my posts useful. However, I have a few complaints with myself. I'm constantly &lt;strong&gt;&lt;em&gt;tinkering at night&lt;/em&gt;&lt;/strong&gt;, but I don't write about it enough. Despite this, I'm happy with the journey and convinced this project has the potential to become something bigger. But first, let me tell you a quick anecdote.&lt;/p&gt;
-&lt;p&gt;Two or three years back, I got an email from a guy in Germany. He was thanking me for the post &lt;a href="/raspberrypi-hd44780-driver.html"&gt;HD44780 LCD driver for Raspberry Pi 3B&lt;/a&gt;, and it turns out my LCD character driver setup was helpful to him. He was using it to build a Raspberry Pi cluster and display the IP address on each one. Honestly, I was so happy to know my blog was useful to someone else. It proved I'd achieved my main goal: to create content that actually helps people.&lt;/p&gt;
+&lt;p&gt;Two or three years back, I got an email from a guy in Germany. He was thanking me for the post &lt;a href="/archives/2021/raspberrypi-hd44780-driver.html"&gt;HD44780 LCD driver for Raspberry Pi 3B&lt;/a&gt;, and it turns out my LCD character driver setup was helpful to him. He was using it to build a Raspberry Pi cluster and display the IP address on each one. Honestly, I was so happy to know my blog was useful to someone else. It proved I'd achieved my main goal: to create content that actually helps people.&lt;/p&gt;
 &lt;p&gt;Even with the acknowledgment of my work, which meant a lot to me, I haven't been publishing as frequently as I'd hoped. I tend to forget that the true purpose of this blog is to share my ongoing projects&amp;mdash;whether they are simple examples, quick demos, or comprehensive tutorials. I'm often driven to only share complex, extraordinary projects, but because those take so much time, I end up publishing very little until one is fully complete.&lt;/p&gt;
 &lt;p&gt;Recently, I revisited some of the blogs I follow, many of which have been on the internet for several years. After reading posts published a decade ago or more, I realized that the valuable part is the journey you take over the years. Many of these &lt;strong&gt;&lt;em&gt;bloggers&lt;/em&gt;&lt;/strong&gt; have been posting consistently, regardless of whether their content is about huge projects, tutorials, or even personal thoughts on various matters.&lt;/p&gt;
 &lt;p&gt;Something else that amazed me while reading those old blogs was seeing how much technology has evolved. And I'm not just talking about our phones or computers, but the tech we use for personal projects&amp;mdash;the stuff we mess with in our spare time. For instance, when I first got into programming microcontrollers, the well-known PIC16F84A was the go-to. But then Arduino showed up in the DIY world around 2007-2008, and it's been the foundation for most DIY projects ever since. Even the software tools, from IDEs to flashing tools, have changed completely.&lt;/p&gt;
@@ -30,11 +30,11 @@
 &lt;p&gt;I found it fascinating to read about what people were tinkering with before Arduino, and to see how those same individuals adapted to new technologies. Before 3D printing, for instance, many makers had to use scrap wood and whatever materials they had on hand.&lt;/p&gt;
 &lt;p&gt;With these thoughts in mind, I intend to post more often, &lt;strong&gt;&lt;em&gt;regardless of a project's complexity, usefulness, or purpose&lt;/em&gt;&lt;/strong&gt;. My main goal is to share the knowledge I acquire along the journey, but also to have a kind of diary of my personal projects.&lt;/p&gt;
 &lt;h2 id="few anecdotes during these five years"&gt;Few anecdotes during these five years&lt;/h2&gt;
-&lt;p&gt;Shortly after starting this blog, I moved to Monterrey, a city in the north of Mexico. I wrote about the move in a post titled &lt;a href="/moving-to-mty.html"&gt;Moving to Monterrey&lt;/a&gt; I lived there for two and a half years, during which I learned many things both personally and professionally. Unfortunately, the company I worked for had to close its embedded systems division, and as a result, I was laid off in February 2024.&lt;/p&gt;
+&lt;p&gt;Shortly after starting this blog, I moved to Monterrey, a city in the north of Mexico. I wrote about the move in a post titled &lt;a href="/archives/2023/moving-to-mty.html"&gt;Moving to Monterrey&lt;/a&gt; I lived there for two and a half years, during which I learned many things both personally and professionally. Unfortunately, the company I worked for had to close its embedded systems division, and as a result, I was laid off in February 2024.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/cerro-silla-estacion-metro.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/cerro-silla-estacion-metro.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/five-years-blog/cerro-silla-estacion-metro.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/five-years-blog/cerro-silla-estacion-metro.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Cerro de la silla mountain. I took this photo from a subway station.
@@ -45,8 +45,8 @@
 &lt;p&gt;A few months later, I started working at the university where I studied. The head of the engineering department contacted me and asked if I could help him coordinate the engineering laboratories. I did this for two semesters, as I didn't want to stay longer because I wanted to return to the industry. Despite my short stay, the project I am most proud of is setting up the CNC machines to mill PCBs. This manufacturing process encouraged my teammates and students to design their own PCBs and, in turn, their own projects.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/itam-cnc-machine.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/itam-cnc-machine.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/five-years-blog/itam-cnc-machine.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/five-years-blog/itam-cnc-machine.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             This is a CNC 3040 that I tinker with to manufacture PCBs with it.
@@ -56,8 +56,8 @@
 &lt;p&gt;In October 2024, I attended the 2nd Maker Faire CDMX while I was working at the university. It was fascinating to see all the other projects. For the event, I built the &lt;a href="https://github.com/falb18/OttoMakey"&gt;OttoMakey&lt;/a&gt;, which I modified the code, and I brought it with me everywhere I went. The robot was a hit! So many people were interested in it, taking photos and constantly asking me where I had bought it.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/maker-faire-cdmx-01.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/maker-faire-cdmx-01.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/five-years-blog/maker-faire-cdmx-01.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/five-years-blog/maker-faire-cdmx-01.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Otto Makey promoting the Maker Faire CDMX.
@@ -66,8 +66,8 @@
 &lt;/div&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/five-years-blog/maker-faire-cdmx-02.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/five-years-blog/maker-faire-cdmx-02.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/five-years-blog/maker-faire-cdmx-02.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/five-years-blog/maker-faire-cdmx-02.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             I was trying to get a good picture of my pal.
@@ -78,7 +78,7 @@
 &lt;p&gt;I've decided to open a YouTube channel to share videos of the projects I'm working on. For some projects, a video is the best way to show how they function in real time. At first, I considered just uploading videos directly to the blog, but then it occurred to me that a dedicated YouTube channel would be a better fit. I can link the videos in my posts, and it will also be a great way to bring more people to the blog.&lt;/p&gt;
 &lt;p&gt;I have another goal in mind: to publish this blog in Spanish, my native language. When I was starting out with electronics and microcontrollers, I read a lot of content in English, and for a long time, I felt I should write my posts the same way. The problem is, many people in Mexico don't speak or read English. So, to connect with that audience, I'm now thinking about translating the entire website into Spanish.&lt;/p&gt;
 &lt;p&gt;My final goal is to increase my posting frequency. I've decided to share my ongoing projects as I work on them, regardless of their complexity, usefulness, or completion status. The idea behind this shift is that no matter how big or small a project is, if the information might be useful to someone else, it's worth sharing on the blog.&lt;/p&gt;
-&lt;p&gt;Thank you to all the people who have read one of my articles. I hope you found the information useful for your own projects. My wish is to keep posting on this blog for another five years&lt;/p&gt;</content><category term="posts"></category></entry><entry><title>Step-by-Step Guide: Installing postmarketOS on the Samsung Galaxy SIII Mini</title><link href="/pmos-samsung-s3-mini.html" rel="alternate"></link><published>2024-06-28T00:00:00-06:00</published><updated>2024-06-28T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2024-06-28:/pmos-samsung-s3-mini.html</id><summary type="html">&lt;p&gt;This post provides a step-by-step guide to install postmarketOS on the Samsung Galaxy SIII mini. By following these steps, you can potentially install postmarketOS on other similar devices.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Thank you to all the people who have read one of my articles. I hope you found the information useful for your own projects. My wish is to keep posting on this blog for another five years&lt;/p&gt;</content><category term="posts"></category></entry><entry><title>Step-by-Step Guide: Installing postmarketOS on the Samsung Galaxy SIII Mini</title><link href="/archives/2024/pmos-samsung-s3-mini.html" rel="alternate"></link><published>2024-06-28T00:00:00-06:00</published><updated>2024-06-28T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2024-06-28:/archives/2024/pmos-samsung-s3-mini.html</id><summary type="html">&lt;p&gt;This post provides a step-by-step guide to install postmarketOS on the Samsung Galaxy SIII mini. By following these steps, you can potentially install postmarketOS on other similar devices.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;I came across postmarketOS a while back. I had an old Samsung S3 Mini lying around, and I was curious if I could
 repurpose it for Linux projects. However, my knowledge and skills weren't sufficient to grasp the entire installation
 process. Unfortunately, there weren't many clear and concise tutorials available online. While the postmarketOS website
@@ -93,8 +93,8 @@ are essentially small computers, packed with features similar to a Raspberry Pi,
 peripherals like cameras and touchscreens.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Samsung on the left is my old smartphone running postmarketOS. On the right is a smartphone I bought specifically for this tutorial
@@ -121,8 +121,8 @@ download mode on your Samsung S3 Mini:
 - Boot into download mode. To do this, press and hold the following keys simultaneously: &lt;strong&gt;VOLUME DOWN&lt;/strong&gt; + &lt;strong&gt;HOME&lt;/strong&gt; + &lt;strong&gt;POWER&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             First screen of the download mode
@@ -132,8 +132,8 @@ download mode on your Samsung S3 Mini:
 &lt;p&gt;Press the key &lt;strong&gt;VOLUME UP&lt;/strong&gt; to continue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Second screen of the download mode
@@ -204,8 +204,8 @@ Releasing device interface...
 it will enter &lt;strong&gt;fastboot mode&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Fastboot mode after flashing u-boot
@@ -278,8 +278,8 @@ Finished. Total time: 2.446s
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Output of the flashing process
@@ -290,8 +290,8 @@ Finished. Total time: 2.446s
 is displayed on the screen.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             postmarketOS logo
@@ -301,8 +301,8 @@ is displayed on the screen.&lt;/p&gt;
 &lt;p&gt;Since currently there is not a rootfs, the kernel shows the following error message:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             The OS doesn't found the root file system
@@ -373,8 +373,8 @@ New password:
 You should see the following prompt:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             postmarket OS prompt
@@ -388,8 +388,8 @@ resitor is placed between ID pin and GND &lt;strong&gt;[3]&lt;/strong&gt;. Here'
 through the smartphone's micro USB port:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Circuit to enable UART transmission on the USB connector
@@ -399,8 +399,8 @@ through the smartphone's micro USB port:&lt;/p&gt;
 &lt;p&gt;Connecting the serial cable to the computer should display a prompt like the one shown below:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             postmarketOS prompt
@@ -411,8 +411,8 @@ through the smartphone's micro USB port:&lt;/p&gt;
 to connect a standard UART interface, which typically operates at 5 volts, to your phone's micro-USB port.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Here is the cable I built to access UART. I used a voltage level converter since the USB-serial module operates at 5 volts
@@ -425,7 +425,7 @@ hope this tutorial inspires you to try installing postmarketOS on your own smart
 through setting up WiFi on the device and connecting to it via SSH.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;video autoplay="" height="auto" loop="" muted="" width="360"&gt;
-&lt;source src="article-assets/pmos-samsung-s3-mini/s3-mini-pmos-booting-video.mp4" type="video/mp4"/&gt;
+&lt;source src="/article-assets/pmos-samsung-s3-mini/s3-mini-pmos-booting-video.mp4" type="video/mp4"/&gt;
       Your browser does not support the video tag.
     &lt;/video&gt;
 &lt;/div&gt;
@@ -441,7 +441,7 @@ through setting up WiFi on the device and connecting to it via SSH.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;02/05/2025:&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Add screenshot of terminal prompt.&lt;/li&gt;
-&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>Using MPRIS D-Bus to access track metadata</title><link href="/track-info-mpris.html" rel="alternate"></link><published>2024-06-22T00:00:00-06:00</published><updated>2024-06-22T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2024-06-22:/track-info-mpris.html</id><summary type="html">&lt;p&gt;This post will explore the functionalities of the MPRIS D-Bus. We will examine its application in retrieving information about the currently playing track on specific media players, such as Spotify. This post will also explore some practical applications by presenting a few relevant projects built with this communication system.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>Using MPRIS D-Bus to access track metadata</title><link href="/archives/2024/track-info-mpris.html" rel="alternate"></link><published>2024-06-22T00:00:00-06:00</published><updated>2024-06-22T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2024-06-22:/archives/2024/track-info-mpris.html</id><summary type="html">&lt;p&gt;This post will explore the functionalities of the MPRIS D-Bus. We will examine its application in retrieving information about the currently playing track on specific media players, such as Spotify. This post will also explore some practical applications by presenting a few relevant projects built with this communication system.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;A while back, I came across a cool project called &lt;a href="https://github.com/NyaomiDEV/Sunamu"&gt;Sunamu&lt;/a&gt;. As their website says,
 &lt;strong&gt;&lt;em&gt;"It's a fancy music controller"&lt;/em&gt;&lt;/strong&gt;. This means you can use it to control other media players like Spotify and VLC.
 Just keep in mind that Sunamu currently only works on Linux systems.&lt;/p&gt;
@@ -477,8 +477,8 @@ the current track's metadata and publishes it to an MQTT broker (in my case, a d
 illustrates the interaction between these two devices:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             MQTT network diagram
@@ -491,7 +491,7 @@ and flash it onto your WeMos D1 mini. This firmware will allow the device to sub
 the track information on the LED matrix display.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;video autoplay="" height="auto" loop="" muted="" width="512"&gt;
-&lt;source src="article-assets/track-info-mpris/led-matrix-spotify-track-video.mp4" type="video/mp4"/&gt;
+&lt;source src="/article-assets/track-info-mpris/led-matrix-spotify-track-video.mp4" type="video/mp4"/&gt;
       Your browser does not support the video tag.
     &lt;/video&gt;
 &lt;/div&gt;
@@ -500,7 +500,7 @@ the track information on the LED matrix display.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;[1] &lt;a href="https://specifications.freedesktop.org/mpris-spec/latest/"&gt;MPRIS D-Bus Interface Specification&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;[2] &lt;a href="https://www.freedesktop.org/wiki/Software/dbus/"&gt;D-bus&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="posts"></category></entry><entry><title>Setup docker container eclipse-mosquitto to use ipvlan and access it from other devices</title><link href="/eclipse-mosquitto-ipvlan.html" rel="alternate"></link><published>2024-04-10T00:00:00-06:00</published><updated>2024-04-10T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2024-04-10:/eclipse-mosquitto-ipvlan.html</id><summary type="html">&lt;p&gt;This is a quick tutorial on how to setup the eclipse-mosquitto container to use the ipvlan driver so we can access it from other devices.&lt;/p&gt;</summary><content type="html">&lt;p&gt;While working on an MQTT data transmission project, I set up an eclipse-mosquitto docker container as a broker on my
+&lt;/ul&gt;</content><category term="posts"></category></entry><entry><title>Setup docker container eclipse-mosquitto to use ipvlan and access it from other devices</title><link href="/archives/2024/eclipse-mosquitto-ipvlan.html" rel="alternate"></link><published>2024-04-10T00:00:00-06:00</published><updated>2024-04-10T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2024-04-10:/archives/2024/eclipse-mosquitto-ipvlan.html</id><summary type="html">&lt;p&gt;This is a quick tutorial on how to setup the eclipse-mosquitto container to use the ipvlan driver so we can access it from other devices.&lt;/p&gt;</summary><content type="html">&lt;p&gt;While working on an MQTT data transmission project, I set up an eclipse-mosquitto docker container as a broker on my
 laptop. However, with this configuration I could not connect to the broker from other devices since the container's
 network is separated from my local network. Luckily, after some web searching, I found a blog post that sets a
 configuration that integrates the container into the same local network. This will allow to connect to that broker from
@@ -514,8 +514,8 @@ interface. This allows us to set an IP address on the same network shared by the
 configuration we want to achive is show in the following diagram.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/eclipse-mosquitto-ipvlan/network-diagram.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/eclipse-mosquitto-ipvlan/network-diagram.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/eclipse-mosquitto-ipvlan/network-diagram.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/eclipse-mosquitto-ipvlan/network-diagram.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Network diagram
@@ -609,7 +609,7 @@ To compile the project you need cmake installed on your computer.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;[1] &lt;a href="https://docs.kernel.org/networking/ipvlan.html"&gt;https://docs.kernel.org/networking/ipvlan.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;[2] &lt;a href="https://docs.docker.com/network/drivers/ipvlan/"&gt;https://docs.docker.com/network/drivers/ipvlan/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><category term="posts"></category></entry><entry><title>Configure ESP8266 RTOS SDK to use ESP-IDF framework</title><link href="/esp8266-rtos-sdk-vscode.html" rel="alternate"></link><published>2023-06-24T00:00:00-06:00</published><updated>2023-06-24T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2023-06-24:/esp8266-rtos-sdk-vscode.html</id><summary type="html">&lt;p&gt;The purpose of this tutorial is to explain how to configure ESP8266 RTOS SDK to use the ESP-IDF framework. Also, this is a an explanation on how to install the toolchain and the latest version of esptool.py.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In this post, I will explain how to configure ESP8266 SDK to use the ESP-IDF framework, along with the extension that
+&lt;/ul&gt;</content><category term="posts"></category></entry><entry><title>Configure ESP8266 RTOS SDK to use ESP-IDF framework</title><link href="/archives/2023/esp8266-rtos-sdk-vscode.html" rel="alternate"></link><published>2023-06-24T00:00:00-06:00</published><updated>2023-06-24T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2023-06-24:/archives/2023/esp8266-rtos-sdk-vscode.html</id><summary type="html">&lt;p&gt;The purpose of this tutorial is to explain how to configure ESP8266 RTOS SDK to use the ESP-IDF framework. Also, this is a an explanation on how to install the toolchain and the latest version of esptool.py.&lt;/p&gt;</summary><content type="html">&lt;p&gt;In this post, I will explain how to configure ESP8266 SDK to use the ESP-IDF framework, along with the extension that
 is available for VSCode. The SDK documentation indicates that the extension is intended to be used with the framework,
 and the setup files are included in the SDK's repository. However, I could not find any tutorials that explain how to
 configure this.&lt;/p&gt;
@@ -643,8 +643,8 @@ search for: &lt;strong&gt;&lt;em&gt;Idf: Custom Extra Paths&lt;/em&gt;&lt;/stron
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             ESP-IDF setting to add extra paths.
@@ -706,8 +706,8 @@ cp -r esptool-4.6.2 ~/esp/ESP8266_RTOS_SDK/components/esptool_py/esptool
 &lt;p&gt;Here are some screenshots of ESP8266 RTOS SDK working with the ESP-IDF extension:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/esp8266-sdk-vscode/esp-idf-build.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-build.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/esp8266-sdk-vscode/esp-idf-build.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/esp8266-sdk-vscode/esp-idf-build.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Now it's possible to build the project with the ESP-IDF extension.
@@ -716,20 +716,20 @@ cp -r esptool-4.6.2 ~/esp/ESP8266_RTOS_SDK/components/esptool_py/esptool
 &lt;/div&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/esp8266-sdk-vscode/esp-idf-flash.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/esp8266-sdk-vscode/esp-idf-flash.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/esp8266-sdk-vscode/esp-idf-flash.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/esp8266-sdk-vscode/esp-idf-flash.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Also you can flash the MCU.
         &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
-&lt;p&gt;Hope you find this tutorial useful.&lt;/p&gt;</content><category term="posts"></category></entry><entry><title>Moving to Monterrey</title><link href="/moving-to-mty.html" rel="alternate"></link><published>2023-04-10T00:00:00-06:00</published><updated>2023-04-10T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2023-04-10:/moving-to-mty.html</id><summary type="html">&lt;p&gt;I haven't post in almost two years due to I moved to a new city. This city is Monterrey, which is located at the north of Mexico. This is going to be a brief post of my new experience in this city.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I haven't post in almost two years because I moved to a new city. The city is Monterrey, which is located at the north
+&lt;p&gt;Hope you find this tutorial useful.&lt;/p&gt;</content><category term="posts"></category></entry><entry><title>Moving to Monterrey</title><link href="/archives/2023/moving-to-mty.html" rel="alternate"></link><published>2023-04-10T00:00:00-06:00</published><updated>2023-04-10T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2023-04-10:/archives/2023/moving-to-mty.html</id><summary type="html">&lt;p&gt;I haven't post in almost two years due to I moved to a new city. This city is Monterrey, which is located at the north of Mexico. This is going to be a brief post of my new experience in this city.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I haven't post in almost two years because I moved to a new city. The city is Monterrey, which is located at the north
 of Mexico. This is going to be a brief post about my new experience in this city.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/moving-to-mty/cerro-silla.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/moving-to-mty/cerro-silla.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/moving-to-mty/cerro-silla.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/moving-to-mty/cerro-silla.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Cerro de la silla mountain
@@ -744,8 +744,8 @@ and tools. But most important that I'll put in practice my coding skills in C, w
 a lot to learn about programming, since it had been a long time that I haven't implemented code for big projects.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/moving-to-mty/fundidora.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/moving-to-mty/fundidora.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/moving-to-mty/fundidora.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/moving-to-mty/fundidora.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
             Fundidora Park
@@ -762,7 +762,7 @@ and even I've been promoted. So there have been possitive and negative aspects i
 &lt;h2 id="upcoming projects"&gt;Upcoming projects&lt;/h2&gt;
 &lt;p&gt;Although I have worked in some projects during my free time, for various reasons I didn't have the chance to post them
 here. Now that I have everything settle down, I'll start posting updates more frequently on projects that currently I'm
-working on, or that I had done.&lt;/p&gt;</content><category term="posts"></category></entry><entry><title>MQTT simple application</title><link href="/mqtt-simple-application.html" rel="alternate"></link><published>2021-07-09T00:00:00-05:00</published><updated>2021-07-09T00:00:00-05:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-07-09:/mqtt-simple-application.html</id><summary type="html">&lt;p&gt;This example demonstrates how to setup and use MQTT protocol to publish and read messages using two Arduinos. The purpose of this project is to do a simple applicaton where one client gets information of a sensor and sends it through WiFi. Another client reads those messages and displays them on an 16x02 LCD.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This example demonstrates how to setup and use MQTT protocol to publish and readd messages using two Arduinos.
+working on, or that I had done.&lt;/p&gt;</content><category term="posts"></category></entry><entry><title>MQTT simple application</title><link href="/archives/2021/mqtt-simple-application.html" rel="alternate"></link><published>2021-07-09T00:00:00-05:00</published><updated>2021-07-09T00:00:00-05:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-07-09:/archives/2021/mqtt-simple-application.html</id><summary type="html">&lt;p&gt;This example demonstrates how to setup and use MQTT protocol to publish and read messages using two Arduinos. The purpose of this project is to do a simple applicaton where one client gets information of a sensor and sends it through WiFi. Another client reads those messages and displays them on an 16x02 LCD.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This example demonstrates how to setup and use MQTT protocol to publish and readd messages using two Arduinos.
 The purpose of this project is to do a simple application where one Arduino gets information of a sensor and then sends 
 the message through WiFi. Then another Arduino reads those messages and displays the information on an 16x02 LCD.&lt;/p&gt;
 &lt;p&gt;This basic project serves for me as an introduction to know how to setup the broker, which will be running on a 
@@ -795,16 +795,16 @@ sensor and &lt;em&gt;ESP-01&lt;/em&gt; module a breadboard power supply module i
 the 5v of the Arduino Nano. The Raspberry Pi is not shown on the schematic since it's independent of the two clients.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
 &lt;p&gt;Here is a picture of how everything is connected on the breadboard.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1056,8 +1056,8 @@ void sub_callback(char *topic, byte *payload, unsigned int msg_length) {
 the firmware in the &lt;em&gt;ESP-01&lt;/em&gt; the project works only for a few minutes.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/mqtt-simple-application/esp-mqtt-project.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/mqtt-simple-application/esp-mqtt-project.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/mqtt-simple-application/esp-mqtt-project.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/mqtt-simple-application/esp-mqtt-project.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1074,7 +1074,7 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="https://randomnerdtutorials.com/esp32-mqtt-publish-subscribe-arduino-ide/"&gt;ESP32 MQTT &amp;ndash; Publish and Subscribe with Arduino IDE&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>Test HC-05 bluetooth module using linux commands</title><link href="/bluetooth-hc05-linux.html" rel="alternate"></link><published>2021-04-14T00:00:00-05:00</published><updated>2021-04-14T00:00:00-05:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-04-14:/bluetooth-hc05-linux.html</id><summary type="html">&lt;p&gt;The purpose of this post is to figure out how to connect a Linux PC to the HC-05 bluetooth module and send text to it through linux commands.&lt;/p&gt;</summary><content type="html">&lt;p&gt;The purpose of this post is to figure out how to connect a Linux PC to the HC-05 bluetooth module and send text to it through linux commands.&lt;/p&gt;
+&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>Test HC-05 bluetooth module using linux commands</title><link href="/archives/2021/bluetooth-hc05-linux.html" rel="alternate"></link><published>2021-04-14T00:00:00-05:00</published><updated>2021-04-14T00:00:00-05:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-04-14:/archives/2021/bluetooth-hc05-linux.html</id><summary type="html">&lt;p&gt;The purpose of this post is to figure out how to connect a Linux PC to the HC-05 bluetooth module and send text to it through linux commands.&lt;/p&gt;</summary><content type="html">&lt;p&gt;The purpose of this post is to figure out how to connect a Linux PC to the HC-05 bluetooth module and send text to it through linux commands.&lt;/p&gt;
 &lt;p&gt;Here's the setup I have for this test:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Ubuntu 18.04 installed in my laptop.&lt;/li&gt;
@@ -1086,8 +1086,8 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;p&gt;Below is a picture of the moment where I was soldering the module to the base board. This step of the process wasn't that difficult as I thought it would be. To my surprise it worked the first time, at that moment I connected it to an Arduino Uno.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/diy-base-board.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/diy-base-board.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/bluetooth-hc05-linux/diy-base-board.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/bluetooth-hc05-linux/diy-base-board.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1097,16 +1097,16 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;p&gt;The schematic below shows how everything is connected.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
 &lt;p&gt;You can see the cheap logic level converter module and my DIY base board for the bluetooth. Although the schematic shows a 1-pole dip switch, I'm using a 4-pole dip switch because is the only spare I have at the moment.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1134,8 +1134,8 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/bluetooth-hc05-linux/hciconfig-hci0.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1148,16 +1148,16 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
 &lt;p&gt;From the picture above we can observe the controller has found the device. To pair the computer with the bluetooth module run the following. The program will ask for the password, by default it is '1234':&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1173,8 +1173,8 @@ To send text to the module open the recently created serial port with the progra
 &lt;p&gt;After you open the serial port, the LED connected to PIO_09 (GPIO_32) turns on and the other LED blinks at a slower rate.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1184,8 +1184,8 @@ To send text to the module open the recently created serial port with the progra
 &lt;p&gt;The picture below shows the text sent from the computer and from the bluetooth module.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/bluetooth-hc05-linux/picocom-terminals.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/bluetooth-hc05-linux/picocom-terminals.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/bluetooth-hc05-linux/picocom-terminals.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/bluetooth-hc05-linux/picocom-terminals.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1199,7 +1199,7 @@ To send text to the module open the recently created serial port with the progra
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://www.wattnotions.com/using-the-hc-06-hc-05-bluetooth-adapter-for-serial-communication-with-linux/"&gt;http://www.wattnotions.com/using-the-hc-06-hc-05-bluetooth-adapter-for-serial-communication-with-linux/&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>HD44780 LCD driver for Raspberry Pi 3B</title><link href="/raspberrypi-hd44780-driver.html" rel="alternate"></link><published>2021-03-12T00:00:00-06:00</published><updated>2021-03-12T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-03-12:/raspberrypi-hd44780-driver.html</id><summary type="html">&lt;p&gt;I want to control a generic LCD 16x02 with a Raspberry Pi but doing it differently. Instead of using any user space program, I want a linux driver to handle the communication with the LCD. Maybe in the future I will used the LCD as a console to display info about the system.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I want to control a generic LCD 16x02 with a Raspberry Pi but doing it differently. Instead of using any user space program, I want a linux driver to handle the communication with the LCD. Maybe in the future I will used the LCD as a console to display information about the system.&lt;/p&gt;
+&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>HD44780 LCD driver for Raspberry Pi 3B</title><link href="/archives/2021/raspberrypi-hd44780-driver.html" rel="alternate"></link><published>2021-03-12T00:00:00-06:00</published><updated>2021-03-12T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-03-12:/archives/2021/raspberrypi-hd44780-driver.html</id><summary type="html">&lt;p&gt;I want to control a generic LCD 16x02 with a Raspberry Pi but doing it differently. Instead of using any user space program, I want a linux driver to handle the communication with the LCD. Maybe in the future I will used the LCD as a console to display info about the system.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I want to control a generic LCD 16x02 with a Raspberry Pi but doing it differently. Instead of using any user space program, I want a linux driver to handle the communication with the LCD. Maybe in the future I will used the LCD as a console to display information about the system.&lt;/p&gt;
 &lt;p&gt;For the following tutorial I used a Raspberry Pi 3 Model B with linux kernel version 5.4.51-v7+.&lt;/p&gt;
 &lt;h2 id="already a driver available"&gt;Already a driver available&lt;/h2&gt;
 &lt;p&gt;Although my initial idea was to program a kernel driver for the LCD, I found out that there are already a couple of drivers available for this device since, in old computers, the parallel port was used to communicate with LCDs. There is the mainline kernel driver and some other drivers that are for those LCDs that have a &lt;a href="https://blog.microjoe.org/2019/hd44780-lcd-i2c-screen-using-linux-mainline-charlcd-driver.html"&gt;&lt;strong&gt;PCF8574&lt;/strong&gt;&lt;/a&gt; IC. This integrated circuit saves pins because you communicate with it through I2C protocol.&lt;/p&gt;
@@ -1210,8 +1210,8 @@ To send text to the module open the recently created serial port with the progra
 &lt;p&gt;The following image describes which pins of the LCD are connected to the gpios on the board. I added a transistor to turn on or off the LCD's led backlight. However, for the moment connect the led backlight to 3.3v given that the driver does not control it, later we will fix this.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1249,8 +1249,8 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 &lt;p&gt;If everything is connected correctly, at boot time you should see the kernel version.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1558,8 +1558,8 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/kernel-gpios.png"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/raspberry-hd44780-driver/kernel-gpios.png"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1588,8 +1588,8 @@ sudo reboot
 &lt;p&gt;Now the backlight works.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/raspberry-hd44780-driver/lcd-backlight.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1629,8 +1629,8 @@ exit 0&lt;/code&gt;&lt;/pre&gt;
 and the Raspberry Pi's IP address.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;figure class="figure" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" src="article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="/article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" src="/article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -1652,7 +1652,7 @@ and the Raspberry Pi's IP address.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Fix command &lt;em&gt;set cursor at home&lt;/em&gt; in table &lt;em&gt;General commands and special commands&lt;/em&gt;.&lt;/li&gt;
 &lt;li&gt;Fix command &lt;em&gt;goto xy&lt;/em&gt; in table &lt;em&gt;General commands and special commands&lt;/em&gt;.&lt;/li&gt;
-&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>My first post</title><link href="/introduction-to-this-blog.html" rel="alternate"></link><published>2021-03-10T00:00:00-06:00</published><updated>2021-03-10T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-03-10:/introduction-to-this-blog.html</id><summary type="html">&lt;p&gt;My name is Felipe, I'm from Mexico, and right now I'm 28 years old. I'm an embedded software developer who worked for a technology consulting company for almost 2 years and a half. The purpose of this blog is to post notes of my personal projects but also to post tutorials on the topics I'm really interested in.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Welcome to &lt;strong&gt;&lt;em&gt;Tinkering At Night&lt;/em&gt;&lt;/strong&gt; . My name is Felipe, I'm from Mexico and I'm an embedded software developer. This blogs serves as a repository for the notes in the projects I work on, but also as a guide in many of the topics I'm really interested in. But before I start writing my first tutorial, I would like to explain the reasons of why I'm taking the time to write this blog and what motivates me.
+&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>My first post</title><link href="/archives/2021/introduction-to-this-blog.html" rel="alternate"></link><published>2021-03-10T00:00:00-06:00</published><updated>2021-03-10T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:None,2021-03-10:/archives/2021/introduction-to-this-blog.html</id><summary type="html">&lt;p&gt;My name is Felipe, I'm from Mexico, and right now I'm 28 years old. I'm an embedded software developer who worked for a technology consulting company for almost 2 years and a half. The purpose of this blog is to post notes of my personal projects but also to post tutorials on the topics I'm really interested in.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Welcome to &lt;strong&gt;&lt;em&gt;Tinkering At Night&lt;/em&gt;&lt;/strong&gt; . My name is Felipe, I'm from Mexico and I'm an embedded software developer. This blogs serves as a repository for the notes in the projects I work on, but also as a guide in many of the topics I'm really interested in. But before I start writing my first tutorial, I would like to explain the reasons of why I'm taking the time to write this blog and what motivates me.
 &lt;br/&gt;&lt;/p&gt;
 &lt;h2 id="a little bit of my past"&gt;A little bit of my past&lt;/h2&gt;
 &lt;p&gt;Since I was a teenager I was interested in engineering, specifically in microcontrollers. I was curious on how to program them and my first approach was learning assembly language for the microcontroller PIC16F84A, Arduino wasn't sell in my country at that time. As soon as I manage to run my first program on the PIC, my curiosity for learning more about these device started to growth. I recall that I lockdown my self for an entire summer to learn from different forums on how to build different projects around the PIC and read the many articles &lt;em&gt;&lt;a href="https://hackaday.com/"&gt;hackaday.com&lt;/a&gt;&lt;/em&gt; posted each week. Anyway, the sum of those experiences led me to study Mechatronics Engineering back in 2011.
