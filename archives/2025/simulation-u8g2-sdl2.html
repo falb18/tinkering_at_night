@@ -7,8 +7,8 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Tinkering At Night - 2025 archives</title>
-  <link rel="canonical" href="https://falb18.github.io/tinkering_at_night/archives/2025/index.html">
+  <title>U8g2 & SDL2: display simulation on PC - Felipe Arturo López Bonilla</title>
+  <link rel="canonical" href="https://falb18.github.io/tinkering_at_night/archives/2025/simulation-u8g2-sdl2.html">
 
   <!-- Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -51,31 +51,46 @@
         </ul>
       </div>
     </div>
-  </nav><!-- Photo by Harrison Broadbent https://unsplash.com/photos/hSHNPyND_dU -->
-<header class="masthead"
-        style="background-image: url('https://falb18.github.io/tinkering_at_night/theme/images/raspberrypi2.jpg');
-        height: 300px;">
-    <div class="overlay"></div>
+  </nav>
+<header class="masthead">
+    <div class="overlay-solid"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="page-heading">
+            <div class="col-lg-10 mx-auto">
+                <div class="post-heading">    
+                    <h1>U8g2 & SDL2: display simulation on PC</h1>
+                    <span class="meta">Posted by
+                        <a href="https://falb18.github.io/tinkering_at_night/pages/about.html">Felipe Arturo López Bonilla</a>
+                        on <script>document.write(dayjs('2025-08-27 00:00:00-06:00').format('LL'))</script>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+
     <div class="main" id="content">
         <div class="container">
-    <h2>Archives for 2025</h2>
-
-    <dl>
-            <dt>27 Aug</dt>
-            <dd class="ml-4"><a href="https://falb18.github.io/tinkering_at_night/archives/2025/simulation-u8g2-sdl2.html">U8g2 & SDL2: display simulation on PC</a></dd>
-            <dt>20 Aug</dt>
-            <dd class="ml-4"><a href="https://falb18.github.io/tinkering_at_night/archives/2025/five-years-blog.html">Five years of Tinkering At Night</a></dd>
-    </dl>
+<article class="container">
+    <div class="row">
+        <!-- Article's content -->
+        <div class="col-lg-8 mx-auto">
+            <p>This is a simple example that shows how to simulate an LCD or OLED display to render graphics using the U8g2 and SDL2 libraries. This simulation is useful for creating demos without needing a microcontroller.</p>
+<p>I discovered that the U8g2 <strong><a href="https://github.com/olikraus/u8g2">repository</a></strong> has <strong><a href="https://github.com/olikraus/u8g2/tree/master/sys/sdl">examples</a></strong> showing how to simulate displays with the SDL2 library. This inspired me to create and test my U8g2 projects on a PC first, before moving the code to a microcontroller. The main advantage of this method is the ability to code and test much faster, which also simplifies the entire debugging process.</p>
+<p>You can find a complete explanation in my <strong><a href="https://github.com/falb18/u8g2-sdl2-setup">repository</a></strong> on how to set up the SDL2 and U8g2 libraries to simulate a screen and display graphics on your PC. Below is a screenshot of the simulation running.</p>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/simulation-u8g2-sdl2/screenshot-u8g2-simulation.jpg">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/simulation-u8g2-sdl2/screenshot-u8g2-simulation.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+</a>
+</figure>
+</div>
+<p>I hope this setup proves useful in your future projects.</p>
+        </div>
+        <!-- Add table of contents -->
+    </div>
+</article>
         </div>
     </div>
 
