@@ -1,0 +1,39 @@
+// Enable ILITEK 9341 display
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    fragment@0 {
+        target-path="/";
+        __overlay__ {
+            backlight: ili9341-backlight{
+                compatible = "gpio-backlight";
+                gpios = <&gpio 18 0>;
+                default-on;
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&spi0>;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            ili9341: ili9341@0{
+                compatible = "adafruit,yx240qv29";
+                reg = <0>;
+                pinctrl-names = "default";
+                spi-max-frequency = <32000000>;
+                rotation = <0>;
+                reset-gpios = <&gpio 25 0>;
+                dc-gpios = <&gpio 24 0>;
+                backlight = <&backlight>;
+            };
+        };
+    };
+};

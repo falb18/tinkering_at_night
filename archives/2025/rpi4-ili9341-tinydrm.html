@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Installing the tinydrm driver for the ILI9341 TFT Display on a Raspberry Pi - Felipe Arturo López Bonilla</title>
+  <link rel="canonical" href="https://falb18.github.io/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html">
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Stylesheets -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link href="https://falb18.github.io/tinkering_at_night/theme/css/clean-blog.css" rel="stylesheet">
+
+  <!-- Script for date formatting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/localizedFormat.min.js" integrity="sha512-Ik4L88eO6WOyP27Lb+m7a2u4BdYgEvNNB+zzhTMDSD2Z77vExkikHm95PUBLXqP2hZmxJo2JyJFgxhpslxq1Aw==" crossorigin="anonymous"></script>
+  <script>dayjs.extend(window.dayjs_plugin_localizedFormat)</script>
+
+  <!-- Highlight js sripts and stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css" integrity="sha512-RgUfG84wvjIwNHlKPU63D8S8IItsNhZZ5kfjpvhGAfr529lt67Ys4/2RAA/NYhsb2HBfcxUXMX3NEJswqpT1tg==" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js" integrity="sha512-zol3kFQ5tnYhL7PzGt0LnllHHVWRGt2bTCIywDiScVvLIlaDOVJ6sPdJTVi0m3rA660RT+yZxkkRzMbb1L8Zkw==" crossorigin="anonymous"></script>
+  <script>hljs.highlightAll();</script>
+
+  <!-- Ekko lightbox -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+
+</head>
+
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="https://falb18.github.io/tinkering_at_night">Tinkering At Night</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://falb18.github.io/tinkering_at_night/archives.html">Archives</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://falb18.github.io/tinkering_at_night/pages/about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<header class="masthead" style="background-image: url('https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/rpi4-tft-display.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="post-heading">    
+                    <h1>Installing the tinydrm driver for the ILI9341 TFT Display on a Raspberry Pi</h1>
+                    <span class="meta">Posted by
+                        <a href="https://falb18.github.io/tinkering_at_night/pages/about.html">Felipe Arturo López Bonilla</a>
+                        on <script>document.write(dayjs('2025-10-21 00:00:00-06:00').format('LL'))</script>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="main" id="content">
+        <div class="container">
+<article class="container">
+    <div class="row">
+        <!-- Article's content -->
+        <div class="col-lg-8 mx-auto">
+            <h2 id="introduction">Introduction</h2>
+<p>I started this project in 2021 with the goal of learning about Device Tree and Linux drivers. However, I lost interest,
+mainly because I found a job. I'm now getting back to it since new software is available for the Raspberry Pi, and I
+have other projects in mind based on this one.</p>
+<p>When I started, the <strong><em>fbtft</em></strong> driver <strong>[1]</strong> was the only option for controlling these TFT displays. During my research,
+I found a new driver in development called <strong><em>tinydrm</em></strong> <strong>[2]</strong>, which was not yet included in the Linux kernel. I ran
+some experiments, and I managed to successfully install the driver and get it working with the display. Time has passed,
+and the tinydrm driver is now part of the Linux kernel <strong>[3]</strong>. Therefore, the purpose of this tutorial is to describe
+the steps for installing these popular TFT displays on a Raspberry Pi using the tinydrm driver.</p>
+<p>The following steps were performed using the hardware and software versions listed below:</p>
+<ul>
+<li>Hardware: Raspberry Pi 4</li>
+<li>Kernel Version: 6.12.47+rpt-rpi-v8</li>
+<li>Display: TFT ILI9341</li>
+</ul>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ili9341-rpi3.jpg">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ili9341-rpi3.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+			My first attempt I did was with a 2.2 TFT display and a Raspberry Pi 3B
+		</figcaption>
+</figure>
+</div>
+<h2 id="tft display connections">TFT display connections</h2>
+<p>The following table lists the wiring between the Raspberry Pi and the TFT display. Note that I am not using the backlight
+control pin in this setup, as I have connected it directly to 3.3V.</p>
+<p>
+<table class="table">
+    
+    
+    <thead class="thead-light">
+    <tr>
+        
+        
+        <th scope="col">TFT Display</th>
+        
+        <th scope="col">Rpi GPIO</th>
+        
+        <th scope="col">Rpi Pin</th>
+        
+    </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr scope="row">
+            
+            
+            <td>SCLK</td>
+            
+            <td>GPIO 11</td>
+            
+            <td>23</td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>MOSI</td>
+            
+            <td>GPIO10</td>
+            
+            <td>19</td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>CS</td>
+            
+            <td>GPIO 8</td>
+            
+            <td>24</td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>D/C</td>
+            
+            <td>GPIO 24</td>
+            
+            <td>18</td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>RESET</td>
+            
+            <td>GPIO 25</td>
+            
+            <td>22</td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>GND</td>
+            
+            <td> </td>
+            
+            <td></td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>VCC (3.3v)</td>
+            
+            <td> </td>
+            
+            <td><br/></td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>BKL (3.3v)</td>
+            
+            <td> </td>
+            
+            <td></td>
+            
+        </tr>
+        
+    </tbody>
+</table></p>
+<h2 id="setup for tinydrm driver">Setup for tinydrm driver</h2>
+<p>For this step, you need the Device Tree Compiler, which you can install using the following command:</p>
+<pre><code class="language-bash">sudo apt-get install -y device-tree-compiler
+</code></pre>
+<h3 id="write and compile devicetree overlay">Write and compile devicetree overlay</h3>
+<p>To start, we need to write the following Device Tree Overlay to set up the pins for the driver.</p>
+<pre><code class="c">// Enable ILITEK 9341 display
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    fragment@0 {
+        target = <&spi0>;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            ili9341: ili9341@0{
+                compatible = "adafruit,yx240qv29";
+                reg = <0>;
+                pinctrl-names = "default";
+                spi-max-frequency = <32000000>;
+                rotation = <0>;
+                reset-gpios = <&gpio 25 0>;
+                dc-gpios = <&gpio 24 0>;
+            };
+        };
+    };
+};</code></pre>
+<p>According to the documentation, the display's backlight can be controlled via a Raspberry Pi GPIO <strong>[4]</strong> <strong>[5]</strong>.
+Although I haven't utilized that GPIO for my setup, I've left the necessary lines in the Device Tree Overlay if you wish
+to enable backlight control.</p>
+<pre><code class="c">// Enable ILITEK 9341 display
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    fragment@0 {
+        target-path="/";
+        __overlay__ {
+            backlight: ili9341-backlight{
+                compatible = "gpio-backlight";
+                gpios = <&gpio 18 0>;
+                default-on;
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&spi0>;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            ili9341: ili9341@0{
+                compatible = "adafruit,yx240qv29";
+                reg = <0>;
+                pinctrl-names = "default";
+                spi-max-frequency = <32000000>;
+                rotation = <0>;
+                reset-gpios = <&gpio 25 0>;
+                dc-gpios = <&gpio 24 0>;
+                backlight = <&backlight>;
+            };
+        };
+    };
+};</code></pre>
+<p>Save this file in your <strong><em>home/</em></strong> directory. With the overlay saved, we are now ready to compile it and apply the new pin
+configuration.</p>
+<h3 id="compile and install devicetree overlay">Compile and install devicetree overlay</h3>
+<p>Execute the following command to compile your Device Tree Overlay.</p>
+<pre><code class="bash">dtc -@ -Hepapr -I dts -O dtb -o ili9341-spi.dtbo ./ili9341-spi-overlay.dts
+</code></pre>
+<p>Move the <strong>.dtbo</strong> file to the <strong><em>/boot/firmware/overlays directory</em></strong>. Then, modify <strong><em>/boot/firmware/config.txt</em></strong> to
+enable the Device Tree Overlay, which will load the driver.</p>
+<pre><code class="bash">...
+
+# Uncomment some or all of these to enable the optional hardware interfaces
+#dtparam=i2c_arm=on
+#dtparam=i2s=on
+dtparam=spi=on
+dtoverlay=spi0-cs
+
+...
+
+# Additional overlays and parameters are documented /boot/overlays/README
+dtoverlay=ili9341-spi
+</code></pre>
+<p>After saving the changes, you must reboot the Raspberry Pi to load the driver.</p>
+<h3 id="confirm driver is installed">Confirm driver is installed</h3>
+<p>Check the kernel messages during the boot process to confirm that the driver has been successfully installed. To do this,
+execute the following command:</p>
+<pre><code class="bash">sudo dmesg | grep "drm"
+</code></pre>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+			On the kernel logs we can notice that the drm driver initializes the TFT display.
+		</figcaption>
+</figure>
+</div>
+<p>Run the following command to list all installed kernel modules. Specifically, check to see if the ili9341 kernel module
+is listed:</p>
+<pre><code class="bash">lsmod
+</code></pre>
+<div class="row justify-content-center">
+<figure class="figure" style="display: table;">
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+			Confirm that the kernel module is loaded.
+		</figcaption>
+</figure>
+</div>
+<p>Verify that a new graphics card is present. The Raspberry Pi 4 typically uses cards 0 and 1 for its two HDMI ports, so
+the new card should be assigned the number 2.</p>
+<h2 id="verifying the installation">Verifying the Installation</h2>
+<p>The simplest test is to display the console on the screen. To achieve this, edit the <strong><em>/boot/firmware/cmdline.txt</em></strong>
+file and append the following command to the end of the line, redirecting the console to framebuffer 1 <strong>[6]</strong>:</p>
+<pre><code class="bash">fbcon=map:1 # or map:0, depending which frame buffer is set
+</code></pre>
+<p>Reboot the Raspberry Pi to apply the changes. Once the boot process initializes the driver, you should see the kernel
+messages on the display.</p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/3NChL18HWMA?si=HVzH6kR6V6TPvqpx" title="YouTube video player" width="560"></iframe>
+<p>With the tinydrm driver now set up and verified, your display is ready for development. I hope this tutorial gives you
+a great starting point for all your future projects involving this hardware.</p>
+<h2 id="references:">References:</h2>
+<ul>
+<li>[1] <a href="https://github.com/notro/fbtft">Linux Framebuffer drivers for small TFT LCD display modules</a></li>
+<li>[2] <a href="https://github.com/notro/tinydrm">tinydrm</a></li>
+<li>[3] <a href="https://elixir.bootlin.com/linux/v6.12.47/source/drivers/gpu/drm/tiny">drivers/gpu/drm/tiny</a></li>
+<li>[4] <a href="https://elixir.bootlin.com/linux/v5.4.51/source/Documentation/devicetree/bindings/display/ilitek,ili9341.txt">ilitek,ili9341.txt</a></li>
+<li>[5] <a href="https://elixir.bootlin.com/linux/v6.12.47/source/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml">gpio-backlight.yaml</a></li>
+<li>[6] <a href="https://docs.kernel.org/fb/fbcon.html">The Framebuffer Console</a></li>
+</ul>
+        </div>
+        <!-- Add table of contents -->
+        <div class="col-lg-4 mx-auto">
+        <div id="toc">
+<ul>
+<li><a class="toc-href" href="#introduction" title="Introduction">Introduction</a></li>
+<li><a class="toc-href" href="#tft display connections" title="TFT display connections">TFT display connections</a></li>
+<li><a class="toc-href" href="#setup for tinydrm driver" title="Setup for tinydrm driver">Setup for tinydrm driver</a>
+<ul>
+<li><a class="toc-href" href="#write and compile devicetree overlay" title="Write and compile devicetree overlay">Write and compile devicetree overlay</a></li>
+<li><a class="toc-href" href="#compile and install devicetree overlay" title="Compile and install devicetree overlay">Compile and install devicetree overlay</a></li>
+<li><a class="toc-href" href="#confirm driver is installed" title="Confirm driver is installed">Confirm driver is installed</a></li></ul></li>
+<li><a class="toc-href" href="#verifying the installation" title="Verifying the Installation">Verifying the Installation</a></li>
+<li><a class="toc-href" href="#references:" title="References:">References:</a></li></ul></div>
+        </div>
+    </div>
+</article>
+        </div>
+    </div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">Copyright &copy; Felipe Arturo López Bonilla 2021 - 
+                    <script>document.write(dayjs().year())</script>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mt-4 mx-auto">
+                <p class="text-center list-inline text-muted copyright">
+                    This site is powered by 
+                <a href="https://blog.getpelican.com/">Pelican</a>.
+                    The theme is based on
+                <a href="https://startbootstrap.com/theme/clean-blog">Clean Blog</a>.
+                </p>
+            </div>
+        </div>
+</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+	<script type="text/javascript"  src="https://falb18.github.io/tinkering_at_night/theme/js/clean-blog.js"></script>
+	<script type="text/javascript">
+		$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+			event.preventDefault();
+			$(this).ekkoLightbox();
+		});
+	</script>
+</body>
+
+</html>

@@ -1,5 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night - posts</title><link href="https://falb18.github.io/tinkering_at_night/" rel="alternate"></link><link href="https://falb18.github.io/tinkering_at_night/feeds/posts.atom.xml" rel="self"></link><id>https://falb18.github.io/tinkering_at_night/</id><updated>2025-08-27T00:00:00-06:00</updated><entry><title>U8g2 &amp; SDL2: display simulation on PC</title><link href="https://falb18.github.io/tinkering_at_night/archives/2025/simulation-u8g2-sdl2.html" rel="alternate"></link><published>2025-08-27T00:00:00-06:00</published><updated>2025-08-27T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2025-08-27:/tinkering_at_night/archives/2025/simulation-u8g2-sdl2.html</id><summary type="html">&lt;p&gt;This demonstration shows how to use the U8g2 library with the SDL2 library to simulate an LCD screen for displaying graphics.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is a simple example that shows how to simulate an LCD or OLED display to render graphics using the U8g2 and SDL2 libraries. This simulation is useful for creating demos without needing a microcontroller.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night - posts</title><link href="https://falb18.github.io/tinkering_at_night/" rel="alternate"></link><link href="https://falb18.github.io/tinkering_at_night/feeds/posts.atom.xml" rel="self"></link><id>https://falb18.github.io/tinkering_at_night/</id><updated>2025-10-21T00:00:00-06:00</updated><entry><title>Installing the tinydrm driver for the ILI9341 TFT Display on a Raspberry Pi</title><link href="https://falb18.github.io/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html" rel="alternate"></link><published>2025-10-21T00:00:00-06:00</published><updated>2025-10-21T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2025-10-21:/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html</id><summary type="html">&lt;p&gt;This tutorial guides you through setting up the TFT ILI9341 display on a Raspberry Pi 4, focusing on integrating it with the current tinydrm driver found in the Linux kernel.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;I started this project in 2021 with the goal of learning about Device Tree and Linux drivers. However, I lost interest,
+mainly because I found a job. I'm now getting back to it since new software is available for the Raspberry Pi, and I
+have other projects in mind based on this one.&lt;/p&gt;
+&lt;p&gt;When I started, the &lt;strong&gt;&lt;em&gt;fbtft&lt;/em&gt;&lt;/strong&gt; driver &lt;strong&gt;[1]&lt;/strong&gt; was the only option for controlling these TFT displays. During my research,
+I found a new driver in development called &lt;strong&gt;&lt;em&gt;tinydrm&lt;/em&gt;&lt;/strong&gt; &lt;strong&gt;[2]&lt;/strong&gt;, which was not yet included in the Linux kernel. I ran
+some experiments, and I managed to successfully install the driver and get it working with the display. Time has passed,
+and the tinydrm driver is now part of the Linux kernel &lt;strong&gt;[3]&lt;/strong&gt;. Therefore, the purpose of this tutorial is to describe
+the steps for installing these popular TFT displays on a Raspberry Pi using the tinydrm driver.&lt;/p&gt;
+&lt;p&gt;The following steps were performed using the hardware and software versions listed below:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hardware: Raspberry Pi 4&lt;/li&gt;
+&lt;li&gt;Kernel Version: 6.12.47+rpt-rpi-v8&lt;/li&gt;
+&lt;li&gt;Display: TFT ILI9341&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;figure class="figure" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ili9341-rpi3.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ili9341-rpi3.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+			My first attempt I did was with a 2.2 TFT display and a Raspberry Pi 3B
+		&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;h2 id="tft display connections"&gt;TFT display connections&lt;/h2&gt;
+&lt;p&gt;The following table lists the wiring between the Raspberry Pi and the TFT display. Note that I am not using the backlight
+control pin in this setup, as I have connected it directly to 3.3V.&lt;/p&gt;
+&lt;p&gt;
+&lt;table class="table"&gt;
+    
+    
+    &lt;thead class="thead-light"&gt;
+    &lt;tr&gt;
+        
+        
+        &lt;th scope="col"&gt;TFT Display&lt;/th&gt;
+        
+        &lt;th scope="col"&gt;Rpi GPIO&lt;/th&gt;
+        
+        &lt;th scope="col"&gt;Rpi Pin&lt;/th&gt;
+        
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    
+    &lt;tbody&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;SCLK&lt;/td&gt;
+            
+            &lt;td&gt;GPIO 11&lt;/td&gt;
+            
+            &lt;td&gt;23&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;MOSI&lt;/td&gt;
+            
+            &lt;td&gt;GPIO10&lt;/td&gt;
+            
+            &lt;td&gt;19&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;CS&lt;/td&gt;
+            
+            &lt;td&gt;GPIO 8&lt;/td&gt;
+            
+            &lt;td&gt;24&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;D/C&lt;/td&gt;
+            
+            &lt;td&gt;GPIO 24&lt;/td&gt;
+            
+            &lt;td&gt;18&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;RESET&lt;/td&gt;
+            
+            &lt;td&gt;GPIO 25&lt;/td&gt;
+            
+            &lt;td&gt;22&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;GND&lt;/td&gt;
+            
+            &lt;td&gt; &lt;/td&gt;
+            
+            &lt;td&gt;&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;VCC (3.3v)&lt;/td&gt;
+            
+            &lt;td&gt; &lt;/td&gt;
+            
+            &lt;td&gt;&lt;br/&gt;&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+        &lt;tr scope="row"&gt;
+            
+            
+            &lt;td&gt;BKL (3.3v)&lt;/td&gt;
+            
+            &lt;td&gt; &lt;/td&gt;
+            
+            &lt;td&gt;&lt;/td&gt;
+            
+        &lt;/tr&gt;
+        
+    &lt;/tbody&gt;
+&lt;/table&gt;&lt;/p&gt;
+&lt;h2 id="setup for tinydrm driver"&gt;Setup for tinydrm driver&lt;/h2&gt;
+&lt;p&gt;For this step, you need the Device Tree Compiler, which you can install using the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo apt-get install -y device-tree-compiler
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="write and compile devicetree overlay"&gt;Write and compile devicetree overlay&lt;/h3&gt;
+&lt;p&gt;To start, we need to write the following Device Tree Overlay to set up the pins for the driver.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="c"&gt;// Enable ILITEK 9341 display
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    fragment@0 {
+        target = &lt;&amp;spi0&gt;;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = &lt;1&gt;;
+            #size-cells = &lt;0&gt;;
+            status = "okay";
+
+            ili9341: ili9341@0{
+                compatible = "adafruit,yx240qv29";
+                reg = &lt;0&gt;;
+                pinctrl-names = "default";
+                spi-max-frequency = &lt;32000000&gt;;
+                rotation = &lt;0&gt;;
+                reset-gpios = &lt;&amp;gpio 25 0&gt;;
+                dc-gpios = &lt;&amp;gpio 24 0&gt;;
+            };
+        };
+    };
+};&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;According to the documentation, the display's backlight can be controlled via a Raspberry Pi GPIO &lt;strong&gt;[4]&lt;/strong&gt; &lt;strong&gt;[5]&lt;/strong&gt;.
+Although I haven't utilized that GPIO for my setup, I've left the necessary lines in the Device Tree Overlay if you wish
+to enable backlight control.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="c"&gt;// Enable ILITEK 9341 display
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    fragment@0 {
+        target-path="/";
+        __overlay__ {
+            backlight: ili9341-backlight{
+                compatible = "gpio-backlight";
+                gpios = &lt;&amp;gpio 18 0&gt;;
+                default-on;
+            };
+        };
+    };
+
+    fragment@1 {
+        target = &lt;&amp;spi0&gt;;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = &lt;1&gt;;
+            #size-cells = &lt;0&gt;;
+            status = "okay";
+
+            ili9341: ili9341@0{
+                compatible = "adafruit,yx240qv29";
+                reg = &lt;0&gt;;
+                pinctrl-names = "default";
+                spi-max-frequency = &lt;32000000&gt;;
+                rotation = &lt;0&gt;;
+                reset-gpios = &lt;&amp;gpio 25 0&gt;;
+                dc-gpios = &lt;&amp;gpio 24 0&gt;;
+                backlight = &lt;&amp;backlight&gt;;
+            };
+        };
+    };
+};&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save this file in your &lt;strong&gt;&lt;em&gt;home/&lt;/em&gt;&lt;/strong&gt; directory. With the overlay saved, we are now ready to compile it and apply the new pin
+configuration.&lt;/p&gt;
+&lt;h3 id="compile and install devicetree overlay"&gt;Compile and install devicetree overlay&lt;/h3&gt;
+&lt;p&gt;Execute the following command to compile your Device Tree Overlay.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="bash"&gt;dtc -@ -Hepapr -I dts -O dtb -o ili9341-spi.dtbo ./ili9341-spi-overlay.dts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Move the &lt;strong&gt;.dtbo&lt;/strong&gt; file to the &lt;strong&gt;&lt;em&gt;/boot/firmware/overlays directory&lt;/em&gt;&lt;/strong&gt;. Then, modify &lt;strong&gt;&lt;em&gt;/boot/firmware/config.txt&lt;/em&gt;&lt;/strong&gt; to
+enable the Device Tree Overlay, which will load the driver.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="bash"&gt;...
+
+# Uncomment some or all of these to enable the optional hardware interfaces
+#dtparam=i2c_arm=on
+#dtparam=i2s=on
+dtparam=spi=on
+dtoverlay=spi0-cs
+
+...
+
+# Additional overlays and parameters are documented /boot/overlays/README
+dtoverlay=ili9341-spi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After saving the changes, you must reboot the Raspberry Pi to load the driver.&lt;/p&gt;
+&lt;h3 id="confirm driver is installed"&gt;Confirm driver is installed&lt;/h3&gt;
+&lt;p&gt;Check the kernel messages during the boot process to confirm that the driver has been successfully installed. To do this,
+execute the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="bash"&gt;sudo dmesg | grep "drm"
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;figure class="figure" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+			On the kernel logs we can notice that the drm driver initializes the TFT display.
+		&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;Run the following command to list all installed kernel modules. Specifically, check to see if the ili9341 kernel module
+is listed:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="bash"&gt;lsmod
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;figure class="figure" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+			Confirm that the kernel module is loaded.
+		&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;Verify that a new graphics card is present. The Raspberry Pi 4 typically uses cards 0 and 1 for its two HDMI ports, so
+the new card should be assigned the number 2.&lt;/p&gt;
+&lt;h2 id="verifying the installation"&gt;Verifying the Installation&lt;/h2&gt;
+&lt;p&gt;The simplest test is to display the console on the screen. To achieve this, edit the &lt;strong&gt;&lt;em&gt;/boot/firmware/cmdline.txt&lt;/em&gt;&lt;/strong&gt;
+file and append the following command to the end of the line, redirecting the console to framebuffer 1 &lt;strong&gt;[6]&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="bash"&gt;fbcon=map:1 # or map:0, depending which frame buffer is set
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Reboot the Raspberry Pi to apply the changes. Once the boot process initializes the driver, you should see the kernel
+messages on the display.&lt;/p&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/3NChL18HWMA?si=HVzH6kR6V6TPvqpx" title="YouTube video player" width="560"&gt;&lt;/iframe&gt;
+&lt;p&gt;With the tinydrm driver now set up and verified, your display is ready for development. I hope this tutorial gives you
+a great starting point for all your future projects involving this hardware.&lt;/p&gt;
+&lt;h2 id="references:"&gt;References:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[1] &lt;a href="https://github.com/notro/fbtft"&gt;Linux Framebuffer drivers for small TFT LCD display modules&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[2] &lt;a href="https://github.com/notro/tinydrm"&gt;tinydrm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[3] &lt;a href="https://elixir.bootlin.com/linux/v6.12.47/source/drivers/gpu/drm/tiny"&gt;drivers/gpu/drm/tiny&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[4] &lt;a href="https://elixir.bootlin.com/linux/v5.4.51/source/Documentation/devicetree/bindings/display/ilitek,ili9341.txt"&gt;ilitek,ili9341.txt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[5] &lt;a href="https://elixir.bootlin.com/linux/v6.12.47/source/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml"&gt;gpio-backlight.yaml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[6] &lt;a href="https://docs.kernel.org/fb/fbcon.html"&gt;The Framebuffer Console&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="posts"></category></entry><entry><title>U8g2 &amp; SDL2: display simulation on PC</title><link href="https://falb18.github.io/tinkering_at_night/archives/2025/simulation-u8g2-sdl2.html" rel="alternate"></link><published>2025-08-27T00:00:00-06:00</published><updated>2025-08-27T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2025-08-27:/tinkering_at_night/archives/2025/simulation-u8g2-sdl2.html</id><summary type="html">&lt;p&gt;This demonstration shows how to use the U8g2 library with the SDL2 library to simulate an LCD screen for displaying graphics.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is a simple example that shows how to simulate an LCD or OLED display to render graphics using the U8g2 and SDL2 libraries. This simulation is useful for creating demos without needing a microcontroller.&lt;/p&gt;
 &lt;p&gt;I discovered that the U8g2 &lt;strong&gt;&lt;a href="https://github.com/olikraus/u8g2"&gt;repository&lt;/a&gt;&lt;/strong&gt; has &lt;strong&gt;&lt;a href="https://github.com/olikraus/u8g2/tree/master/sys/sdl"&gt;examples&lt;/a&gt;&lt;/strong&gt; showing how to simulate displays with the SDL2 library. This inspired me to create and test my U8g2 projects on a PC first, before moving the code to a microcontroller. The main advantage of this method is the ability to code and test much faster, which also simplifies the entire debugging process.&lt;/p&gt;
 &lt;p&gt;You can find a complete explanation in my &lt;strong&gt;&lt;a href="https://github.com/falb18/u8g2-sdl2-setup"&gt;repository&lt;/a&gt;&lt;/strong&gt; on how to set up the SDL2 and U8g2 libraries to simulate a screen and display graphics on your PC. Below is a screenshot of the simulation running.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;

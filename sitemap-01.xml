@@ -6,21 +6,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/</loc>
-<lastmod>2025-10-09T18:37:17-00:00</lastmod>
+<lastmod>2025-10-21T19:33:09-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/archives.html</loc>
-<lastmod>2025-10-09T18:37:17-00:00</lastmod>
+<lastmod>2025-10-21T19:33:09-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/archives/2021/</loc>
-<lastmod>2025-10-09T18:37:17-00:00</lastmod>
+<lastmod>2025-10-21T19:33:09-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -55,7 +55,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/archives/2023/</loc>
-<lastmod>2025-10-09T18:37:17-00:00</lastmod>
+<lastmod>2025-10-21T19:33:09-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -76,7 +76,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/archives/2024/</loc>
-<lastmod>2025-10-09T18:37:17-00:00</lastmod>
+<lastmod>2025-10-21T19:33:09-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -104,7 +104,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/archives/2025/</loc>
-<lastmod>2025-10-09T18:37:17-00:00</lastmod>
+<lastmod>2025-10-21T19:33:09-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -112,6 +112,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/archives/2025/five-years-blog.html</loc>
 <lastmod>2025-08-20T00:00:00-06:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://falb18.github.io/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html</loc>
+<lastmod>2025-10-21T00:00:00-06:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -125,21 +132,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/page/2/</loc>
-<lastmod>2025-10-09T18:37:17-00:00</lastmod>
+<lastmod>2025-10-21T19:33:09-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/page/3/</loc>
-<lastmod>2025-10-09T18:37:17-00:00</lastmod>
+<lastmod>2025-10-21T19:33:09-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://falb18.github.io/tinkering_at_night/pages/about.html</loc>
-<lastmod>2025-10-09T18:37:17-00:00</lastmod>
+<lastmod>2025-10-21T19:33:09-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
