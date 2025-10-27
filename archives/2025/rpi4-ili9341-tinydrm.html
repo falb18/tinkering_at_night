@@ -339,20 +339,21 @@ is listed:</p>
 		</figcaption>
 </figure>
 </div>
-<p>Verify that a new graphics card is present. The Raspberry Pi 4 typically uses cards 0 and 1 for its two HDMI ports, so
-the new card should be assigned the number 2.</p>
-<pre><code class="bash">ls -al /dev/dri/card*
+<p>Use the following command to check which graphics card number has been assigned to the display. In my setup, <strong><em>card1</em></strong> was
+assigned to the TFT display:</p>
+<pre><code class="bash">ls -al /sys/class/drm/
 </code></pre>
 <div class="row justify-content-center">
 <figure class="figure" style="display: table;">
-<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-dev-dri-card.jpg">
-<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-dev-dri-card.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.jpg">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
 </a>
 <figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
 			List of graphics cards
 		</figcaption>
 </figure>
 </div>
+<p><strong>IMPORTANT:</strong> This assigned card number may change each time you boot the Raspberry Pi 4.</p>
 <h2 id="verifying the installation">Verifying the Installation</h2>
 <p>The simplest test is to display the console on the screen. To achieve this, edit the <strong><em>/boot/firmware/cmdline.txt</em></strong>
 file and append the following command to the end of the line, redirecting the console to framebuffer 1 <strong>[6]</strong>:</p>
