@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night</title><link href="https://falb18.github.io/tinkering_at_night/" rel="alternate"></link><link href="https://falb18.github.io/tinkering_at_night/feeds/all.atom.xml" rel="self"></link><id>https://falb18.github.io/tinkering_at_night/</id><updated>2025-10-21T00:00:00-06:00</updated><entry><title>Installing the tinydrm driver for the ILI9341 TFT Display on a Raspberry Pi</title><link href="https://falb18.github.io/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html" rel="alternate"></link><published>2025-10-21T00:00:00-06:00</published><updated>2025-10-21T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2025-10-21:/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html</id><summary type="html">&lt;p&gt;This tutorial guides you through setting up the TFT ILI9341 display on a Raspberry Pi 4, focusing on integrating it with the current tinydrm driver found in the Linux kernel.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night</title><link href="https://falb18.github.io/tinkering_at_night/" rel="alternate"></link><link href="https://falb18.github.io/tinkering_at_night/feeds/all.atom.xml" rel="self"></link><id>https://falb18.github.io/tinkering_at_night/</id><updated>2025-10-29T00:00:00-06:00</updated><entry><title>Running an LVGL GUI with the DRM Driver on Raspberry Pi</title><link href="https://falb18.github.io/tinkering_at_night/archives/2025/rpi-lvgl-demo-drm.html" rel="alternate"></link><published>2025-10-29T00:00:00-06:00</published><updated>2025-10-29T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2025-10-29:/tinkering_at_night/archives/2025/rpi-lvgl-demo-drm.html</id><summary type="html">&lt;p&gt;This tutorial explains how to run an LVGL demo on a Raspberry Pi 4. The demo, in particular, will use the DRM driver to render the GUI onto a TFT ILI9341 display.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In the previous article, &lt;a href="https://falb18.github.io/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html"&gt;Installing the tinydrm driver for the ILI9341 TFT Display on a Raspberry Pi&lt;/a&gt;,
+I explained how to install a TFT display on a Raspberry Pi 4. I'll be using that same setup to run an LVGL demo on the
+display using the DRM driver.&lt;/p&gt;
+&lt;p&gt;I'm using the following hardware and software setup for this tutorial::&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hardware: Raspberry Pi 4&lt;/li&gt;
+&lt;li&gt;Kernel Version: 6.12.47+rpt-rpi-v8&lt;/li&gt;
+&lt;li&gt;Display: TFT ILI9341&lt;/li&gt;
+&lt;li&gt;libdrm-dev: 2.4.123-1&lt;/li&gt;
+&lt;li&gt;lvgl: &lt;a href="https://github.com/lvgl/lvgl/releases/tag/v9.4.0"&gt;v9.4.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/lvgl/lv_port_linux"&gt;lv_port_linux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;figure class="figure" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-lvgl-demo-drm/rpi-lvgl-demo-running.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-lvgl-demo-drm/rpi-lvgl-demo-running.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+			LVGL demo running on Raspberry Pi 4
+		&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;h2 id="install lvgl demo and library"&gt;Install LVGL demo and library&lt;/h2&gt;
+&lt;p&gt;Clone the LVGL demo repository. Then, check out the latest version of the LVGL library&amp;mdash;version 9.4.0 at the moment&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;git clone https://github.com/lvgl/lv_port_linux.git
+cd lv_port_linux/
+git submodule update --init --recursive
+cd lvgl/
+git checkout v9.4.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="install drm library"&gt;Install drm library&lt;/h3&gt;
+&lt;p&gt;We need the DRM library to communicate with the TFT display's DRM driver. Install it with this command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo apt-get install libdrm-dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="setup the library to run lvgl using the drm driver"&gt;Setup the library to run LVGL using the drm driver&lt;/h2&gt;
+&lt;p&gt;The LVGL library uses the framebuffer driver by default. To change the driver, we need to edit the &lt;strong&gt;&lt;em&gt;lv_conf.defaults&lt;/em&gt;&lt;/strong&gt; file
+and modify the following lines:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="bash"&gt;# Simple framebuffer device
+LV_USE_LINUX_FBDEV      0
+
+# DRM Support
+LV_USE_LINUX_DRM        1
+
+# Input support (enable when using FBDEV or DRM)
+LV_USE_EVDEV    0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We won't enable any input device yet, but I'll explain how to do so in a later article.&lt;/p&gt;
+&lt;h2 id="compile and run the demo"&gt;Compile and run the demo&lt;/h2&gt;
+&lt;p&gt;Execute the following commands to compile the demo:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;cmake -DCONFIG=default -B build -S .
+make -C build -j
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Set the following environment variable &lt;strong&gt;[1]&lt;/strong&gt; before executing the demo to specify which graphics card to use:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;export LV_LINUX_DRM_CARD=/dev/dri/card1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; The graphics card number may change each time you boot the Raspberry Pi. Confirm the number with the
+command: &lt;strong&gt;&lt;em&gt;ls -al /sys/class/drm/&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Run the demo with the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;./build/bin/lvglsim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The following video demonstrates the demo running on the display:&lt;/p&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/tk1mXcJ2_JM?si=gzlPKthiSVFpH1az" title="YouTube video player" width="560"&gt;&lt;/iframe&gt;
+&lt;p&gt;The next logical step is to enable the touchscreen as the input device to make the GUI interactive, a topic I'll cover
+in an upcoming article.&lt;/p&gt;
+&lt;h2 id="references:"&gt;References:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[1] &lt;a href="https://github.com/lvgl/lv_port_linux?tab=readme-ov-file#drmkms"&gt;lv_port_linux?tab=readme-ov-file#drmkms&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="posts"></category></entry><entry><title>Installing the tinydrm driver for the ILI9341 TFT Display on a Raspberry Pi</title><link href="https://falb18.github.io/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html" rel="alternate"></link><published>2025-10-21T00:00:00-06:00</published><updated>2025-10-21T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2025-10-21:/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html</id><summary type="html">&lt;p&gt;This tutorial guides you through setting up the TFT ILI9341 display on a Raspberry Pi 4, focusing on integrating it with the current tinydrm driver found in the Linux kernel.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;I started this project in 2021 with the goal of learning about Device Tree and Linux drivers. However, I lost interest,
 mainly because I found a job. I'm now getting back to it since new software is available for the Raspberry Pi, and I
 have other projects in mind based on this one.&lt;/p&gt;
