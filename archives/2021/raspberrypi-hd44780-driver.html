@@ -15,9 +15,8 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
   <!-- Stylesheets -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link href="https://falb18.github.io/tinkering_at_night/theme/css/clean-blog.css" rel="stylesheet">
 
   <!-- Script for date formatting -->
@@ -29,10 +28,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css" integrity="sha512-RgUfG84wvjIwNHlKPU63D8S8IItsNhZZ5kfjpvhGAfr529lt67Ys4/2RAA/NYhsb2HBfcxUXMX3NEJswqpT1tg==" crossorigin="anonymous" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js" integrity="sha512-zol3kFQ5tnYhL7PzGt0LnllHHVWRGt2bTCIywDiScVvLIlaDOVJ6sPdJTVi0m3rA660RT+yZxkkRzMbb1L8Zkw==" crossorigin="anonymous"></script>
   <script>hljs.highlightAll();</script>
-
-  <!-- Ekko lightbox -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -40,8 +35,8 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand" href="https://falb18.github.io/tinkering_at_night">Tinkering At Night</a>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link" href="https://falb18.github.io/tinkering_at_night/archives.html">Archives</a>
           </li>
@@ -52,22 +47,23 @@
       </div>
     </div>
   </nav>
-<header class="masthead" style="background-image: url('https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-backlight.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <div class="post-heading">    
-                    <h1>HD44780 LCD driver for Raspberry Pi 3B</h1>
-                    <span class="meta">Posted by
-                        <a href="https://falb18.github.io/tinkering_at_night/pages/about.html">Felipe Arturo López Bonilla</a>
-                        on <script>document.write(dayjs('2021-03-12 00:00:00-06:00').format('LL'))</script>
-                    </span>
-                </div>
+<header class="masthead z-n1" style="background-image: url('https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-backlight.jpg')">
+    <div class="overlay z-n1"></div>
+</header>
+
+<div class="container-fluid article-header">
+    <div class="row">
+        <div class="col-lg-9 mx-auto">
+            <div class="post-heading">    
+                <h1>HD44780 LCD driver for Raspberry Pi 3B</h1>
+                <span class="meta">Posted by
+                    <a href="https://falb18.github.io/tinkering_at_night/pages/about.html">Felipe Arturo López Bonilla</a>
+                    on <script>document.write(dayjs('2021-03-12 00:00:00-06:00').format('LL'))</script>
+                </span>
             </div>
         </div>
     </div>
-</header>
+</div>
 
 
     <div class="main" id="content">
@@ -86,11 +82,13 @@
 <h2 id="building the circuit">Building the circuit</h2>
 <p>The following image describes which pins of the LCD are connected to the gpios on the board. I added a transistor to turn on or off the LCD's led backlight. However, for the moment connect the led backlight to 3.3v given that the driver does not control it, later we will fix this.</p>
 <div class="row justify-content-center">
-<figure class="figure" style="display: table;">
+<div class="col-8">
+<figure class="figure mx-auto" style="display: table;">
 <a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.jpg">
 <img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
 </a>
 </figure>
+</div>
 </div>
 <h2 id="hd44780 devicetree overlay">HD44780 devicetree overlay</h2>
 <p>Lucky for us, raspberry pi has an overlay for the devicetree which allows to set the pins for the LCD. The devicetree overlay is important as it defines the peripheral's pins and hardware configuration which later the driver is going to read.</p>
@@ -125,11 +123,13 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 <h2 id="use the lcd">Use the LCD</h2>
 <p>If everything is connected correctly, at boot time you should see the kernel version.</p>
 <div class="row justify-content-center">
-<figure class="figure" style="display: table;">
+<div class="col-8">
+<figure class="figure mx-auto" style="display: table;">
 <a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg">
 <img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
 </a>
 </figure>
+</div>
 </div>
 <p>The lcd appears as a character device on the linux system. Give it write and read permissions before sending anything to it. The permissions could be also changed in a udev rule.</p>
 <pre><code class="language-bash">sudo chmod a+rw /dev/lcd
@@ -434,11 +434,13 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 <pre><code class="language-bash">sudo cat /sys/kernel/debug/gpio
 </code></pre>
 <div class="row justify-content-center">
-<figure class="figure" style="display: table;">
+<div class="col-8">
+<figure class="figure mx-auto" style="display: table;">
 <a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/kernel-gpios.jpg">
 <img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/kernel-gpios.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
 </a>
 </figure>
+</div>
 </div>
 <p>We can confirm the backlight pin is not used. The solution is to edit the file <em>arch/arm/boot/overlay/hd44780-lcd-overlay.dts</em> and replace the label <strong>dormant</strong> with <strong>overlay</strong>:</p>
 <pre><code class="language-c">fragment@1 {
@@ -464,11 +466,13 @@ sudo reboot
 </code></pre>
 <p>Now the backlight works.</p>
 <div class="row justify-content-center">
-<figure class="figure" style="display: table;">
+<div class="col-8">
+<figure class="figure mx-auto" style="display: table;">
 <a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-backlight.jpg">
 <img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
 </a>
 </figure>
+</div>
 </div>
 <h2 id="example: display ip address at boot time">Example: Display IP address at boot time</h2>
 <p>If you have logged into the Raspberry Pi throught the serial console, you may have noticed that during boot time, when the kernel is loading all the systemd services, it shows the IP addres of the board if it successfully connects to an existing network previously configured.</p>
@@ -505,11 +509,13 @@ exit 0</code></pre>
 <p>Reboot the system. After the booting process has finished, you can see on the LCD display the linux kernel version
 and the Raspberry Pi's IP address.</p>
 <div class="row justify-content-center">
-<figure class="figure" style="display: table;">
+<div class="col-8">
+<figure class="figure mx-auto" style="display: table;">
 <a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg">
 <img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
 </a>
 </figure>
+</div>
 </div>
 <p>That's all for now. Hope you have enjoyed this tutorial and if you have any question send me an e-mail and I'll be glad to answer.</p>
 <h2 id="references">References</h2>
@@ -570,16 +576,9 @@ and the Raspberry Pi's IP address.</p>
         </div>
 </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
 	<script type="text/javascript"  src="https://falb18.github.io/tinkering_at_night/theme/js/clean-blog.js"></script>
-	<script type="text/javascript">
-		$(document).on('click', '[data-toggle="lightbox"]', function(event) {
-			event.preventDefault();
-			$(this).ekkoLightbox();
-		});
-	</script>
 </body>
 
 </html>

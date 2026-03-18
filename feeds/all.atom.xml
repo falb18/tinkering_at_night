@@ -13,14 +13,16 @@ display using the DRM driver.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://github.com/lvgl/lv_port_linux"&gt;lv_port_linux&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-lvgl-demo-drm/rpi-lvgl-demo-running.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-lvgl-demo-drm/rpi-lvgl-demo-running.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			LVGL demo running on Raspberry Pi 4
-		&lt;/figcaption&gt;
+                LVGL demo running on Raspberry Pi 4
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="install lvgl demo and library"&gt;Install LVGL demo and library&lt;/h2&gt;
 &lt;p&gt;Clone the LVGL demo repository. Then, check out the latest version of the LVGL library&amp;mdash;version 9.4.0 at the moment&lt;/p&gt;
@@ -83,14 +85,16 @@ the steps for installing these popular TFT displays on a Raspberry Pi using the 
 &lt;li&gt;Display: TFT ILI9341&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ili9341-rpi3.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ili9341-rpi3.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			My first attempt I did was with a 2.2 TFT display and a Raspberry Pi 3B
-		&lt;/figcaption&gt;
+                My first attempt I did was with a 2.2 TFT display and a Raspberry Pi 3B
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="tft display connections"&gt;TFT display connections&lt;/h2&gt;
 &lt;p&gt;The following table lists the wiring between the Raspberry Pi and the TFT display. Note that I am not using the backlight
@@ -307,42 +311,48 @@ execute the following command:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="bash"&gt;sudo dmesg | grep "drm"
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			On the kernel logs we can notice that the drm driver initializes the TFT display.
-		&lt;/figcaption&gt;
+                On the kernel logs we can notice that the drm driver initializes the TFT display.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Run the following command to list all installed kernel modules. Specifically, check to see if the ili9341 kernel module
 is listed:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="bash"&gt;lsmod
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Confirm that the kernel module is loaded.
-		&lt;/figcaption&gt;
+                Confirm that the kernel module is loaded.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Use the following command to check which graphics card number has been assigned to the display. In my setup, &lt;strong&gt;&lt;em&gt;card1&lt;/em&gt;&lt;/strong&gt; was
 assigned to the TFT display:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="bash"&gt;ls -al /sys/class/drm/
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			List of graphics cards
-		&lt;/figcaption&gt;
+                List of graphics cards
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;IMPORTANT:&lt;/strong&gt; This assigned card number may change each time you boot the Raspberry Pi 4.&lt;/p&gt;
 &lt;h2 id="verifying the installation"&gt;Verifying the Installation&lt;/h2&gt;
@@ -367,32 +377,38 @@ a great starting point for all your future projects involving this hardware.&lt;
 &lt;p&gt;I discovered that the U8g2 &lt;strong&gt;&lt;a href="https://github.com/olikraus/u8g2"&gt;repository&lt;/a&gt;&lt;/strong&gt; has &lt;strong&gt;&lt;a href="https://github.com/olikraus/u8g2/tree/master/sys/sdl"&gt;examples&lt;/a&gt;&lt;/strong&gt; showing how to simulate displays with the SDL2 library. This inspired me to create and test my U8g2 projects on a PC first, before moving the code to a microcontroller. The main advantage of this method is the ability to code and test much faster, which also simplifies the entire debugging process.&lt;/p&gt;
 &lt;p&gt;You can find a complete explanation in my &lt;strong&gt;&lt;a href="https://github.com/falb18/u8g2-sdl2-setup"&gt;repository&lt;/a&gt;&lt;/strong&gt; on how to set up the SDL2 and U8g2 libraries to simulate a screen and display graphics on your PC. Below is a screenshot of the simulation running.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/simulation-u8g2-sdl2/screenshot-u8g2-simulation.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/simulation-u8g2-sdl2/screenshot-u8g2-simulation.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;I hope this setup proves useful in your future projects.&lt;/p&gt;</content><category term="posts"></category></entry><entry><title>Five years of Tinkering At Night</title><link href="https://falb18.github.io/tinkering_at_night/archives/2025/five-years-blog.html" rel="alternate"></link><published>2025-08-20T00:00:00-06:00</published><updated>2025-08-20T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2025-08-20:/tinkering_at_night/archives/2025/five-years-blog.html</id><summary type="html">&lt;p&gt;An introspection about my blog, the events of these five years, and the future plan.&lt;/p&gt;</summary><content type="html">&lt;p&gt;This post is an introspection about my blog and the events of the past few years that have impacted me. Also I reflect on my future plans for both my personal projects and the blog itself.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/screenshot-blog-pc.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/screenshot-blog-pc.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Screenshot from my mom's PC.
-		&lt;/figcaption&gt;
+                Screenshot from my mom's PC.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/screenshot-blog-smartphone.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/screenshot-blog-smartphone.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Screenshot from my smartphone.
-		&lt;/figcaption&gt;
+                Screenshot from my smartphone.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="about how do i feel of this blog"&gt;About how do I feel of this blog&lt;/h2&gt;
 &lt;p&gt;It's been &lt;strong&gt;&lt;em&gt;five&lt;/em&gt;&lt;/strong&gt; years since I started this blog, and I have mixed feelings about it. Overall, it's been a good experience writing about my personal projects, and I was even glad to hear that someone found one of my posts useful. However, I have a few complaints with myself. I'm constantly &lt;strong&gt;&lt;em&gt;tinkering at night&lt;/em&gt;&lt;/strong&gt;, but I don't write about it enough. Despite this, I'm happy with the journey and convinced this project has the potential to become something bigger. But first, let me tell you a quick anecdote.&lt;/p&gt;
@@ -406,47 +422,55 @@ a great starting point for all your future projects involving this hardware.&lt;
 &lt;h2 id="few anecdotes during these five years"&gt;Few anecdotes during these five years&lt;/h2&gt;
 &lt;p&gt;Shortly after starting this blog, I moved to Monterrey, a city in the north of Mexico. I wrote about the move in a post titled &lt;a href="https://falb18.github.io/tinkering_at_night/archives/2023/moving-to-mty.html"&gt;Moving to Monterrey&lt;/a&gt; I lived there for two and a half years, during which I learned many things both personally and professionally. Unfortunately, the company I worked for had to close its embedded systems division, and as a result, I was laid off in February 2024.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/cerro-silla-estacion-metro.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/cerro-silla-estacion-metro.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Cerro de la silla mountain. I took this photo from a subway station.
-		&lt;/figcaption&gt;
+                Cerro de la silla mountain. I took this photo from a subway station.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Despite the disappointment, I went back to my parents' house in Mexico City and saw an opportunity to work on my projects. To be honest, I felt super productive because I accomplished a lot during the months I was unemployed.&lt;/p&gt;
 &lt;p&gt;A few months later, I started working at the university where I studied. The head of the engineering department contacted me and asked if I could help him coordinate the engineering laboratories. I did this for two semesters, as I didn't want to stay longer because I wanted to return to the industry. Despite my short stay, the project I am most proud of is setting up the CNC machines to mill PCBs. This manufacturing process encouraged my teammates and students to design their own PCBs and, in turn, their own projects.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/itam-cnc-machine.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/itam-cnc-machine.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			This is a CNC 3040 that I tinker with to manufacture PCBs with it.
-		&lt;/figcaption&gt;
+                This is a CNC 3040 that I tinker with to manufacture PCBs with it.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;In October 2024, I attended the 2nd Maker Faire CDMX while I was working at the university. It was fascinating to see all the other projects. For the event, I built the &lt;a href="https://github.com/falb18/OttoMakey"&gt;OttoMakey&lt;/a&gt;, which I modified the code, and I brought it with me everywhere I went. The robot was a hit! So many people were interested in it, taking photos and constantly asking me where I had bought it.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/maker-faire-cdmx-01.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/maker-faire-cdmx-01.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Otto Makey promoting the Maker Faire CDMX.
-		&lt;/figcaption&gt;
+                Otto Makey promoting the Maker Faire CDMX.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/maker-faire-cdmx-02.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/maker-faire-cdmx-02.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			I was trying to get a good picture of my pal.
-		&lt;/figcaption&gt;
+                I was trying to get a good picture of my pal.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="the future for tinkering at night"&gt;The future for &lt;em&gt;Tinkering At Night&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;I've decided to open a YouTube channel to share videos of the projects I'm working on. For some projects, a video is the best way to show how they function in real time. At first, I considered just uploading videos directly to the blog, but then it occurred to me that a dedicated YouTube channel would be a better fit. I can link the videos in my posts, and it will also be a great way to bring more people to the blog.&lt;/p&gt;
@@ -466,14 +490,16 @@ system, you can prevent electronic waste and repurpose these devices for various
 are essentially small computers, packed with features similar to a Raspberry Pi, but often with additional built-in
 peripherals like cameras and touchscreens.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-pmos-android.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Samsung on the left is my old smartphone running postmarketOS. On the right is a smartphone I bought specifically for this tutorial
-		&lt;/figcaption&gt;
+                Samsung on the left is my old smartphone running postmarketOS. On the right is a smartphone I bought specifically for this tutorial
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h3 id="system setup"&gt;System setup&lt;/h3&gt;
 &lt;p&gt;This is the setup I used for this tutorial:
@@ -494,25 +520,29 @@ download mode on your Samsung S3 Mini:
 - Power off the smartphone completely.
 - Boot into download mode. To do this, press and hold the following keys simultaneously: &lt;strong&gt;VOLUME DOWN&lt;/strong&gt; + &lt;strong&gt;HOME&lt;/strong&gt; + &lt;strong&gt;POWER&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-01.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			First screen of the download mode
-		&lt;/figcaption&gt;
+                First screen of the download mode
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Press the key &lt;strong&gt;VOLUME UP&lt;/strong&gt; to continue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-download-mode-02.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Second screen of the download mode
-		&lt;/figcaption&gt;
+                Second screen of the download mode
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Connect the phone to the computer and make sure that it can detects the device by executing the following command:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-bash"&gt;lsusb
@@ -577,14 +607,16 @@ Releasing device interface...
 &lt;p&gt;Once the flashing process is complete, your device will reboot. However, since it doesn't have a kernel installed yet,
 it will enter &lt;strong&gt;fastboot mode&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-fastboot-mode.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Fastboot mode after flashing u-boot
-		&lt;/figcaption&gt;
+                Fastboot mode after flashing u-boot
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="installing pmbootstrap and run configuration for samsung galaxy s3 mini"&gt;Installing &lt;em&gt;pmbootstrap&lt;/em&gt; and run configuration for Samsung Galaxy S3 Mini&lt;/h2&gt;
 &lt;p&gt;To install &lt;strong&gt;&lt;em&gt;pmbootstrap&lt;/em&gt;&lt;/strong&gt; follow the installation steps described in the wiki &lt;strong&gt;[2]&lt;/strong&gt;:&lt;/p&gt;
@@ -651,37 +683,43 @@ Finished. Total time: 2.446s
 [13:21:19] DONE!
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-flashing-kernel.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Output of the flashing process
-		&lt;/figcaption&gt;
+                Output of the flashing process
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Once the flashing process is complete, press the &lt;strong&gt;&lt;em&gt;Power button&lt;/em&gt;&lt;/strong&gt; to reboot the smartphone. After the reboot the logo
 is displayed on the screen.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-pmos-logo.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			postmarketOS logo
-		&lt;/figcaption&gt;
+                postmarketOS logo
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Since currently there is not a rootfs, the kernel shows the following error message:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-error-rootfs.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			The OS doesn't found the root file system
-		&lt;/figcaption&gt;
+                The OS doesn't found the root file system
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h3 id="how to re-flash kernel"&gt;How to re-flash kernel&lt;/h3&gt;
 &lt;p&gt;In case you want to re-flash the kernel you have to reboot the smartphone and press the buttons &lt;strong&gt;Power&lt;/strong&gt; +
@@ -746,14 +784,16 @@ New password:
 &lt;p&gt;Insert the SD card in the SD card slot of the smartphone. After the kernel boots, the system mounts the root file system.
 You should see the following prompt:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/pmos-samsung-s3-mini.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			postmarket OS prompt
-		&lt;/figcaption&gt;
+                postmarket OS prompt
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="get serial console from the phone"&gt;Get serial console from the phone&lt;/h2&gt;
 &lt;p&gt;While we'll eventually need the console for further configuration, accessing it requires a serial cable connected to
@@ -761,44 +801,50 @@ your phone. The phone utilizes the &lt;strong&gt;AB8500&lt;/strong&gt; Micro-USB
 resitor is placed between ID pin and GND &lt;strong&gt;[3]&lt;/strong&gt;. Here's how to build a simple circuit to enable UART and grant access
 through the smartphone's micro USB port:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/samsung-usb-serial.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/samsung-usb-serial.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Circuit to enable UART transmission on the USB connector
-		&lt;/figcaption&gt;
+                Circuit to enable UART transmission on the USB connector
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Connecting the serial cable to the computer should display a prompt like the one shown below:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			postmarketOS prompt
-		&lt;/figcaption&gt;
+                postmarketOS prompt
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Important Note:&lt;/strong&gt; The Micro-USB interface operates at 3.3 volts. This means you might need a voltage level converter
 to connect a standard UART interface, which typically operates at 5 volts, to your phone's micro-USB port.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-serial-cable.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Here is the cable I built to access UART. I used a voltage level converter since the USB-serial module operates at 5 volts
-		&lt;/figcaption&gt;
+                Here is the cable I built to access UART. I used a voltage level converter since the USB-serial module operates at 5 volts
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="next steps"&gt;Next steps&lt;/h2&gt;
 &lt;p&gt;My plan for these devices is to install eclipse-mosquitto to run a MQTT broker. I also intend to run LVGL on them. I
 hope this tutorial inspires you to try installing postmarketOS on your own smartphones. In the next post, I'll guide you
 through setting up WiFi on the device and connecting to it via SSH.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;video autoplay="" height="auto" loop="" muted="" width="360"&gt;
+&lt;video autoplay="" height="640" loop="" muted="" width="360"&gt;
 &lt;source src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/s3-mini-pmos-booting-video.mp4" type="video/mp4"/&gt;
       Your browser does not support the video tag.
     &lt;/video&gt;
@@ -850,21 +896,23 @@ the current track's metadata and publishes it to an MQTT broker (in my case, a d
 &lt;strong&gt;WeMos D1 Mini Pro&lt;/strong&gt;, subscribes to this information and displays it on an LED matrix display. The following diagram
 illustrates the interaction between these two devices:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			MQTT network diagram
-		&lt;/figcaption&gt;
+                MQTT network diagram
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;To get started, download and run the Python program &lt;a href="https://github.com/falb18/spotify-mqtt-publisher"&gt;spotify-mqtt-publisher&lt;/a&gt;.
 This program will publish the track's metadata to the MQTT broker. Next, download the firmware &lt;a href="https://github.com/falb18/led-matrix-spotify-track-info"&gt;led-matrix-track-info&lt;/a&gt;
 and flash it onto your WeMos D1 mini. This firmware will allow the device to subscribe to the relevant topics and display
 the track information on the LED matrix display.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;video autoplay="" height="auto" loop="" muted="" width="512"&gt;
+&lt;video autoplay="" height="288" loop="" muted="" width="512"&gt;
 &lt;source src="https://falb18.github.io/tinkering_at_night/article-assets/track-info-mpris/led-matrix-spotify-track-video.mp4" type="video/mp4"/&gt;
       Your browser does not support the video tag.
     &lt;/video&gt;
@@ -887,14 +935,16 @@ reading the original post first.&lt;/p&gt;
 interface. This allows us to set an IP address on the same network shared by the host machine and the router. The
 configuration we want to achive is show in the following diagram.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/eclipse-mosquitto-ipvlan/network-diagram.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/eclipse-mosquitto-ipvlan/network-diagram.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Network diagram
-		&lt;/figcaption&gt;
+                Network diagram
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;In my case I assgined to the container the address &lt;strong&gt;&lt;em&gt;192.168.2.111&lt;/em&gt;&lt;/strong&gt; so its reachable from any device, even from the
 host machine. Your router's IP address may be different so modify the IP address to match your local network.&lt;/p&gt;
@@ -1016,14 +1066,16 @@ search for: &lt;strong&gt;&lt;em&gt;Idf: Custom Extra Paths&lt;/em&gt;&lt;/stron
 &lt;pre&gt;&lt;code class="language-bash"&gt;/home/ubuntu/esp/.espressif/tools/xtensa-lx106-elf/bin
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			ESP-IDF setting to add extra paths.
-		&lt;/figcaption&gt;
+                ESP-IDF setting to add extra paths.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h3 id="configuration for esp8266's project"&gt;Configuration for ESP8266's project&lt;/h3&gt;
 &lt;p&gt;Each time you create a new project that is going to use the ESP-IDF framework and the ESP8266 SDK, you will have to
@@ -1079,36 +1131,42 @@ cp -r esptool-4.6.2 ~/esp/ESP8266_RTOS_SDK/components/esptool_py/esptool
 &lt;h2 id="evidence that everything works as expected"&gt;Evidence that everything works as expected&lt;/h2&gt;
 &lt;p&gt;Here are some screenshots of ESP8266 RTOS SDK working with the ESP-IDF extension:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-build.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-build.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Now it's possible to build the project with the ESP-IDF extension.
-		&lt;/figcaption&gt;
+                Now it's possible to build the project with the ESP-IDF extension.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-flash.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-flash.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Also you can flash the MCU.
-		&lt;/figcaption&gt;
+                Also you can flash the MCU.
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;Hope you find this tutorial useful.&lt;/p&gt;</content><category term="posts"></category></entry><entry><title>Moving to Monterrey</title><link href="https://falb18.github.io/tinkering_at_night/archives/2023/moving-to-mty.html" rel="alternate"></link><published>2023-04-10T00:00:00-06:00</published><updated>2023-04-10T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2023-04-10:/tinkering_at_night/archives/2023/moving-to-mty.html</id><summary type="html">&lt;p&gt;I haven't post in almost two years due to I moved to a new city. This city is Monterrey, which is located at the north of Mexico. This is going to be a brief post of my new experience in this city.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I haven't post in almost two years because I moved to a new city. The city is Monterrey, which is located at the north
 of Mexico. This is going to be a brief post about my new experience in this city.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/moving-to-mty/cerro-silla.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/moving-to-mty/cerro-silla.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Cerro de la silla mountain
-		&lt;/figcaption&gt;
+                Cerro de la silla mountain
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="the reason i moved to a new city"&gt;The reason I moved to a new city&lt;/h2&gt;
 &lt;p&gt;I moved to Monterrey in July 2021 because I got a new job offer as an embedded software developer for the automotive
@@ -1117,14 +1175,16 @@ that this was a huge opportunity for me since I'll be software developer, and I 
 and tools. But most important that I'll put in practice my coding skills in C, which later I realized that I still have
 a lot to learn about programming, since it had been a long time that I haven't implemented code for big projects.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/moving-to-mty/fundidora.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/moving-to-mty/fundidora.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
-			Fundidora Park
-		&lt;/figcaption&gt;
+                Fundidora Park
+            &lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="a new beginning for me"&gt;A new beginning for me&lt;/h2&gt;
 &lt;p&gt;I came here when I was close to turn 28 years old. It has been a complete different experience because it is the first
@@ -1168,19 +1228,23 @@ ultrasonic sensor, and then it publishes the message in the topic "sensor/distan
 sensor and &lt;em&gt;ESP-01&lt;/em&gt; module a breadboard power supply module is used. The LCD and the &lt;em&gt;Espresso Lite&lt;/em&gt; are connected to
 the 5v of the Arduino Nano. The Raspberry Pi is not shown on the schematic since it's independent of the two clients.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-pub-sub.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-pub-sub.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;Here is a picture of how everything is connected on the breadboard.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-circuit.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="updating the firmware in both esp modules"&gt;Updating the firmware in both ESP modules&lt;/h2&gt;
 &lt;p&gt;I bought the &lt;em&gt;ESP-01&lt;/em&gt; module and the &lt;em&gt;Espresso Lite&lt;/em&gt; long time ago so the firmware intalled in them wasn't
@@ -1429,11 +1493,13 @@ void sub_callback(char *topic, byte *payload, unsigned int msg_length) {
 &lt;p&gt;Here is a picture showing the LCD displaying the distance read from the topic. As I said before, due to the fault on
 the firmware in the &lt;em&gt;ESP-01&lt;/em&gt; the project works only for a few minutes.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-project.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-project.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;If you buy a ESP-01S module it comes with a 1 MB of flash memory which is the minimum required for the v1.7.2 to work
 on it, so the code will run without any issue.&lt;/p&gt;
@@ -1459,30 +1525,36 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;p&gt;I made the pcb the old fashion way which is printing the circuit in a piece of paper using a laser printer and then transfer the toner to the copper board using an iron. I failed at least 5 times but at the end I got something decent, at least all the tracks where in place.&lt;/p&gt;
 &lt;p&gt;Below is a picture of the moment where I was soldering the module to the base board. This step of the process wasn't that difficult as I thought it would be. To my surprise it worked the first time, at that moment I connected it to an Arduino Uno.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/diy-base-board.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/diy-base-board.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="building the circuit"&gt;Building the circuit&lt;/h2&gt;
 &lt;p&gt;The first step is to check if the module can receive AT commands from the computer.&lt;/p&gt;
 &lt;p&gt;For my particular case, I had to add a logic level converter since each GPIO on the module only works at 3.3v. I bought a bunch of this cheap modules in Aliexpress, but to be honest the quality leaves much to be desired, so I guess I'll get a new ones from Sparkfun.&lt;/p&gt;
 &lt;p&gt;The schematic below shows how everything is connected.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-module-sch.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-module-sch.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;You can see the cheap logic level converter module and my DIY base board for the bluetooth. Although the schematic shows a 1-pole dip switch, I'm using a 4-pole dip switch because is the only spare I have at the moment.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-breadboard.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="communicate to the module through uart"&gt;Communicate to the module through UART&lt;/h2&gt;
 &lt;p&gt;I used &lt;em&gt;picocom&lt;/em&gt;, which is a terminal emulator, to open the serial port. To install it just run the following command:&lt;/p&gt;
@@ -1507,11 +1579,13 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="plaintext"&gt;sudo hciconfig hci0
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/hciconfig-hci0.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/hciconfig-hci0.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; before you pair the bluetooth module you have to set the pin PIO_11 (GPIO 34) to low level and then write the following command, you don't have to power off and on the module:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="plaintext"&gt;at+init
@@ -1521,19 +1595,23 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-bash"&gt;sudo bluetoothctl
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-scan.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-scan.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;From the picture above we can observe the controller has found the device. To pair the computer with the bluetooth module run the following. The program will ask for the password, by default it is '1234':&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-pair.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-pair.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;To exit the program just write the command &lt;em&gt;exit&lt;/em&gt;.&lt;/p&gt;
 &lt;h2 id="connect to hc-05 bluetooth module"&gt;Connect to HC-05 bluetooth module&lt;/h2&gt;
@@ -1546,22 +1624,26 @@ To send text to the module open the recently created serial port with the progra
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;After you open the serial port, the LED connected to PIO_09 (GPIO_32) turns on and the other LED blinks at a slower rate.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-connected.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;In another terminal open the serial port which is connected directly to the module to receive the characters:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-bash"&gt;picocom -b 115200 --imap lfcrlf --omap crcrlf /dev/ttyUSB0
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The picture below shows the text sent from the computer and from the bluetooth module.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/picocom-terminals.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/picocom-terminals.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="notes about bluetooth kernel module"&gt;Notes about bluetooth kernel module&lt;/h2&gt;
 &lt;p&gt;The &lt;strong&gt;&lt;em&gt;RFCOMM&lt;/em&gt;&lt;/strong&gt; is a protocol which emulates a serial port connection. When we run the command &lt;em&gt;rfcomm bind&lt;/em&gt; we are telling to the kernel module &lt;em&gt;net/bluetooth/rfcomm/tty&lt;/em&gt; to create a character device which is going to be used as a serial port.&lt;/p&gt;
@@ -1583,11 +1665,13 @@ To send text to the module open the recently created serial port with the progra
 &lt;h2 id="building the circuit"&gt;Building the circuit&lt;/h2&gt;
 &lt;p&gt;The following image describes which pins of the LCD are connected to the gpios on the board. I added a transistor to turn on or off the LCD's led backlight. However, for the moment connect the led backlight to 3.3v given that the driver does not control it, later we will fix this.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="hd44780 devicetree overlay"&gt;HD44780 devicetree overlay&lt;/h2&gt;
 &lt;p&gt;Lucky for us, raspberry pi has an overlay for the devicetree which allows to set the pins for the LCD. The devicetree overlay is important as it defines the peripheral's pins and hardware configuration which later the driver is going to read.&lt;/p&gt;
@@ -1622,11 +1706,13 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 &lt;h2 id="use the lcd"&gt;Use the LCD&lt;/h2&gt;
 &lt;p&gt;If everything is connected correctly, at boot time you should see the kernel version.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-linux-version.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;The lcd appears as a character device on the linux system. Give it write and read permissions before sending anything to it. The permissions could be also changed in a udev rule.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-bash"&gt;sudo chmod a+rw /dev/lcd
@@ -1931,11 +2017,13 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 &lt;pre&gt;&lt;code class="language-bash"&gt;sudo cat /sys/kernel/debug/gpio
 &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/kernel-gpios.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/kernel-gpios.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;We can confirm the backlight pin is not used. The solution is to edit the file &lt;em&gt;arch/arm/boot/overlay/hd44780-lcd-overlay.dts&lt;/em&gt; and replace the label &lt;strong&gt;dormant&lt;/strong&gt; with &lt;strong&gt;overlay&lt;/strong&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-c"&gt;fragment@1 {
@@ -1961,11 +2049,13 @@ sudo reboot
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now the backlight works.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-backlight.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-backlight.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="example: display ip address at boot time"&gt;Example: Display IP address at boot time&lt;/h2&gt;
 &lt;p&gt;If you have logged into the Raspberry Pi throught the serial console, you may have noticed that during boot time, when the kernel is loading all the systemd services, it shows the IP addres of the board if it successfully connects to an existing network previously configured.&lt;/p&gt;
@@ -2002,11 +2092,13 @@ exit 0&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Reboot the system. After the booting process has finished, you can see on the LCD display the linux kernel version
 and the Raspberry Pi's IP address.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
-&lt;figure class="figure" style="display: table;"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
 &lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg"&gt;
 &lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-raspi-ip.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;That's all for now. Hope you have enjoyed this tutorial and if you have any question send me an e-mail and I'll be glad to answer.&lt;/p&gt;
 &lt;h2 id="references"&gt;References&lt;/h2&gt;
