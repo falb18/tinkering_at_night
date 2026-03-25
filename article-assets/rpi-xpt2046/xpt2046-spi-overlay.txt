@@ -1,0 +1,50 @@
+// Enable XPT2046 touchscreen driver
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    // Configure the GPIO 23 as input for the pendown interrupt pin:
+    fragment@0 {
+        target = <&gpio>;
+        __overlay__ {
+            penirq_pin: penirq_pin {
+                brcm,pins = <23>;
+                brcm,function = <0>;
+                brcm,pull = <2>;
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&spi1>;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            xpt2046@0 {
+                compatible = "ti,tsc2046";
+                reg = <0>; /* CS0 */
+                spi-max-frequency = <1000000>;
+                pinctrl-names = "default";
+                pinctrl-0 = <&penirq_pin>;
+                interrupts = <23 2>;
+                interrupt-parent = <&gpio>;
+                pendown-gpio = <&gpio 23 1>;
+                ti,x-min = /bits/ 16 <0>;
+                ti,y-min = /bits/ 16 <0>;
+                ti,x-max = /bits/ 16 <3900>;
+                ti,y-max = /bits/ 16 <3900>;
+                ti,x-plate-ohms = /bits/ 16 <60>;
+                ti,pressure-max = /bits/ 16 <255>;
+                touchscreen-inverted-x;
+                touchscreen-inverted-y;
+                touchscreen-swapped-x-y;
+                wakeup-source;
+            };
+        };
+    };
+};

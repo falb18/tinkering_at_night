@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Installing the driver for the XPT2046 touchscreen chip on a Raspberry Pi - Felipe Arturo López Bonilla</title>
+  <link rel="canonical" href="https://falb18.github.io/tinkering_at_night/archives/2026/rpi-xpt2046.html">
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://falb18.github.io/tinkering_at_night/theme/css/clean-blog.css" rel="stylesheet">
+
+  <!-- Script for date formatting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/localizedFormat.min.js" integrity="sha512-Ik4L88eO6WOyP27Lb+m7a2u4BdYgEvNNB+zzhTMDSD2Z77vExkikHm95PUBLXqP2hZmxJo2JyJFgxhpslxq1Aw==" crossorigin="anonymous"></script>
+  <script>dayjs.extend(window.dayjs_plugin_localizedFormat)</script>
+
+  <!-- Highlight js sripts and stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css" integrity="sha512-RgUfG84wvjIwNHlKPU63D8S8IItsNhZZ5kfjpvhGAfr529lt67Ys4/2RAA/NYhsb2HBfcxUXMX3NEJswqpT1tg==" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js" integrity="sha512-zol3kFQ5tnYhL7PzGt0LnllHHVWRGt2bTCIywDiScVvLIlaDOVJ6sPdJTVi0m3rA660RT+yZxkkRzMbb1L8Zkw==" crossorigin="anonymous"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="https://falb18.github.io/tinkering_at_night">Tinkering At Night</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://falb18.github.io/tinkering_at_night/archives.html">Archives</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://falb18.github.io/tinkering_at_night/pages/about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<header class="masthead z-n1" style="background-image: url('https://falb18.github.io/tinkering_at_night/article-assets/rpi-xpt2046/rpi-lvgl-touchscreen.jpg')">
+    <div class="overlay z-n1"></div>
+</header>
+
+<div class="container-fluid article-header">
+    <div class="row">
+        <div class="col-lg-9 mx-auto">
+            <div class="post-heading">    
+                <h1>Installing the driver for the XPT2046 touchscreen chip on a Raspberry Pi</h1>
+                <span class="meta">Posted by
+                    <a href="https://falb18.github.io/tinkering_at_night/pages/about.html">Felipe Arturo López Bonilla</a>
+                    on <script>document.write(dayjs('2026-03-25 00:00:00-06:00').format('LL'))</script>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="main" id="content">
+        <div class="container">
+<article class="container">
+    <div class="row">
+        <!-- Article's content -->
+        <div class="col-lg-8 mx-auto">
+            <h2 id="introduction">Introduction</h2>
+<p>In the article <a href="https://falb18.github.io/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html">Installing the tinydrm driver for the ILI9341 TFT Display on a Raspberry Pi</a>
+on a Raspberry Pi, I mentioned that we still needed to set up the touchscreen. In this tutorial, I will explain how to
+configure the XPT2046 touchscreen chip on a Raspberry Pi 4 to use alongside the TFT ILI9341 display.</p>
+<p>I'm using the following hardware and software setup for this tutorial::</p>
+<ul>
+<li>Hardware: Raspberry Pi 4</li>
+<li>Kernel Version: 6.12.47+rpt-rpi-v8</li>
+<li>Display: TFT ILI9341 3.2" with touchscreen</li>
+<li>libdrm-dev: 2.4.123-1</li>
+<li>lvgl: <a href="https://github.com/lvgl/lvgl/releases/tag/v9.4.0">v9.4.0</a></li>
+<li><a href="https://github.com/lvgl/lv_port_linux">lv_port_linux</a></li>
+</ul>
+<h2 id="wiring the touchscreen">Wiring the touchscreen</h2>
+<p>The table below shows the wiring connections for the touchscreen chip. Because the TFT display is already using the SPI0
+bus, we need to use SPI1 for the touchscreen communication.</p>
+<p>
+<table class="table">
+    
+    
+    <thead class="thead-light">
+    <tr>
+        
+        
+        <th scope="col">XPT2046</th>
+        
+        <th scope="col">GPIO</th>
+        
+        <th scope="col">Pin</th>
+        
+    </tr>
+    </thead>
+    
+    <tbody>
+        
+        <tr scope="row">
+            
+            
+            <td>T_CLK (SCLK)</td>
+            
+            <td>GPIO 21</td>
+            
+            <td>40</td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>T_CS (CS)</td>
+            
+            <td>GPIO 18</td>
+            
+            <td>12,</td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>T_DIN (MOSI)</td>
+            
+            <td>GPIO 20</td>
+            
+            <td>38</td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>T_DO (MISO)</td>
+            
+            <td>GPIO 19</td>
+            
+            <td>35</td>
+            
+        </tr>
+        
+        <tr scope="row">
+            
+            
+            <td>T_IRQ</td>
+            
+            <td>GPIO 23</td>
+            
+            <td>16</td>
+            
+        </tr>
+        
+    </tbody>
+</table></p>
+<h2 id="xpt2046 driver setup">XPT2046 driver setup</h2>
+<p>For this step, you need the Device Tree Compiler, which you can install using the following command:</p>
+<pre><code class="language-bash">sudo apt-get install -y device-tree-compiler
+</code></pre>
+<h3 id="write and compile devicetree overlay">Write and compile devicetree overlay</h3>
+<p>write the following Device Tree Overlay to set up the pins for the driver.</p>
+<pre><code class="c">// Enable XPT2046 touchscreen driver
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+
+    // Configure the GPIO 23 as input for the pendown interrupt pin:
+    fragment@0 {
+        target = <&gpio>;
+        __overlay__ {
+            penirq_pin: penirq_pin {
+                brcm,pins = <23>;
+                brcm,function = <0>;
+                brcm,pull = <2>;
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&spi1>;
+        __overlay__ {
+            /* needed to avoid dtc warning */
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            xpt2046@0 {
+                compatible = "ti,tsc2046";
+                reg = <0>; /* CS0 */
+                spi-max-frequency = <1000000>;
+                pinctrl-names = "default";
+                pinctrl-0 = <&penirq_pin>;
+                interrupts = <23 2>;
+                interrupt-parent = <&gpio>;
+                pendown-gpio = <&gpio 23 1>;
+                ti,x-min = /bits/ 16 <0>;
+                ti,y-min = /bits/ 16 <0>;
+                ti,x-max = /bits/ 16 <3900>;
+                ti,y-max = /bits/ 16 <3900>;
+                ti,x-plate-ohms = /bits/ 16 <60>;
+                ti,pressure-max = /bits/ 16 <255>;
+                touchscreen-inverted-x;
+                touchscreen-inverted-y;
+                touchscreen-swapped-x-y;
+                wakeup-source;
+            };
+        };
+    };
+};</code></pre>
+<h3 id="install devicetree overlay">Install devicetree overlay</h3>
+<p>Execute the following command to compile your Device Tree Overlay.</p>
+<pre><code class="bash">dtc -@ -Hepapr -I dts -O dtb -o xpt2046-spi.dtbo xpt2046-spi-overlay.dts
+</code></pre>
+<p>Move the <strong>.dtbo</strong> file to the <strong><em>/boot/firmware/overlays directory</em></strong>. Then, modify <strong><em>/boot/firmware/config.txt</em></strong> to
+enable the Device Tree Overlay, which will load the driver.</p>
+<pre><code class="bash">...
+
+# Uncomment some or all of these to enable the optional hardware interfaces
+#dtparam=i2c_arm=on
+#dtparam=i2s=on
+dtparam=spi=on
+dtoverlay=spi0-cs
+dtoverlay=spi1-1cs
+
+...
+
+# Additional overlays and parameters are documented
+# /boot/firmware/overlays/README
+dtoverlay=ili9341-spi
+dtoverlay=xpt2046-spi
+</code></pre>
+<p>It is important to note that we enabled CS for SPI1. After saving the changes, you must reboot the Raspberry Pi to load
+the driver.</p>
+<h2 id="testing the driver with evtest">Testing the driver with evtest</h2>
+<p>To receive input events from the touchscreen, we will install the evtest tool using the following command:</p>
+<pre><code class="language-bash">sudo apt install libevdev-dev
+</code></pre>
+<p>Run <strong><em>evtest</em></strong> to find the device path for the touchscreen:</p>
+<pre><code class="language-bash">sudo evtest
+</code></pre>
+<p>The tool lists the available input devices and prompts you to select one. In my case, the touchscreen is <strong><em>option 0</em></strong>,
+but keep in mind this number might change after rebooting the Raspberry Pi:</p>
+<pre><code class="language-bash">No device specified, trying to scan all of /dev/input/event*
+Available devices:
+/dev/input/event0:    ADS7846 Touchscreen
+/dev/input/event1:    vc4-hdmi-0
+/dev/input/event2:    vc4-hdmi-0 HDMI Jack
+/dev/input/event3:    vc4-hdmi-1
+/dev/input/event4:    vc4-hdmi-1 HDMI Jack
+Select the device event number [0-4]:
+</code></pre>
+<p>Once you select the correct option for the touchscreen, tap the TFT display to see the input events on your terminal:</p>
+<pre><code class="language-bash">Input driver version is 1.0.1
+Input device ID: bus 0x1c vendor 0x0 product 0x1ea6 version 0x0
+Input device name: "ADS7846 Touchscreen"
+Supported events:
+  Event type 0 (EV_SYN)
+  Event type 1 (EV_KEY)
+    Event code 330 (BTN_TOUCH)
+  Event type 3 (EV_ABS)
+    Event code 0 (ABS_X)
+      Value    628
+      Min        0
+      Max     3900
+    Event code 1 (ABS_Y)
+      Value   1049
+      Min        0
+      Max     3900
+    Event code 24 (ABS_PRESSURE)
+      Value      0
+      Min        0
+      Max      255
+Properties:
+Testing ... (interrupt to exit)
+Event: time 1774283976.142917, type 1 (EV_KEY), code 330 (BTN_TOUCH), value 1
+Event: time 1774283976.142917, type 3 (EV_ABS), code 0 (ABS_X), value 2656
+Event: time 1774283976.142917, type 3 (EV_ABS), code 1 (ABS_Y), value 1516
+Event: time 1774283976.142917, type 3 (EV_ABS), code 24 (ABS_PRESSURE), value 121
+Event: time 1774283976.142917, -------------- SYN_REPORT ------------
+Event: time 1774283976.154913, type 3 (EV_ABS), code 0 (ABS_X), value 2645
+Event: time 1774283976.154913, type 3 (EV_ABS), code 1 (ABS_Y), value 1497
+Event: time 1774283976.154913, -------------- SYN_REPORT ------------
+</code></pre>
+<h2 id="configuring the touchscreen in lvgl">Configuring the touchscreen in LVGL</h2>
+<p>Here is how to set up the touchscreen device in LVGL. For this example, I am using the same demo from my previous article,
+<a href="https://falb18.github.io/tinkering_at_night/archives/2025/rpi-lvgl-demo-drm.html">Running an LVGL GUI with the DRM Driver on Raspberry Pi</a>.</p>
+<p>Confirm that the evdev driver is enabled in the <strong><em>lv_conf.defaults</em></strong> file:</p>
+<pre><code class="language-bash">LV_USE_EVDEV    1
+</code></pre>
+<p>The LVGL demo enables widget scrolling by default. You can disable this behavior in the <strong><em>main.c</em></strong> file:</p>
+<pre><code class="language-c">/*Create a Demo*/
+lv_demo_widgets();
+//lv_demo_widgets_start_slideshow();
+</code></pre>
+<p>The following video shows the LVGL demo running on the display with touchscreen support:</p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/VwJa_nqaOfU?si=8viDGLF04yXncDzY" title="YouTube video player" width="560"></iframe>
+        </div>
+        <!-- Add table of contents -->
+        <div class="col-lg-4 mx-auto">
+        <div id="toc">
+<ul>
+<li><a class="toc-href" href="#introduction" title="Introduction">Introduction</a></li>
+<li><a class="toc-href" href="#wiring the touchscreen" title="Wiring the touchscreen">Wiring the touchscreen</a></li>
+<li><a class="toc-href" href="#xpt2046 driver setup" title="XPT2046 driver setup">XPT2046 driver setup</a>
+<ul>
+<li><a class="toc-href" href="#write and compile devicetree overlay" title="Write and compile devicetree overlay">Write and compile devicetree overlay</a></li>
+<li><a class="toc-href" href="#install devicetree overlay" title="Install devicetree overlay">Install devicetree overlay</a></li></ul></li>
+<li><a class="toc-href" href="#testing the driver with evtest" title="Testing the driver with evtest">Testing the driver with evtest</a></li>
+<li><a class="toc-href" href="#configuring the touchscreen in lvgl" title="Configuring the touchscreen in LVGL">Configuring the touchscreen in LVGL</a></li></ul></div>
+        </div>
+    </div>
+</article>
+        </div>
+    </div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">Copyright &copy; Felipe Arturo López Bonilla 2021 - 
+                    <script>document.write(dayjs().year())</script>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mt-4 mx-auto">
+                <p class="text-center list-inline text-muted copyright">
+                    This site is powered by 
+                <a href="https://blog.getpelican.com/">Pelican</a>.
+                    The theme is based on
+                <a href="https://startbootstrap.com/theme/clean-blog">Clean Blog</a>.
+                </p>
+            </div>
+        </div>
+</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
+	<script type="text/javascript"  src="https://falb18.github.io/tinkering_at_night/theme/js/clean-blog.js"></script>
+</body>
+
+</html>
