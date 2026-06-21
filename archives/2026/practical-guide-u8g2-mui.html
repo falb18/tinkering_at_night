@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>A Practical Guide to Building Embedded Menus with U8g2 MUI - Felipe Arturo López Bonilla</title>
+  <link rel="canonical" href="https://falb18.github.io/tinkering_at_night/archives/2026/practical-guide-u8g2-mui.html">
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://falb18.github.io/tinkering_at_night/theme/css/clean-blog.css" rel="stylesheet">
+
+  <!-- Script for date formatting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/localizedFormat.min.js" integrity="sha512-Ik4L88eO6WOyP27Lb+m7a2u4BdYgEvNNB+zzhTMDSD2Z77vExkikHm95PUBLXqP2hZmxJo2JyJFgxhpslxq1Aw==" crossorigin="anonymous"></script>
+  <script>dayjs.extend(window.dayjs_plugin_localizedFormat)</script>
+
+  <!-- Highlight js sripts and stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/foundation.min.css" integrity="sha512-RgUfG84wvjIwNHlKPU63D8S8IItsNhZZ5kfjpvhGAfr529lt67Ys4/2RAA/NYhsb2HBfcxUXMX3NEJswqpT1tg==" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js" integrity="sha512-zol3kFQ5tnYhL7PzGt0LnllHHVWRGt2bTCIywDiScVvLIlaDOVJ6sPdJTVi0m3rA660RT+yZxkkRzMbb1L8Zkw==" crossorigin="anonymous"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+
+<body>
+    
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="https://falb18.github.io/tinkering_at_night">Tinkering At Night</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://falb18.github.io/tinkering_at_night/archives.html">Archives</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://falb18.github.io/tinkering_at_night/pages/about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<header class="masthead z-n1" style="background-image: url('https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/u8g2-mui-arduino.jpg')">
+    <div class="overlay z-n1"></div>
+</header>
+
+<div class="container-fluid article-header">
+    <div class="row">
+        <div class="col-lg-9 mx-auto">
+            <div class="post-heading">    
+                <h1>A Practical Guide to Building Embedded Menus with U8g2 MUI</h1>
+                <span class="meta">Posted by
+                    <a href="https://falb18.github.io/tinkering_at_night/pages/about.html">Felipe Arturo López Bonilla</a>
+                    on <script>document.write(dayjs('2026-06-21 00:00:00-06:00').format('LL'))</script>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="main" id="content">
+        <div class="container">
+<article class="container">
+    <div class="row">
+        <!-- Article's content -->
+        <div class="col-lg-8 mx-auto">
+            <h2 id="introduction">Introduction</h2>
+<p>It seems many people are not aware that the U8g2 library comes with a built-in subsystem to help developers build and
+configure user interfaces, called <a href="https://github.com/olikraus/u8g2/wiki/muimanual"><strong><em>MUI</em></strong></a>. Since I couldn't find
+many examples online besides the official documentation, I decided to write a practical guide on how to set up and
+program a menu system using it. The purpose of this tutorial is to help others implement their own menu systems in
+their personal projects. For this explanation, I created two examples: one that runs on a PC and uses SDL2 to draw the
+menu, and another using an Arduino Uno R4 paired with a 128x64 GLCD display.</p>
+<p>The code snippets in this article refer to the Arduino implementation. In addition to the GLCD display, this setup
+includes four buttons to navigate through the menu system and interact with the widgets."</p>
+<div class="row justify-content-center">
+<div class="col-8">
+<figure class="figure mx-auto" style="display: table;">
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/u8g2-mui-sdl2.jpg">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/u8g2-mui-sdl2.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+                PC simulation of the menu sytem
+            </figcaption>
+</figure>
+</div>
+</div>
+<h2 id="mui concepts">MUI Concepts</h2>
+<p>Before we begin, it is important to understand two core concepts used by the library.</p>
+<p>The first concept is the Form Definition String <strong><em>(FDS)</em></strong>, which provides a declarative way to describe the elements
+inside a form (a concept similar to forms or windows in other GUI frameworks). According to the documentation <strong>[1]</strong>,
+each form must be assigned a unique ID number ranging from 1 to 255 so the library's internal logic can identify it.
+Within this <strong><em>FDS</em></strong>, we also define the specific <strong><em>fields</em></strong> or <strong><em>widgets</em></strong> that will be displayed on that
+particular screen.</p>
+<p>The second concept is the Field Processing Function <strong><em>(MUIF)</em></strong> <strong><em>[2]</em></strong>. This represents a list of functions used to
+process each widget or define the styles applied to them. Each MUIF configuration consists of a unique two-character
+identifier and an associated callback function. This callback is responsible for both rendering the element on the
+screen and processing its events when selected.</p>
+<p>Next, I will explain how to set up and program a menu system using these two concepts. Please note that I will omit
+certain parts of the boilerplate code to focus strictly on the key components. You can find the complete source code
+in my repository <strong><em>[3]</em></strong>."</p>
+<h2 id="programming a menu system">Programming a menu system</h2>
+<p>For this example, we will program a main menu featuring a list of six selectable items, each leading to a different
+sub-menu. Within these sub-menus, we will explore and implement various widgets offered by the MUI library.</p>
+<h3 id="defining forms and widgets for the menu system">Defining Forms and Widgets for the Menu System</h3>
+<p>The layout and behavior of our menu system rely on two main arrays. The first array, <strong><em>muif_list[]</em></strong>, stores the field
+processing configurations for the types of widgets we will implement. The second array, <strong><em>fds_data[]</em></strong>, contains the
+Form Definition Strings that declare the forms themselves and the widgets nested within them.</p>
+<p>Before defining the layout, we must establish the font styles and styles applied to our interface elements. These are
+registered inside the <strong><em>muif_list[]</em></strong> array, where each style is assigned a numeric identifier. This ID is used later
+within the FDS to map specific styles to a widget or form. In addition to visual styles, this array is where we
+associate the custom callback functions that execute when a user interacts with a selectable widget.</p>
+<p>For both the main menu and the sub-menus, we configure two primary components: the label widget used for the menu
+titles, and the corresponding font style. In this example, all titles share the same typographic style, which we have
+assigned to ID <strong><em>0</em></strong>.</p>
+<pre><code class="c">muif_t muif_list[] = {
+    MUIF_U8G2_LABEL(),
+    MUIF_U8G2_FONT_STYLE(0, u8g2_font_6x10_tr)
+    ...
+}
+</code></pre>
+<p>Next, we define the main menu and sub-menus within the <strong><em>fds_data[]</em></strong> array. For each menu screen, we specify its
+title and its corresponding numeric identifier. In the library's official examples, these form IDs typically follow this
+pattern:</p>
+<ul>
+<li>main menu MUI_01<ul>
+<li>sub-menu MUI_10 "Radio buttons" <ul>
+<li>sub-menu MUI_11 "Radio buttons 1"</li>
+<li>sub-menu MUI_12 "Radio buttons 2"</li>
+<li>sub-menu_MUI_13 "Radio buttons 3"</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The following code snippet demonstrates how I configured the main menu and its sub-menus. Notice how each form
+explicitly assigns its typographic style using the numeric identifiers established earlier:</p>
+<pre><code class="c">fds_t fds_data[] = 
+  // ------ ELEMENTS FOR THE MAIN MENU ------
+  MUI_FORM(1)
+  MUI_STYLE(0)
+  MUI_LABEL(35, 8, "Main Menu")   // Title
+  MUI_XY("HR", 0, 11)             // Horizontal line below the title
+  ...
+
+  // ------ ELEMENTS FOR THE RADIO BUTTONS MENU ------
+  MUI_FORM(10)
+  MUI_STYLE(0)
+  MUI_LABEL(25, 8, "Radio buttons")
+  ...
+
+  // ------ ELEMENTS FOR THE CHECK BOXES MENU ------
+  MUI_FORM(20)
+  MUI_STYLE(0)
+  MUI_LABEL(30, 8, "Check boxes")
+  ...
+
+  // ------ ELEMENTS FOR THE NUMBERS MENU ------
+  MUI_FORM(30)
+  MUI_STYLE(0)
+  MUI_LABEL(40, 8, "Numbers")
+  ...
+;
+</code></pre>
+<h3 id="implementing widgets within main menu and sub-menus">Implementing Widgets Within Main Menu and Sub-Menus</h3>
+<p>We declare the individual widgets within the <strong><em>fds_data[]</em></strong> array. For instance, the main menu defines a list of
+six buttons using the <strong><em>MUI_DATA</em></strong> macro, alongside the coordinate positions for the first four buttons displayed on
+the form:</p>
+<pre><code class="c">fds_t fds_data[] = 
+  ...
+  MUI_LABEL(35, 8, "Main Menu")   // Title
+  MUI_XY("HR", 0, 11)             // Horizontal line below the title
+  // Scrollable list of buttons
+  MUI_DATA("GP",
+      MUI_10 "Radio buttons|"
+      MUI_20 "Check boxes|"
+      MUI_30 "Numbers|"
+      MUI_40 "List selection|"
+      MUI_50 "Bar graph|"
+      MUI_60 "Custom element")
+  // Screen coordinates for the first four buttons
+  MUI_XYA("GC", 5, 24, 0) 
+  MUI_XYA("GC", 5, 36, 1) 
+  MUI_XYA("GC", 5, 48, 2) 
+  MUI_XYA("GC", 5, 60, 3)
+;
+</code></pre>
+<p>Each widget requires a two-letter identifier to bind it to the function that executes upon user selection. The MUI
+framework defines the specific arguments that each widget needs for its processing field. In our main menu example, the
+<strong><em>MUI_DATA</em></strong> widget uses the identifier <strong><em>"GP"</em></strong>, which maps directly to the processing field entry:
+<strong><em>MUIF_RO("GP", mui_u8g2_goto_data)</em></strong>. Then, we use the <strong><em>"GC"</em></strong> identifier to map the first four button to the
+corresponding processing field entry: <strong><em>MUIF_BUTTON("GC", mui_u8g2_goto_form_w1_pi)</em></strong>. </p>
+<pre><code class="c">muif_t muif_list[] = {
+  MUIF_U8G2_LABEL(),
+  ...
+  MUIF_RO("GP",mui_u8g2_goto_data),
+  MUIF_BUTTON("GC", mui_u8g2_goto_form_w1_pi),
+  ...
+}
+</code></pre>
+<p>Here is how the menu renders on the screen:</p>
+<div class="row justify-content-center">
+<div class="col-8">
+<figure class="figure mx-auto" style="display: table;">
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-main-menu.jpg">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-main-menu.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+                Main menu showing only the first four button
+            </figcaption>
+</figure>
+</div>
+</div>
+<p>To make things clearer, let&rsquo;s look at the setup for the first sub-menu. Inside the <strong><em>fds_data[]</em></strong> array, we declare
+the two radio buttons that are going to be rendered on this screen. We use the identifier <strong><em>"RB"</em></strong> to bind these
+widgets to their corresponding processing field entry.</p>
+<pre><code class="c">fds_t fds_data[] = 
+  ...
+  MUI_LABEL(35, 8, "Main Menu")   // Title
+  MUI_XY("HR", 0, 11)             // Horizontal line below the title
+  ...
+  // ------ ELEMENTS FOR THE RADIO BUTTONS MENU ------
+  MUI_FORM(10)
+  MUI_STYLE(0)
+  MUI_LABEL(25, 8, "Radio buttons")
+  MUI_XY("HR", 0, 11)
+  MUI_XYAT("RB", 1, 25, 0, "Radio button 1")
+  MUI_XYAT("RB", 1, 40, 1, "Radio button 2")
+  ...
+;
+</code></pre>
+<p>Next, inside the <strong><em>muif_list[]</em></strong> array, we define the actual processing field entry for our radio buttons. This is
+where we bind the specific callback function that executes when either of the radio buttons is selected.</p>
+<pre><code class="c">muif_t muif_list[] = {
+  MUIF_U8G2_LABEL(),
+  ...
+  MUIF_VARIABLE("RB", &amp;rb_variable, mui_u8g2_u8_radio_wm_pi),
+  ...
+}
+</code></pre>
+<p>Here is how the radio buttons are rendered on the screen:</p>
+<div class="row justify-content-center">
+<div class="col-8">
+<figure class="figure mx-auto" style="display: table;">
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-radio-buttons.jpg">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-radio-buttons.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+                Sub-menu showing two radio buttons
+            </figcaption>
+</figure>
+</div>
+</div>
+<h3 id="implementing menu and sub-menu navigation logic">Implementing Menu and Sub-Menu Navigation Logic</h3>
+<p>For the Arduino example, I use the <strong><em>Button2</em></strong> library <strong><em>[4]</em></strong> to handle the four physical buttons used to navigate
+the menu system. However, this specific library is not required for your own projects; you can easily adapt the system
+to work with any other input device, such as a rotary encoder.</p>
+<div class="row justify-content-center">
+<div class="col-8">
+<figure class="figure mx-auto" style="display: table;">
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-arduino-buttons.jpg">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-arduino-buttons.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+</a>
+<figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
+                Function of each button from left to right: UP, DOWN, SELECT, BACK
+            </figcaption>
+</figure>
+</div>
+</div>
+<p>The four physical buttons are mapped to the following functions: the <strong>UP</strong> and <strong>DOWN</strong> buttons move the cursor to the
+previous or next widget. The <strong>SELECT</strong> button is used to activate the widget where the cursor is currently positioned
+and execute its associated function. Finally, the <strong>BACK</strong> button allows the user to return to the previous form.</p>
+<p>The <strong><em>MUI</em></strong> framework provides built-in functions that automatically handle cursor navigation and execute a widget's
+callback function, for example, transitioning to and displaying a sub-menu.</p>
+<p>Specifically, we use <strong><em>mui_menu.prevField()</em></strong> and <strong><em>mui_menu.nextField()</em></strong> to cycle the cursor through the available
+widgets within a form. These functions are triggered directly when the user presses the hardware <strong>UP</strong> and <strong>DOWN</strong>
+buttons.</p>
+<pre><code class="arduino">void up_button_tap(Button2&amp; btn) {
+  mui_menu.prevField();
+  redraw_screen = true;
+}
+
+void down_button_tap(Button2&amp; btn) {
+  mui_menu.nextField();
+  redraw_screen = true;
+}
+</code></pre>
+<p>The <strong>SELECT</strong> button allows us to trigger the function of our chosen widget. In the case of our main menu, each item
+is configured to transition to a different sub-menu. By calling the <strong><em>mui_menu.sendSelect()</em></strong> function within our
+input handler, the framework invokes the specific callback function associated with that active widget.</p>
+<pre><code class="arduino">void enter_button_tap(Button2&amp; btn) {
+  prev_cursor_position = mui_menu.getCurrentCursorFocusPosition();
+  mui_menu.sendSelect();
+  mui_SaveCursorPosition(ptr_mui_menu, prev_cursor_position);
+  redraw_screen = true;
+}
+</code></pre>
+<p>Here is the final project in action, running on the Arduino Uno R4:</p>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kG-e9Ebwj2A?si=cd7HZ9jWQVsdqrUv" title="YouTube video player" width="560"></iframe>
+<p>The MUI framework makes designing clean, scalable menus for small displays remarkably efficient once you understand its
+core mechanics. I hope this guide gives you a solid foundation for building your own user interfaces.</p>
+<h2 id="references:">References:</h2>
+<ol>
+<li><a href="https://github.com/olikraus/u8g2/wiki/muimanual#form-definition-string-fds">Form Definition String (FDS)</a></li>
+<li><a href="https://github.com/olikraus/u8g2/wiki/muimanual#muif">MUIF</a></li>
+<li><a href="https://github.com/falb18/u8g2-mui-tutorial">u8g2-mui-tutorial</a></li>
+<li><a href="https://github.com/LennartHennigs/Button2">Button2</a></li>
+</ol>
+        </div>
+        <!-- Add table of contents -->
+        <div class="col-lg-4 mx-auto">
+        <div id="toc">
+<ul>
+<li><a class="toc-href" href="#introduction" title="Introduction">Introduction</a></li>
+<li><a class="toc-href" href="#mui concepts" title="MUI Concepts">MUI Concepts</a></li>
+<li><a class="toc-href" href="#programming a menu system" title="Programming a menu system">Programming a menu system</a>
+<ul>
+<li><a class="toc-href" href="#defining forms and widgets for the menu system" title="Defining Forms and Widgets for the Menu System">Defining Forms and Widgets for the Menu System</a></li>
+<li><a class="toc-href" href="#implementing widgets within main menu and sub-menus" title="Implementing Widgets Within Main Menu and Sub-Menus">Implementing Widgets Within Main Menu and Sub-Menus</a></li>
+<li><a class="toc-href" href="#implementing menu and sub-menu navigation logic" title="Implementing Menu and Sub-Menu Navigation Logic">Implementing Menu and Sub-Menu Navigation Logic</a></li></ul></li>
+<li><a class="toc-href" href="#references:" title="References:">References:</a></li></ul></div>
+        </div>
+    </div>
+</article>
+        </div>
+    </div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">Copyright &copy; Felipe Arturo López Bonilla 2021 - 
+                    <script>document.write(dayjs().year())</script>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mt-4 mx-auto">
+                <p class="text-center list-inline text-muted copyright">
+                    This site is powered by 
+                <a href="https://blog.getpelican.com/">Pelican</a>.
+                    The theme is based on
+                <a href="https://startbootstrap.com/theme/clean-blog">Clean Blog</a>.
+                </p>
+            </div>
+        </div>
+</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.5/dist/index.bundle.min.js"></script>
+	<script type="text/javascript"  src="https://falb18.github.io/tinkering_at_night/theme/js/clean-blog.js"></script>
+</body>
+
+</html>

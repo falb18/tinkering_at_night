@@ -1,5 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night - posts</title><link href="https://falb18.github.io/tinkering_at_night/" rel="alternate"></link><link href="https://falb18.github.io/tinkering_at_night/feeds/posts.atom.xml" rel="self"></link><id>https://falb18.github.io/tinkering_at_night/</id><updated>2026-03-25T00:00:00-06:00</updated><entry><title>Installing the driver for the XPT2046 touchscreen chip on a Raspberry Pi</title><link href="https://falb18.github.io/tinkering_at_night/archives/2026/rpi-xpt2046.html" rel="alternate"></link><published>2026-03-25T00:00:00-06:00</published><updated>2026-03-25T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2026-03-25:/tinkering_at_night/archives/2026/rpi-xpt2046.html</id><summary type="html">&lt;p&gt;This tutorial guides you through setting up and installing the driver for the XPT2046 on a Raspberry Pi 4. This chip is commonly used for touch input on TFT ILI9341 displays.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tinkering At Night - posts</title><link href="https://falb18.github.io/tinkering_at_night/" rel="alternate"></link><link href="https://falb18.github.io/tinkering_at_night/feeds/posts.atom.xml" rel="self"></link><id>https://falb18.github.io/tinkering_at_night/</id><updated>2026-06-21T00:00:00-06:00</updated><entry><title>A Practical Guide to Building Embedded Menus with U8g2 MUI</title><link href="https://falb18.github.io/tinkering_at_night/archives/2026/practical-guide-u8g2-mui.html" rel="alternate"></link><published>2026-06-21T00:00:00-06:00</published><updated>2026-06-21T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2026-06-21:/tinkering_at_night/archives/2026/practical-guide-u8g2-mui.html</id><summary type="html">&lt;p&gt;Finding good examples for U8g2's built-in MUI library can be tough. To bridge that gap, I’ve put together a practical guide on setting up UI menus. We'll explore the core concepts and look at two concrete examples: an SDL2 simulation on PC and a physical 128x64 GLCD implementation on the Arduino Uno R4&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;It seems many people are not aware that the U8g2 library comes with a built-in subsystem to help developers build and
+configure user interfaces, called &lt;a href="https://github.com/olikraus/u8g2/wiki/muimanual"&gt;&lt;strong&gt;&lt;em&gt;MUI&lt;/em&gt;&lt;/strong&gt;&lt;/a&gt;. Since I couldn't find
+many examples online besides the official documentation, I decided to write a practical guide on how to set up and
+program a menu system using it. The purpose of this tutorial is to help others implement their own menu systems in
+their personal projects. For this explanation, I created two examples: one that runs on a PC and uses SDL2 to draw the
+menu, and another using an Arduino Uno R4 paired with a 128x64 GLCD display.&lt;/p&gt;
+&lt;p&gt;The code snippets in this article refer to the Arduino implementation. In addition to the GLCD display, this setup
+includes four buttons to navigate through the menu system and interact with the widgets."&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/u8g2-mui-sdl2.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/u8g2-mui-sdl2.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+                PC simulation of the menu sytem
+            &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="mui concepts"&gt;MUI Concepts&lt;/h2&gt;
+&lt;p&gt;Before we begin, it is important to understand two core concepts used by the library.&lt;/p&gt;
+&lt;p&gt;The first concept is the Form Definition String &lt;strong&gt;&lt;em&gt;(FDS)&lt;/em&gt;&lt;/strong&gt;, which provides a declarative way to describe the elements
+inside a form (a concept similar to forms or windows in other GUI frameworks). According to the documentation &lt;strong&gt;[1]&lt;/strong&gt;,
+each form must be assigned a unique ID number ranging from 1 to 255 so the library's internal logic can identify it.
+Within this &lt;strong&gt;&lt;em&gt;FDS&lt;/em&gt;&lt;/strong&gt;, we also define the specific &lt;strong&gt;&lt;em&gt;fields&lt;/em&gt;&lt;/strong&gt; or &lt;strong&gt;&lt;em&gt;widgets&lt;/em&gt;&lt;/strong&gt; that will be displayed on that
+particular screen.&lt;/p&gt;
+&lt;p&gt;The second concept is the Field Processing Function &lt;strong&gt;&lt;em&gt;(MUIF)&lt;/em&gt;&lt;/strong&gt; &lt;strong&gt;&lt;em&gt;[2]&lt;/em&gt;&lt;/strong&gt;. This represents a list of functions used to
+process each widget or define the styles applied to them. Each MUIF configuration consists of a unique two-character
+identifier and an associated callback function. This callback is responsible for both rendering the element on the
+screen and processing its events when selected.&lt;/p&gt;
+&lt;p&gt;Next, I will explain how to set up and program a menu system using these two concepts. Please note that I will omit
+certain parts of the boilerplate code to focus strictly on the key components. You can find the complete source code
+in my repository &lt;strong&gt;&lt;em&gt;[3]&lt;/em&gt;&lt;/strong&gt;."&lt;/p&gt;
+&lt;h2 id="programming a menu system"&gt;Programming a menu system&lt;/h2&gt;
+&lt;p&gt;For this example, we will program a main menu featuring a list of six selectable items, each leading to a different
+sub-menu. Within these sub-menus, we will explore and implement various widgets offered by the MUI library.&lt;/p&gt;
+&lt;h3 id="defining forms and widgets for the menu system"&gt;Defining Forms and Widgets for the Menu System&lt;/h3&gt;
+&lt;p&gt;The layout and behavior of our menu system rely on two main arrays. The first array, &lt;strong&gt;&lt;em&gt;muif_list[]&lt;/em&gt;&lt;/strong&gt;, stores the field
+processing configurations for the types of widgets we will implement. The second array, &lt;strong&gt;&lt;em&gt;fds_data[]&lt;/em&gt;&lt;/strong&gt;, contains the
+Form Definition Strings that declare the forms themselves and the widgets nested within them.&lt;/p&gt;
+&lt;p&gt;Before defining the layout, we must establish the font styles and styles applied to our interface elements. These are
+registered inside the &lt;strong&gt;&lt;em&gt;muif_list[]&lt;/em&gt;&lt;/strong&gt; array, where each style is assigned a numeric identifier. This ID is used later
+within the FDS to map specific styles to a widget or form. In addition to visual styles, this array is where we
+associate the custom callback functions that execute when a user interacts with a selectable widget.&lt;/p&gt;
+&lt;p&gt;For both the main menu and the sub-menus, we configure two primary components: the label widget used for the menu
+titles, and the corresponding font style. In this example, all titles share the same typographic style, which we have
+assigned to ID &lt;strong&gt;&lt;em&gt;0&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="c"&gt;muif_t muif_list[] = {
+    MUIF_U8G2_LABEL(),
+    MUIF_U8G2_FONT_STYLE(0, u8g2_font_6x10_tr)
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, we define the main menu and sub-menus within the &lt;strong&gt;&lt;em&gt;fds_data[]&lt;/em&gt;&lt;/strong&gt; array. For each menu screen, we specify its
+title and its corresponding numeric identifier. In the library's official examples, these form IDs typically follow this
+pattern:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;main menu MUI_01&lt;ul&gt;
+&lt;li&gt;sub-menu MUI_10 "Radio buttons" &lt;ul&gt;
+&lt;li&gt;sub-menu MUI_11 "Radio buttons 1"&lt;/li&gt;
+&lt;li&gt;sub-menu MUI_12 "Radio buttons 2"&lt;/li&gt;
+&lt;li&gt;sub-menu_MUI_13 "Radio buttons 3"&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The following code snippet demonstrates how I configured the main menu and its sub-menus. Notice how each form
+explicitly assigns its typographic style using the numeric identifiers established earlier:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="c"&gt;fds_t fds_data[] = 
+  // ------ ELEMENTS FOR THE MAIN MENU ------
+  MUI_FORM(1)
+  MUI_STYLE(0)
+  MUI_LABEL(35, 8, "Main Menu")   // Title
+  MUI_XY("HR", 0, 11)             // Horizontal line below the title
+  ...
+
+  // ------ ELEMENTS FOR THE RADIO BUTTONS MENU ------
+  MUI_FORM(10)
+  MUI_STYLE(0)
+  MUI_LABEL(25, 8, "Radio buttons")
+  ...
+
+  // ------ ELEMENTS FOR THE CHECK BOXES MENU ------
+  MUI_FORM(20)
+  MUI_STYLE(0)
+  MUI_LABEL(30, 8, "Check boxes")
+  ...
+
+  // ------ ELEMENTS FOR THE NUMBERS MENU ------
+  MUI_FORM(30)
+  MUI_STYLE(0)
+  MUI_LABEL(40, 8, "Numbers")
+  ...
+;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="implementing widgets within main menu and sub-menus"&gt;Implementing Widgets Within Main Menu and Sub-Menus&lt;/h3&gt;
+&lt;p&gt;We declare the individual widgets within the &lt;strong&gt;&lt;em&gt;fds_data[]&lt;/em&gt;&lt;/strong&gt; array. For instance, the main menu defines a list of
+six buttons using the &lt;strong&gt;&lt;em&gt;MUI_DATA&lt;/em&gt;&lt;/strong&gt; macro, alongside the coordinate positions for the first four buttons displayed on
+the form:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="c"&gt;fds_t fds_data[] = 
+  ...
+  MUI_LABEL(35, 8, "Main Menu")   // Title
+  MUI_XY("HR", 0, 11)             // Horizontal line below the title
+  // Scrollable list of buttons
+  MUI_DATA("GP",
+      MUI_10 "Radio buttons|"
+      MUI_20 "Check boxes|"
+      MUI_30 "Numbers|"
+      MUI_40 "List selection|"
+      MUI_50 "Bar graph|"
+      MUI_60 "Custom element")
+  // Screen coordinates for the first four buttons
+  MUI_XYA("GC", 5, 24, 0) 
+  MUI_XYA("GC", 5, 36, 1) 
+  MUI_XYA("GC", 5, 48, 2) 
+  MUI_XYA("GC", 5, 60, 3)
+;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Each widget requires a two-letter identifier to bind it to the function that executes upon user selection. The MUI
+framework defines the specific arguments that each widget needs for its processing field. In our main menu example, the
+&lt;strong&gt;&lt;em&gt;MUI_DATA&lt;/em&gt;&lt;/strong&gt; widget uses the identifier &lt;strong&gt;&lt;em&gt;"GP"&lt;/em&gt;&lt;/strong&gt;, which maps directly to the processing field entry:
+&lt;strong&gt;&lt;em&gt;MUIF_RO("GP", mui_u8g2_goto_data)&lt;/em&gt;&lt;/strong&gt;. Then, we use the &lt;strong&gt;&lt;em&gt;"GC"&lt;/em&gt;&lt;/strong&gt; identifier to map the first four button to the
+corresponding processing field entry: &lt;strong&gt;&lt;em&gt;MUIF_BUTTON("GC", mui_u8g2_goto_form_w1_pi)&lt;/em&gt;&lt;/strong&gt;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class="c"&gt;muif_t muif_list[] = {
+  MUIF_U8G2_LABEL(),
+  ...
+  MUIF_RO("GP",mui_u8g2_goto_data),
+  MUIF_BUTTON("GC", mui_u8g2_goto_form_w1_pi),
+  ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is how the menu renders on the screen:&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-main-menu.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-main-menu.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+                Main menu showing only the first four button
+            &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;To make things clearer, let&amp;rsquo;s look at the setup for the first sub-menu. Inside the &lt;strong&gt;&lt;em&gt;fds_data[]&lt;/em&gt;&lt;/strong&gt; array, we declare
+the two radio buttons that are going to be rendered on this screen. We use the identifier &lt;strong&gt;&lt;em&gt;"RB"&lt;/em&gt;&lt;/strong&gt; to bind these
+widgets to their corresponding processing field entry.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="c"&gt;fds_t fds_data[] = 
+  ...
+  MUI_LABEL(35, 8, "Main Menu")   // Title
+  MUI_XY("HR", 0, 11)             // Horizontal line below the title
+  ...
+  // ------ ELEMENTS FOR THE RADIO BUTTONS MENU ------
+  MUI_FORM(10)
+  MUI_STYLE(0)
+  MUI_LABEL(25, 8, "Radio buttons")
+  MUI_XY("HR", 0, 11)
+  MUI_XYAT("RB", 1, 25, 0, "Radio button 1")
+  MUI_XYAT("RB", 1, 40, 1, "Radio button 2")
+  ...
+;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, inside the &lt;strong&gt;&lt;em&gt;muif_list[]&lt;/em&gt;&lt;/strong&gt; array, we define the actual processing field entry for our radio buttons. This is
+where we bind the specific callback function that executes when either of the radio buttons is selected.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="c"&gt;muif_t muif_list[] = {
+  MUIF_U8G2_LABEL(),
+  ...
+  MUIF_VARIABLE("RB", &amp;amp;rb_variable, mui_u8g2_u8_radio_wm_pi),
+  ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is how the radio buttons are rendered on the screen:&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-radio-buttons.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-radio-buttons.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+                Sub-menu showing two radio buttons
+            &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id="implementing menu and sub-menu navigation logic"&gt;Implementing Menu and Sub-Menu Navigation Logic&lt;/h3&gt;
+&lt;p&gt;For the Arduino example, I use the &lt;strong&gt;&lt;em&gt;Button2&lt;/em&gt;&lt;/strong&gt; library &lt;strong&gt;&lt;em&gt;[4]&lt;/em&gt;&lt;/strong&gt; to handle the four physical buttons used to navigate
+the menu system. However, this specific library is not required for your own projects; you can easily adapt the system
+to work with any other input device, such as a rotary encoder.&lt;/p&gt;
+&lt;div class="row justify-content-center"&gt;
+&lt;div class="col-8"&gt;
+&lt;figure class="figure mx-auto" style="display: table;"&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-arduino-buttons.jpg"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-arduino-buttons.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;/a&gt;
+&lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
+                Function of each button from left to right: UP, DOWN, SELECT, BACK
+            &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;The four physical buttons are mapped to the following functions: the &lt;strong&gt;UP&lt;/strong&gt; and &lt;strong&gt;DOWN&lt;/strong&gt; buttons move the cursor to the
+previous or next widget. The &lt;strong&gt;SELECT&lt;/strong&gt; button is used to activate the widget where the cursor is currently positioned
+and execute its associated function. Finally, the &lt;strong&gt;BACK&lt;/strong&gt; button allows the user to return to the previous form.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;&lt;em&gt;MUI&lt;/em&gt;&lt;/strong&gt; framework provides built-in functions that automatically handle cursor navigation and execute a widget's
+callback function, for example, transitioning to and displaying a sub-menu.&lt;/p&gt;
+&lt;p&gt;Specifically, we use &lt;strong&gt;&lt;em&gt;mui_menu.prevField()&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;mui_menu.nextField()&lt;/em&gt;&lt;/strong&gt; to cycle the cursor through the available
+widgets within a form. These functions are triggered directly when the user presses the hardware &lt;strong&gt;UP&lt;/strong&gt; and &lt;strong&gt;DOWN&lt;/strong&gt;
+buttons.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="arduino"&gt;void up_button_tap(Button2&amp;amp; btn) {
+  mui_menu.prevField();
+  redraw_screen = true;
+}
+
+void down_button_tap(Button2&amp;amp; btn) {
+  mui_menu.nextField();
+  redraw_screen = true;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;strong&gt;SELECT&lt;/strong&gt; button allows us to trigger the function of our chosen widget. In the case of our main menu, each item
+is configured to transition to a different sub-menu. By calling the &lt;strong&gt;&lt;em&gt;mui_menu.sendSelect()&lt;/em&gt;&lt;/strong&gt; function within our
+input handler, the framework invokes the specific callback function associated with that active widget.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="arduino"&gt;void enter_button_tap(Button2&amp;amp; btn) {
+  prev_cursor_position = mui_menu.getCurrentCursorFocusPosition();
+  mui_menu.sendSelect();
+  mui_SaveCursorPosition(ptr_mui_menu, prev_cursor_position);
+  redraw_screen = true;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is the final project in action, running on the Arduino Uno R4:&lt;/p&gt;
+&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kG-e9Ebwj2A?si=cd7HZ9jWQVsdqrUv" title="YouTube video player" width="560"&gt;&lt;/iframe&gt;
+&lt;p&gt;The MUI framework makes designing clean, scalable menus for small displays remarkably efficient once you understand its
+core mechanics. I hope this guide gives you a solid foundation for building your own user interfaces.&lt;/p&gt;
+&lt;h2 id="references:"&gt;References:&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/olikraus/u8g2/wiki/muimanual#form-definition-string-fds"&gt;Form Definition String (FDS)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/olikraus/u8g2/wiki/muimanual#muif"&gt;MUIF&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/falb18/u8g2-mui-tutorial"&gt;u8g2-mui-tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/LennartHennigs/Button2"&gt;Button2&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="posts"></category></entry><entry><title>Installing the driver for the XPT2046 touchscreen chip on a Raspberry Pi</title><link href="https://falb18.github.io/tinkering_at_night/archives/2026/rpi-xpt2046.html" rel="alternate"></link><published>2026-03-25T00:00:00-06:00</published><updated>2026-03-25T00:00:00-06:00</updated><author><name>Felipe Arturo López Bonilla</name></author><id>tag:falb18.github.io,2026-03-25:/tinkering_at_night/archives/2026/rpi-xpt2046.html</id><summary type="html">&lt;p&gt;This tutorial guides you through setting up and installing the driver for the XPT2046 on a Raspberry Pi 4. This chip is commonly used for touch input on TFT ILI9341 displays.&lt;/p&gt;</summary><content type="html">&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In the article &lt;a href="https://falb18.github.io/tinkering_at_night/archives/2025/rpi4-ili9341-tinydrm.html"&gt;Installing the tinydrm driver for the ILI9341 TFT Display on a Raspberry Pi&lt;/a&gt;
 on a Raspberry Pi, I mentioned that we still needed to set up the touchscreen. In this tutorial, I will explain how to
 configure the XPT2046 touchscreen chip on a Raspberry Pi 4 to use alongside the TFT ILI9341 display.&lt;/p&gt;
