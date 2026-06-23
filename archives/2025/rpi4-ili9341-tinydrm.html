@@ -316,8 +316,8 @@ execute the following command:</p>
 <div class="row justify-content-center">
 <div class="col-8">
 <figure class="figure mx-auto" style="display: table;">
-<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg">
-<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.png">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
 </a>
 <figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
                 On the kernel logs we can notice that the drm driver initializes the TFT display.
@@ -332,8 +332,8 @@ is listed:</p>
 <div class="row justify-content-center">
 <div class="col-8">
 <figure class="figure mx-auto" style="display: table;">
-<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg">
-<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.png">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
 </a>
 <figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
                 Confirm that the kernel module is loaded.
@@ -348,8 +348,8 @@ assigned to the TFT display:</p>
 <div class="row justify-content-center">
 <div class="col-8">
 <figure class="figure mx-auto" style="display: table;">
-<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.jpg">
-<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
+<a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.png">
+<img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/>
 </a>
 <figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;">
                 List of graphics cards
@@ -365,7 +365,9 @@ file and append the following command to the end of the line, redirecting the co
 </code></pre>
 <p>Reboot the Raspberry Pi to apply the changes. Once the boot process initializes the driver, you should see the kernel
 messages on the display.</p>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/3NChL18HWMA?si=HVzH6kR6V6TPvqpx" title="YouTube video player" width="560"></iframe>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/3NChL18HWMA?si=HVzH6kR6V6TPvqpx" title="YouTube video player" width="560">
+</iframe>
+</p>
 <p>With the tinydrm driver now set up and verified, your display is ready for development. I hope this tutorial gives you
 a great starting point for all your future projects involving this hardware.</p>
 <h2 id="references:">References:</h2>

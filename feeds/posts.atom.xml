@@ -11,8 +11,8 @@ includes four buttons to navigate through the menu system and interact with the 
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/u8g2-mui-sdl2.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/u8g2-mui-sdl2.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/u8g2-mui-sdl2.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/u8g2-mui-sdl2.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 PC simulation of the menu sytem
@@ -137,8 +137,8 @@ corresponding processing field entry: &lt;strong&gt;&lt;em&gt;MUIF_BUTTON("GC", 
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-main-menu.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-main-menu.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-main-menu.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-main-menu.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 Main menu showing only the first four button
@@ -177,8 +177,8 @@ where we bind the specific callback function that executes when either of the ra
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-radio-buttons.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-radio-buttons.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-radio-buttons.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/practical-guide-u8g2-mui/mui-radio-buttons.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 Sub-menu showing two radio buttons
@@ -231,7 +231,9 @@ input handler, the framework invokes the specific callback function associated w
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Here is the final project in action, running on the Arduino Uno R4:&lt;/p&gt;
-&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kG-e9Ebwj2A?si=cd7HZ9jWQVsdqrUv" title="YouTube video player" width="560"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kG-e9Ebwj2A?si=cd7HZ9jWQVsdqrUv" title="YouTube video player" width="560"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
 &lt;p&gt;The MUI framework makes designing clean, scalable menus for small displays remarkably efficient once you understand its
 core mechanics. I hope this guide gives you a solid foundation for building your own user interfaces.&lt;/p&gt;
 &lt;h2 id="references:"&gt;References:&lt;/h2&gt;
@@ -474,7 +476,9 @@ lv_demo_widgets();
 //lv_demo_widgets_start_slideshow();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The following video shows the LVGL demo running on the display with touchscreen support:&lt;/p&gt;
-&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/VwJa_nqaOfU?si=8viDGLF04yXncDzY" title="YouTube video player" width="560"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/VwJa_nqaOfU?si=8viDGLF04yXncDzY" title="YouTube video player" width="560"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
 &lt;h2 id="references:"&gt;References:&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="https://dietpi.com/forum/t/solution-for-xpt2046-screens/3233"&gt;Solution for XPT2046 screens - Community Tutorials - DietPi Community Forum&lt;/a&gt;&lt;/li&gt;
@@ -495,8 +499,8 @@ display using the DRM driver.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-lvgl-demo-drm/rpi-lvgl-demo-running.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-lvgl-demo-drm/rpi-lvgl-demo-running.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-lvgl-demo-drm/rpi-lvgl-demo-running.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-lvgl-demo-drm/rpi-lvgl-demo-running.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 LVGL demo running on Raspberry Pi 4
@@ -543,7 +547,9 @@ command: &lt;strong&gt;&lt;em&gt;ls -al /sys/class/drm/&lt;/em&gt;&lt;/strong&gt
 &lt;pre&gt;&lt;code class="language-bash"&gt;./build/bin/lvglsim
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The following video demonstrates the demo running on the display:&lt;/p&gt;
-&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/tk1mXcJ2_JM?si=gzlPKthiSVFpH1az" title="YouTube video player" width="560"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/tk1mXcJ2_JM?si=gzlPKthiSVFpH1az" title="YouTube video player" width="560"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
 &lt;p&gt;The next logical step is to enable the touchscreen as the input device to make the GUI interactive, a topic I'll cover
 in an upcoming article.&lt;/p&gt;
 &lt;h2 id="references:"&gt;References:&lt;/h2&gt;
@@ -793,8 +799,8 @@ execute the following command:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/dmesg-drm-output.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 On the kernel logs we can notice that the drm driver initializes the TFT display.
@@ -809,8 +815,8 @@ is listed:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/lsmod-output.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 Confirm that the kernel module is loaded.
@@ -825,8 +831,8 @@ assigned to the TFT display:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/rpi-ili9341-tinydrm/ls-sys-class-drm.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 List of graphics cards
@@ -842,7 +848,9 @@ file and append the following command to the end of the line, redirecting the co
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Reboot the Raspberry Pi to apply the changes. Once the boot process initializes the driver, you should see the kernel
 messages on the display.&lt;/p&gt;
-&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/3NChL18HWMA?si=HVzH6kR6V6TPvqpx" title="YouTube video player" width="560"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/3NChL18HWMA?si=HVzH6kR6V6TPvqpx" title="YouTube video player" width="560"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
 &lt;p&gt;With the tinydrm driver now set up and verified, your display is ready for development. I hope this tutorial gives you
 a great starting point for all your future projects involving this hardware.&lt;/p&gt;
 &lt;h2 id="references:"&gt;References:&lt;/h2&gt;
@@ -859,8 +867,8 @@ a great starting point for all your future projects involving this hardware.&lt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/simulation-u8g2-sdl2/screenshot-u8g2-simulation.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/simulation-u8g2-sdl2/screenshot-u8g2-simulation.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/simulation-u8g2-sdl2/screenshot-u8g2-simulation.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/simulation-u8g2-sdl2/screenshot-u8g2-simulation.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -869,8 +877,8 @@ a great starting point for all your future projects involving this hardware.&lt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/screenshot-blog-pc.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/screenshot-blog-pc.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/screenshot-blog-pc.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/five-years-blog/screenshot-blog-pc.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 Screenshot from my mom's PC.
@@ -1283,8 +1291,8 @@ through the smartphone's micro USB port:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/samsung-usb-serial.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/samsung-usb-serial.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/samsung-usb-serial.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 Circuit to enable UART transmission on the USB connector
@@ -1296,8 +1304,8 @@ through the smartphone's micro USB port:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/pmos-samsung-s3-mini/serial-terminal-postmarketos.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 postmarketOS prompt
@@ -1378,8 +1386,8 @@ illustrates the interaction between these two devices:&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/track-info-mpris/spotify-track-info-led-matrix-diagram.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 MQTT network diagram
@@ -1417,8 +1425,8 @@ configuration we want to achive is show in the following diagram.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/eclipse-mosquitto-ipvlan/network-diagram.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/eclipse-mosquitto-ipvlan/network-diagram.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/eclipse-mosquitto-ipvlan/network-diagram.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/eclipse-mosquitto-ipvlan/network-diagram.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 Network diagram
@@ -1548,8 +1556,8 @@ search for: &lt;strong&gt;&lt;em&gt;Idf: Custom Extra Paths&lt;/em&gt;&lt;/stron
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-setting-custom-path.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 ESP-IDF setting to add extra paths.
@@ -1613,8 +1621,8 @@ cp -r esptool-4.6.2 ~/esp/ESP8266_RTOS_SDK/components/esptool_py/esptool
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-build.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-build.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-build.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-build.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 Now it's possible to build the project with the ESP-IDF extension.
@@ -1625,8 +1633,8 @@ cp -r esptool-4.6.2 ~/esp/ESP8266_RTOS_SDK/components/esptool_py/esptool
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-flash.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-flash.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-flash.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/esp8266-sdk-vscode/esp-idf-flash.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;figcaption class="figure-caption text-center" style="display: table-caption; caption-side: bottom;"&gt;
                 Also you can flash the MCU.
@@ -1710,8 +1718,8 @@ the 5v of the Arduino Nano. The Raspberry Pi is not shown on the schematic since
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-pub-sub.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-pub-sub.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/mqtt-simple-application/esp-mqtt-pub-sub.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -2020,8 +2028,8 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-module-sch.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-module-sch.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetooth-module-sch.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -2061,8 +2069,8 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/hciconfig-hci0.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/hciconfig-hci0.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/hciconfig-hci0.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/hciconfig-hci0.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -2077,8 +2085,8 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-scan.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-scan.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-scan.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -2087,8 +2095,8 @@ on it, so the code will run without any issue.&lt;/p&gt;
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-pair.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-pair.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/bluetoothctl-pair.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -2119,8 +2127,8 @@ To send text to the module open the recently created serial port with the progra
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/picocom-terminals.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/picocom-terminals.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/picocom-terminals.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/bluetooth-hc05-linux/picocom-terminals.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -2147,8 +2155,8 @@ To send text to the module open the recently created serial port with the progra
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/lcd-1602-circuit.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -2499,8 +2507,8 @@ Params: pin_d4                  GPIO pin for data pin D4 (default 6)
 &lt;div class="row justify-content-center"&gt;
 &lt;div class="col-8"&gt;
 &lt;figure class="figure mx-auto" style="display: table;"&gt;
-&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/kernel-gpios.jpg"&gt;
-&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/kernel-gpios.jpg" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
+&lt;a data-toggle="lightbox" href="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/kernel-gpios.png"&gt;
+&lt;img class="figure-img img-fluid rounded" loading="lazy" src="https://falb18.github.io/tinkering_at_night/article-assets/raspberry-hd44780-driver/kernel-gpios.png" style="width: 100%; max-width: 500px; height: auto; max-height: 500px;"/&gt;
 &lt;/a&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
